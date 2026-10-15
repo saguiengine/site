@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{#- Zola's Atom feed, with the title from identity.toml instead of
+    config.title, which cannot read it (D379). -#}
+{%- set identity = load_data(path="identity.toml") -%}
+{%- set marca = identity.brand.engine_name -%}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ lang }}">
+    <title>{{ marca }} · Devlog</title>
+    <link rel="self" type="application/atom+xml" href="{{ feed_url | safe }}"/>
+    <link rel="alternate" type="text/html" href="{{ get_url(path="@/devlog/_index.md", lang=lang) | escape_xml | safe }}"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    {% if last_updated is defined %}<updated>{{ last_updated | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</updated>{% endif %}
+    <id>{{ feed_url | safe }}</id>
+    {%- for page in pages %}
+    <entry xml:lang="{{ page.lang }}">
+        <title>{{ page.title }}</title>
+        {% if page.date %}<published>{{ page.date | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</published>{% endif %}
+        {% if page.updated %}<updated>{{ page.updated | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</updated>{% elif page.date %}<updated>{{ page.date | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</updated>{% endif %}
+        <author><name>Guilherme</name></author>
+        <link rel="alternate" type="text/html" href="{{ page.permalink | safe }}"/>
+        <id>{{ page.permalink | safe }}</id>
+        <content type="html" xml:base="{{ page.permalink | escape_xml | safe }}">{{ page.content }}</content>
+    </entry>
+    {%- endfor %}
+</feed>

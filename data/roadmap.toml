@@ -1,0 +1,73 @@
+# The roadmap as the devlog shows it, stage by stage. `state` is done, now
+# or next; "{linguagem}" becomes the script language's name (identity.toml).
+# Update `state` when a stage ends, in the same PR as its milestone post.
+
+[[stage]]
+pt = "Etapa 0: provas"
+en = "Stage 0: proofs"
+state = "done"
+
+[[stage]]
+pt = "Etapa 1: base"
+en = "Stage 1: foundation"
+state = "now"
+
+[[stage]]
+pt = "Etapa 2: peças e fases"
+en = "Stage 2: pieces and levels"
+state = "next"
+
+[[stage]]
+pt = "Etapa 3: física"
+en = "Stage 3: physics"
+state = "next"
+
+[[stage]]
+pt = "Etapa 4: {linguagem}, o núcleo"
+en = "Stage 4: {linguagem}, the core"
+state = "next"
+
+[[stage]]
+pt = "Etapa 5: editor"
+en = "Stage 5: editor"
+state = "next"
+
+[[stage]]
+pt = "Etapa 6: ferramentas de código"
+en = "Stage 6: code tools"
+state = "next"
+
+[[stage]]
+pt = "Etapa 7: sprites e tiles"
+en = "Stage 7: sprites and tiles"
+state = "next"
+
+[[stage]]
+pt = "Etapa 8: iluminação 2D"
+en = "Stage 8: 2D lighting"
+state = "next"
+
+[[stage]]
+pt = "Etapa 9: partículas"
+en = "Stage 9: particles"
+state = "next"
+
+[[stage]]
+pt = "Etapa 10: som"
+en = "Stage 10: sound"
+state = "next"
+
+[[stage]]
+pt = "Etapa 11: jogo completo"
+en = "Stage 11: a complete game"
+state = "next"
+
+[[stage]]
+pt = "Etapa 12a: exportação"
+en = "Stage 12a: export"
+state = "next"
+
+[[stage]]
+pt = "Etapa 12b: lançamento"
+en = "Stage 12b: launch"
+state = "next"

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block nav_home %} aria-current="page"{% endblock nav_home %}
+
+{% block content %}
+{%- set devlog = get_section(path="devlog/_index.md", lang=lang) -%}
+<section class="wrap hero">
+  <p class="kicker">{{ section.extra.kicker }}</p>
+  <h1>{{ section.extra.headline }}</h1>
+  <div class="lead">{{ section.content | safe }}</div>
+  <div class="actions">
+    <span class="status">{{ trans(key="status", lang=lang) }}</span>
+    <a class="button" href="{{ devlog.permalink }}">{{ trans(key="follow_devlog", lang=lang) }}</a>
+  </div>
+</section>
+
+<section class="wrap latest" aria-labelledby="do-devlog">
+  <h2 id="do-devlog">{{ trans(key="from_devlog", lang=lang) }}</h2>
+  {%- if devlog.pages %}
+  <ul class="posts">
+    {%- for post in devlog.pages[:3] %}
+    <li>{% include "post_card.html" %}</li>
+    {%- endfor %}
+  </ul>
+  <p><a href="{{ devlog.permalink }}">{{ trans(key="all_posts", lang=lang) }}</a></p>
+  {%- else %}
+  <p class="muted">{{ trans(key="no_posts", lang=lang) }}</p>
+  {%- endif %}
+</section>
+{% endblock content %}
