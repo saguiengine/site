@@ -53,6 +53,7 @@ not_found_text = "Esta página não existe ou mudou de lugar."
 back_home = "Voltar ao início"
 milestone = "Marco"
 published = "Publicado em"
+date_format = "%d/%m/%Y"
 
 [languages.en]
 generate_feeds = true
@@ -87,3 +88,4 @@ not_found_text = "This page does not exist or has moved."
 back_home = "Back to the home page"
 milestone = "Milestone"
 published = "Published on"
+date_format = "%b %-d, %Y"

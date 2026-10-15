@@ -5,7 +5,7 @@
     {%- if post.extra.stage is defined %}
     <span class="label">{{ trans(key="milestone", lang=lang) }} · {{ trans(key="stage", lang=lang) | lower }} {{ post.extra.stage }}</span>
     {%- endif %}
-    <time datetime="{{ post.date }}">{{ post.date | date(format="%d/%m/%Y") }}</time>
+    <time datetime="{{ post.date }}">{{ post.date | date(format=trans(key="date_format", lang=lang)) }}</time>
   </span>
   <span class="card-title">{{ post.title }}</span>
   {%- if post.description %}

@@ -7,6 +7,6 @@
   {%- if page.extra.stage is defined %}
   <span class="label">{{ trans(key="milestone", lang=lang) }} · {{ trans(key="stage", lang=lang) | lower }} {{ page.extra.stage }}</span>
   {%- endif %}
-  <span>{{ trans(key="published", lang=lang) }} <time datetime="{{ page.date }}">{{ page.date | date(format="%d/%m/%Y") }}</time></span>
+  <span>{{ trans(key="published", lang=lang) }} <time datetime="{{ page.date }}">{{ page.date | date(format=trans(key="date_format", lang=lang)) }}</time></span>
 </p>
 {% endblock article_meta %}
