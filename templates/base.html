@@ -7,8 +7,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {#- A preview: search engines stay out until the launch (D271). #}
+  {%- if config.base_url != identity.site.url %}
+  {#- D383: only the live domain is indexed; the provisional address and the
+      previews are not (build.py also sends the header). #}
   <meta name="robots" content="noindex">
+  {%- endif %}
   <title>{% block title %}{{ marca }}{% endblock title %}</title>
   <meta name="description" content="{% block description %}{{ trans(key="status", lang=lang) }}{% endblock description %}">
   <link rel="stylesheet" href="{{ get_url(path="css/site.css") }}">
@@ -19,10 +22,10 @@
   <a class="skip" href="#conteudo">{{ trans(key="skip_link", lang=lang) }}</a>
   <header class="top">
     <div class="wrap top-row">
-      <a class="brand" href="{{ get_url(path="@/_index.md", lang=lang) }}">{{ marca }}</a>
+      <a class="brand target" href="{{ get_url(path="@/_index.md", lang=lang) }}">{{ marca }}</a>
       <nav aria-label="{{ trans(key="nav_label", lang=lang) }}" class="nav">
-        <a href="{{ get_url(path="@/_index.md", lang=lang) }}"{% block nav_home %}{% endblock nav_home %}>{{ trans(key="nav_home", lang=lang) }}</a>
-        <a href="{{ get_url(path="@/devlog/_index.md", lang=lang) }}"{% block nav_devlog %}{% endblock nav_devlog %}>{{ trans(key="nav_devlog", lang=lang) }}</a>
+        <a class="target" href="{{ get_url(path="@/_index.md", lang=lang) }}"{% block nav_home %}{% endblock nav_home %}>{{ trans(key="nav_home", lang=lang) }}</a>
+        <a class="target" href="{{ get_url(path="@/devlog/_index.md", lang=lang) }}"{% block nav_devlog %}{% endblock nav_devlog %}>{{ trans(key="nav_devlog", lang=lang) }}</a>
       </nav>
       <span class="grow"></span>
       <a class="lang" hreflang="{{ other_lang }}" lang="{{ other_lang }}"
@@ -35,10 +38,14 @@
   </main>
   <footer class="bottom">
     <div class="wrap bottom-row">
-      <a href="{{ get_url(path="@/licenca.md", lang=lang) }}">{{ trans(key="footer_license", lang=lang) }}</a>
-      <a href="https://github.com/{{ identity.brand.handle }}/site">{{ trans(key="footer_source", lang=lang) }}</a>
+      <a class="target" href="{{ get_url(path="@/licenca.md", lang=lang) }}">{{ trans(key="footer_license", lang=lang) }}</a>
+      <a class="target" href="https://github.com/{{ identity.brand.handle }}/site">{{ trans(key="footer_source", lang=lang) }}</a>
       <span class="grow"></span>
-      <span class="tagline">{{ trans(key="footer_tagline", lang=lang) | replace(from="{marca}", to=marca) }}</span>
+      {#- How the name sounds and what it means come from identity.toml (D276). #}
+      <span class="tagline">{{ trans(key="footer_tagline", lang=lang)
+        | replace(from="{marca}", to=marca)
+        | replace(from="{pronuncia}", to=identity.site.pronunciation)
+        | replace(from="{sentido}", to=identity.site.meaning[lang]) }}</span>
     </div>
   </footer>
 </body>

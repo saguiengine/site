@@ -22,3 +22,9 @@ engine = "SE"
 # site's copy falls behind. Its address comes from here too.
 [site]
 url = "https://saguiengine.com"
+# How the name sounds and what it means, in the site's footer, per language.
+pronunciation = "sah-GWEE"
+
+[site.meaning]
+pt = "um macaquinho brasileiro"
+en = "a little Brazilian monkey"

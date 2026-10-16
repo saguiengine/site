@@ -22,7 +22,7 @@
     <li>{% include "post_card.html" %}</li>
     {%- endfor %}
   </ul>
-  <p><a href="{{ devlog.permalink }}">{{ trans(key="all_posts", lang=lang) }}</a></p>
+  <p class="more"><a class="target" href="{{ devlog.permalink }}">{{ trans(key="all_posts", lang=lang) }}</a></p>
   {%- else %}
   <p class="muted">{{ trans(key="no_posts", lang=lang) }}</p>
   {%- endif %}
