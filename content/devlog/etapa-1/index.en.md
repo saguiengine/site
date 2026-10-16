@@ -13,8 +13,13 @@ will come from a modest laptop that has not arrived yet.*
 {{ <marca /> }} is a 2D game engine, that is, a program for making games,
 with its own language, {{ <linguagem /> }}. In stage 0, five small proofs
 tackled the biggest risks, and their code did not go into the engine. Stage 1
-started from scratch and built the foundation: the parts that every later stage will
-use. This code stays.
+started from scratch and built the foundation: the parts that every later
+stage will use. This code stays.
+
+*A correction: in the [stage 0 post](@/devlog/etapa-0/index.en.md), I said the
+proofs' code would go in the bin. It did not go into the engine, but it is
+still kept, unchanged, until the laptop measures stage 0's official numbers.
+After that, it can go.*
 
 I make {{ <marca /> }} with the help of Claude, an artificial intelligence: it
 writes the code and takes the measurements, and I review, play and decide
@@ -155,9 +160,9 @@ targets were measured again on the PC. Out of that review came:
 - **Windows holding on to a crashing game.** When the game crashes in a
   certain way, Windows holds it for a while as it writes an error report:
   about 2 seconds, and up to 35 when Windows puts the report in a queue.
-  During that time, the editor sees a game that stopped and thinks it froze. The editor
-  now handles both cases, and on Windows the time of that kind of crash is
-  only recorded, without counting toward the target.
+  During that time, the editor sees a game that stopped and thinks it froze.
+  The editor now handles both cases, and on Windows the time of that kind of
+  crash is only recorded, without counting toward the target.
 - **The test that failed now and then.** Because of the same Windows report,
   that kind of crash took half a second, a little more or a little less than
   the test's limit. The test passed almost always. A test that fails now and

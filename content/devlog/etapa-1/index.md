@@ -13,8 +13,13 @@ notebook modesto que ainda vai chegar.*
 A {{ <marca /> }} é uma engine de jogos 2D, ou seja, um programa para criar
 jogos, com uma linguagem própria, a {{ <linguagem /> }}. Na etapa 0, cinco
 provas pequenas atacaram os maiores riscos, e o código delas não entrou na
-engine. A etapa 1 começou do zero e construiu a base: as partes que todas as etapas
-seguintes vão usar. Esse código fica.
+engine. A etapa 1 começou do zero e construiu a base: as partes que todas as
+etapas seguintes vão usar. Esse código fica.
+
+*Uma correção: no [post da etapa 0](@/devlog/etapa-0/index.md), eu disse que o
+código das provas ia para o lixo. Ele não entrou na engine, mas continua
+guardado, sem mudanças, até o notebook medir os números oficiais da etapa 0.
+Depois disso, pode sair.*
 
 Faço a {{ <marca /> }} com a ajuda do Claude, uma inteligência artificial: ele
 escreve o código e faz as medições, e eu reviso, jogo e decido o que entra. A
