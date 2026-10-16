@@ -1,5 +1,7 @@
 # Checks every push to main and every pull request: the brand only in
-# identity.toml, E9.2 and a build with every internal link checked.
+# identity.toml (E9.2), the address and noindex of each kind of deploy
+# (E9.4, D383), images, numbers, the 404 pages, touch targets on a phone and
+# a build with every internal link checked.
 # GitHub-hosted runners only: this public repository never runs on a
 # self-hosted runner. Actions pinned by SHA (updated by Dependabot).
 name: ci
@@ -36,8 +38,14 @@ jobs:
           rm zola.tar.gz
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - run: zola --version
+      - name: Unit tests of build.py
+        run: python3 -m unittest discover -s scripts -p "test_*.py"
       - name: The brand only in identity.toml, and E9.2
         run: python3 scripts/check_brand.py
+      - name: Address, E9.4, images, numbers and 404
+        run: python3 scripts/check_site.py
+      - name: Touch targets on a phone (Chrome of the runner image)
+        run: python3 scripts/check_touch.py
       - name: Internal links
         run: zola check --skip-external-links
       - name: Build

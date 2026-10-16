@@ -41,14 +41,27 @@ TEST_BRAND = {
     "handle": "marmotaengine",
 }
 TEST_URL = "https://marmota.example"
+TEST_SAYING = {"pronunciation": "mar-MOH-tah", "pt": "um bichinho de teste",
+               "en": "a little test animal"}
+
+
+def saying(identity):
+    """How the name sounds and what it means, for the footer (D276), or
+    None when identity.toml does not say."""
+    site = identity.get("site", {})
+    meaning = site.get("meaning", {})
+    if "pronunciation" not in site or "pt" not in meaning or "en" not in meaning:
+        return None
+    return {"pronunciation": site["pronunciation"], "pt": meaning["pt"], "en": meaning["en"]}
 
 
 def tokens(identity):
-    """The brand's words: [brand] values of three letters or more and the
-    site's host, lowercase."""
+    """The brand's words: [brand] values of three letters or more, the
+    site's host and how the name sounds and what it means, lowercase."""
     words = {v.lower() for v in identity["brand"].values()
              if isinstance(v, str) and len(v) >= 3}
     words.add(urlparse(identity["site"]["url"]).hostname.lower())
+    words.update(v.lower() for v in (saying(identity) or {}).values())
     return sorted(words)
 
 
@@ -95,6 +108,8 @@ def test_identity_text(original):
         old = identity["brand"][key]
         text = text.replace(f'{key} = "{old}"', f'{key} = "{value}"')
     text = text.replace(f'url = "{identity["site"]["url"]}"', f'url = "{TEST_URL}"')
+    for key, value in (saying(identity) or {}).items():
+        text = text.replace(f'"{value}"', f'"{TEST_SAYING[key]}"')
     return text
 
 
@@ -103,6 +118,9 @@ def check_e9_2(identity):
     zola = os.environ.get("ZOLA", "zola")
     real = tokens(identity)
     problems = []
+    if saying(identity) is None:
+        problems.append("E9.2: identity.toml does not say how the name sounds and what it "
+                        "means ([site] pronunciation and [site.meaning] pt and en, D276)")
     with tempfile.TemporaryDirectory() as tmp:
         copy = Path(tmp) / "site"
         for path in tracked_files(ROOT):
@@ -140,6 +158,13 @@ def check_e9_2(identity):
                     continue
                 if name not in text:
                     problems.append(f"E9.2: {page} does not show `{name}`")
+        for page, lang in [("index.html", "pt"), ("en/index.html", "en")]:
+            path = public / page
+            text = path.read_text(encoding="utf-8") if path.exists() else ""
+            phrase = (f"{TEST_BRAND['engine_name']} ({TEST_SAYING['pronunciation']}): "
+                      f"{TEST_SAYING[lang]}")
+            if phrase not in text:
+                problems.append(f"E9.2: {page} does not show `{phrase}` in the footer")
     return problems
 
 
