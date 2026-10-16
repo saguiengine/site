@@ -5,6 +5,7 @@ description = "Stage 1 built what every other stage will use: the same game on e
 
 [extra]
 stage = "1"
+thumbnail = "editor-padrao.en.png"
 +++
 
 *The numbers are provisional: I measured them on my PC, and the official ones

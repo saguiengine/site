@@ -1,5 +1,6 @@
 +++
 title = "Licença do site"
+description = "As três licenças do site: MIT para o código, CC BY 4.0 para o conteúdo e CC0 para os exemplos de código."
 +++
 
 O site da {{ <marca /> }} usa três licenças, conforme o tipo de material.

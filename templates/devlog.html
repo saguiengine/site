@@ -4,6 +4,12 @@
 
 {% block nav_devlog %} aria-current="page"{% endblock nav_devlog %}
 
+{#- The devlog describes itself by its own lead, which names the brand
+    through identity.toml. #}
+{% block description %}
+  <meta name="description" content="{{ section.content | striptags | trim | replace(from="\n", to=" ") }}">
+{%- endblock description %}
+
 {% block other_lang_url %}
 {%- set other = "en" if lang == "pt" else "pt" -%}
 {{ get_url(path="@/devlog/_index.md", lang=other) }}

@@ -75,7 +75,13 @@ img { max-width: 100%; height: auto; }
 /* Header */
 .top { border-bottom: 1px solid var(--border); background: var(--surface); }
 .top-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding-top: 12px; padding-bottom: 12px; }
-.brand { color: var(--text); text-decoration: none; font-weight: 700; font-size: 17px; }
+.brand { gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 17px; }
+/* The provisional logo of the mockup: the pixel-art face on the accent. */
+.logo {
+  width: 28px; height: 28px; border-radius: 7px; background: var(--accent);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.logo svg { display: block; width: 20px; height: 20px; }
 .nav { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; }
 .nav a { color: var(--text-soft); text-decoration: none; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--text); text-decoration: underline; text-underline-offset: 6px; }
@@ -85,8 +91,13 @@ img { max-width: 100%; height: auto; }
   text-decoration: none; font-size: 13px;
 }
 
-/* Home */
-.hero { padding-top: 56px; padding-bottom: 40px; max-width: 900px; margin-left: max(0px, calc((100% - 1240px) / 2)); }
+/* Home: the text on the left and the editor preview on the right, as in
+   the mockup; one column on a narrow screen. */
+.hero {
+  display: flex; flex-wrap: wrap; gap: 40px; align-items: center;
+  padding-top: 56px; padding-bottom: 40px;
+}
+.hero-text { flex: 1 1 440px; min-width: 0; }
 .kicker { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--accent); }
 h1 { margin: 10px 0 0; font-size: 48px; line-height: 1.1; font-weight: 700; text-wrap: balance; }
 .lead { margin-top: 18px; font-size: 18px; color: var(--text-soft); max-width: 34em; }
@@ -107,6 +118,83 @@ h1 { margin: 10px 0 0; font-size: 48px; line-height: 1.1; font-weight: 700; text
 .button.secondary:hover { border-color: var(--accent); }
 
 .latest { padding-bottom: 56px; }
+
+/* The editor preview: static HTML and CSS, with the mockup's pixel art. */
+.preview { flex: 1 1 520px; min-width: 0; margin: 0; }
+.window {
+  border-radius: 14px; overflow: hidden; border: 1px solid var(--border);
+  background: var(--surface); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+.window-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.window-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
+.window-title { margin-left: 10px; font-size: 12px; color: var(--text-muted); }
+.window-body { display: flex; height: 300px; }
+.tree {
+  width: 150px; flex-shrink: 0; padding: 10px; border-right: 1px solid var(--border);
+  font-size: 12px; display: flex; flex-direction: column; gap: 6px; white-space: nowrap;
+}
+.node svg {
+  width: 12px; height: 12px; margin-right: 6px; vertical-align: -0.15em;
+  fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.node.depth1 { padding-left: 14px; }
+.node.depth2 { padding-left: 28px; }
+.node.level { color: #6ea8ff; }
+.node.group { color: #4fd6e0; }
+.node.sprite { color: #ff7ab6; }
+.node.light { color: #ffd75e; }
+.node.tiles { color: #c9a27a; }
+.scene { position: relative; flex-grow: 1; overflow: hidden; background: linear-gradient(#1a2036, #10131c); }
+.scene span { position: absolute; display: block; background-repeat: no-repeat; image-rendering: pixelated; }
+.scene .ground {
+  left: 0; right: 0; bottom: 0; height: 44px; background-color: #5a3d28;
+  background-image: url("../img/grama.png"), url("../img/terra.png");
+  background-size: 22px 22px, 22px 22px; background-repeat: repeat-x, repeat;
+  background-position: 0 0, 0 22px;
+}
+.scene .platform {
+  left: 44%; width: 22%; bottom: 110px; height: 22px;
+  background-image: url("../img/tabua.png"); background-size: 22px 22px; background-repeat: repeat-x;
+}
+.scene .character {
+  left: 14%; bottom: 47px; width: 40px; height: 40px;
+  background-image: url("../img/personagem.svg"); background-size: 40px 40px;
+  outline: 2px solid #4fd6e0; outline-offset: 3px;
+}
+.scene .coin { width: 21px; height: 21px; background-image: url("../img/moeda.png"); background-size: 21px 21px; }
+.scene .coin1 { left: 49%; bottom: 140px; }
+.scene .coin2 { left: 56%; bottom: 140px; }
+.scene .coin3 { left: 80%; bottom: 60px; }
+.scene .flag { right: 5%; bottom: 44px; width: 40px; height: 40px; background-image: url("../img/bandeira.png"); background-size: 40px 40px; }
+.scene .cloud { left: 20%; top: 22px; width: 56px; height: 56px; opacity: 0.5; background-image: url("../img/nuvem.png"); background-size: 56px 56px; }
+.scene .glow {
+  right: 10%; top: 26px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(rgba(255, 215, 94, 0.35), transparent 70%);
+}
+.preview-caption { margin-top: 10px; font-size: 13px; color: var(--text-muted); text-align: center; }
+
+/* What we are building: the mockup's highlights and the language. */
+.building { padding-top: 8px; padding-bottom: 40px; }
+.badge {
+  display: inline-block; margin-left: 8px; padding: 2px 10px; vertical-align: middle;
+  border-radius: 20px; border: 1px solid rgba(242, 181, 94, 0.5);
+  background: rgba(242, 181, 94, 0.08); color: var(--warm); font-size: 12px; font-weight: 600;
+}
+.highlights { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 16px; }
+.highlight { flex: 1 1 260px; padding: 18px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); }
+.highlight-title { margin: 0; font-weight: 700; font-size: 17px; }
+.highlight-text { margin: 6px 0 0; color: var(--text-soft); font-size: 14px; }
+.language { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; margin-top: 36px; }
+.language-text { flex: 1 1 360px; min-width: 0; }
+.language-text h3 { margin: 0; font-size: 28px; line-height: 1.2; }
+.language-text p { margin: 10px 0 0; color: var(--text-soft); }
+.code-window { flex: 1 1 520px; min-width: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--code-bg); }
+.code-bar { display: flex; align-items: center; padding: 8px 12px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.code-file { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--text-soft); }
+.code-window pre { margin: 0; padding: 14px 16px; border: 0; border-radius: 0; background: none; font-size: 14px; line-height: 1.7; }
+.code-window code { font-size: inherit; }
+.kw { color: #c9a2ff; }
+.str { color: var(--warm); }
 h2 { font-size: 22px; line-height: 1.25; margin: 0 0 14px; }
 
 /* Posts */
@@ -117,6 +205,14 @@ h2 { font-size: 22px; line-height: 1.25; margin: 0 0 14px; }
   color: inherit; text-decoration: none;
 }
 .card:hover { border-color: var(--border-strong); color: inherit; }
+/* A post's thumbnail, from one of its images, as in the mockup. */
+.card.with-thumb { flex-direction: row; align-items: center; gap: 14px; }
+.card-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.thumb {
+  flex: 0 0 96px; width: 96px; height: 56px; border-radius: 8px;
+  border: 1px solid var(--border); background-size: cover; background-position: center;
+}
+.main-column .thumb { flex-basis: 200px; width: 200px; height: 112px; }
 .meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; color: var(--text-muted); margin: 0; }
 .label { color: var(--link); font-weight: 600; }
 .card-title { font-weight: 600; font-size: 18px; }
@@ -163,5 +259,18 @@ h2 { font-size: 22px; line-height: 1.25; margin: 0 0 14px; }
 @media (max-width: 640px) {
   h1 { font-size: 34px; }
   .page-head h1, .article h1 { font-size: 30px; }
-  .hero { padding-top: 36px; }
+  .hero { padding-top: 36px; gap: 28px; }
+  .window-body { height: 240px; }
+  .tree { width: 112px; font-size: 11px; }
+  .scene .platform { bottom: 90px; }
+  .scene .coin1, .scene .coin2 { bottom: 118px; }
+  .language-text h3 { font-size: 24px; }
+  .code-window pre { font-size: 12px; padding: 12px; }
+  /* On a phone the thumbnail goes above the text, which keeps the width. */
+  .card.with-thumb { flex-direction: column; align-items: stretch; gap: 12px; }
+  .thumb, .main-column .thumb { flex: none; width: auto; height: 120px; }
+}
+/* The coin's longest line fits a 390 px phone without scrolling. */
+@media (max-width: 420px) {
+  .code-window pre { font-size: 11px; }
 }

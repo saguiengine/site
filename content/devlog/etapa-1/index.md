@@ -5,6 +5,7 @@ description = "A etapa 1 construiu o que todas as outras vão usar: o mesmo jogo
 
 [extra]
 stage = "1"
+thumbnail = "editor-padrao.png"
 +++
 
 *Os números são provisórios: medi no meu PC, e os oficiais vão sair de um
