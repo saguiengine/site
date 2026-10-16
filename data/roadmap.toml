@@ -10,12 +10,12 @@ state = "done"
 [[stage]]
 pt = "Etapa 1: base"
 en = "Stage 1: foundation"
-state = "now"
+state = "done"
 
 [[stage]]
 pt = "Etapa 2: peças e fases"
 en = "Stage 2: pieces and levels"
-state = "next"
+state = "now"
 
 [[stage]]
 pt = "Etapa 3: física"
