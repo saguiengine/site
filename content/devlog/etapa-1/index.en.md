@@ -12,8 +12,8 @@ will come from a modest laptop that has not arrived yet.*
 
 {{ <marca /> }} is a 2D game engine, that is, a program for making games,
 with its own language, {{ <linguagem /> }}. In stage 0, five small proofs
-tackled the biggest risks, and their code went in the bin. Stage 1 started
-from scratch and built the foundation: the parts that every later stage will
+tackled the biggest risks, and their code did not go into the engine. Stage 1
+started from scratch and built the foundation: the parts that every later stage will
 use. This code stays.
 
 I make {{ <marca /> }} with the help of Claude, an artificial intelligence: it
@@ -72,11 +72,12 @@ took 25 ms.
 ### The game in its own window
 
 The game opens in its own window, which can be resized. For now, the test
-game is a square that walks and jumps. The first picture shows up within 0.53
-seconds of the game opening, and the limit on the PC is 0.75 seconds. In the
-recorded 60-second match, 99% of the frames were ready in under 2.4 ms.
+game is a square that walks and plays the jump sound. The first picture shows
+up within 0.53 seconds of the game opening, and the limit on the PC is 0.75
+seconds. In the recorded 60-second match, 99% of the frames were ready in
+under 2.4 ms.
 
-{{ <figura src="quadrado-no-ar.png" alt="The test game: an orange square in the middle of a jump, on a dark background" lang="en" has_text={false} /> }}
+{{ <figura src="quadrado.png" alt="The test game: an orange square on a dark background" lang="en" has_text={false} /> }}
 
 ### Linked to the editor
 

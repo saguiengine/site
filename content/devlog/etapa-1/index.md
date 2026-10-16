@@ -12,8 +12,8 @@ notebook modesto que ainda vai chegar.*
 
 A {{ <marca /> }} é uma engine de jogos 2D, ou seja, um programa para criar
 jogos, com uma linguagem própria, a {{ <linguagem /> }}. Na etapa 0, cinco
-provas pequenas atacaram os maiores riscos, e o código delas foi para o lixo.
-A etapa 1 começou do zero e construiu a base: as partes que todas as etapas
+provas pequenas atacaram os maiores riscos, e o código delas não entrou na
+engine. A etapa 1 começou do zero e construiu a base: as partes que todas as etapas
 seguintes vão usar. Esse código fica.
 
 Faço a {{ <marca /> }} com a ajuda do Claude, uma inteligência artificial: ele
@@ -70,12 +70,12 @@ pedido até o som chegar à mistura de sons do computador, levou 25 ms.
 ### O jogo na própria janela
 
 O jogo abre numa janela própria, que pode mudar de tamanho. Por enquanto, o
-jogo de teste é um quadrado que anda e pula. A primeira imagem aparece em
-até 0,53 segundo depois de o jogo abrir, e o limite no PC é 0,75 segundo. Na
-partida gravada de 60 segundos, 99% dos quadros ficaram prontos em menos de
-2,4 ms.
+jogo de teste é um quadrado que anda e toca o som do pulo. A primeira imagem
+aparece em até 0,53 segundo depois de o jogo abrir, e o limite no PC é 0,75
+segundo. Na partida gravada de 60 segundos, 99% dos quadros ficaram prontos
+em menos de 2,4 ms.
 
-{{ <figura src="quadrado-no-ar.png" alt="O jogo de teste: um quadrado laranja no meio de um pulo, sobre um fundo escuro" lang="pt" has_text={false} /> }}
+{{ <figura src="quadrado.png" alt="O jogo de teste: um quadrado laranja sobre um fundo escuro" lang="pt" has_text={false} /> }}
 
 ### Ligado ao editor
 
