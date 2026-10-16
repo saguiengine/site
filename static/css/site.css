@@ -150,6 +150,9 @@ h2 { font-size: 22px; line-height: 1.25; margin: 0 0 14px; }
 .prose h3 { margin: 24px 0 8px; font-size: 18px; }
 .prose li { margin: 4px 0; }
 .prose img { border-radius: 10px; border: 1px solid var(--border); display: block; margin: 16px 0; }
+.prose .figure { margin: 16px 0; }
+.prose .figure a { display: block; cursor: zoom-in; }
+.prose .caption { margin: -8px 0 16px; font-size: 14px; font-style: italic; color: var(--text-muted); }
 
 /* Footer */
 .bottom { border-top: 1px solid var(--border); }

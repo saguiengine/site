@@ -54,6 +54,7 @@ back_home = "Voltar ao início"
 milestone = "Marco"
 published = "Publicado em"
 date_format = "%d/%m/%Y"
+opens_new_tab = "(abre em nova aba)"
 
 [languages.en]
 generate_feeds = true
@@ -89,3 +90,4 @@ back_home = "Back to the home page"
 milestone = "Milestone"
 published = "Published on"
 date_format = "%b %-d, %Y"
+opens_new_tab = "(opens in a new tab)"

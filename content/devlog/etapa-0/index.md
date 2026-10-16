@@ -64,7 +64,7 @@ do cenário é uma peça. Rolando a lista, escolhendo, arrastando valores,
 digitando e abrindo grupos, 99% das imagens ficaram prontas em menos de 2 ms,
 contra os 16 ms permitidos. Nenhuma passou de 33 ms, o tempo de duas imagens.
 
-[![O editor da prova 2, com 5.000 peças na lista Montagem](editor-5000-pecas.png)](editor-5000-pecas.png)
+{{ <figura src="editor-5000-pecas.png" alt="O editor da prova 2, com 5.000 peças na lista Montagem" lang="pt" /> }}
 
 ### 3. A velocidade da linguagem
 
@@ -90,7 +90,7 @@ No Chrome, em 3.600 imagens seguidas (um minuto), nenhuma atrasou. A medida no
 programa instalado fica para o notebook: no meu PC, o monitor está ligado na
 outra placa de vídeo, e a imagem faz um desvio que o notebook não tem.
 
-[![A cena de teste da prova 4, no estilo de pixels grandes dos jogos antigos, com 2.000 sprites](cena-2000-sprites.png)](cena-2000-sprites.png)
+{{ <figura src="cena-2000-sprites.png" alt="A cena de teste da prova 4, no estilo de pixels grandes dos jogos antigos, com 2.000 sprites" lang="pt" has_text={false} /> }}
 
 ### 5. Jogar sem derrubar o editor
 
@@ -109,7 +109,7 @@ separado, que conversa com o editor. As 13 metas foram cumpridas:
 - **20 quebras seguidas:** nenhuma cópia do jogo ficou esquecida rodando, e o
   editor não passou a ocupar mais memória.
 
-[![O painel de mensagens do editor depois de travar e quebrar o jogo de propósito](console-do-editor.png)](console-do-editor.png)
+{{ <figura src="console-do-editor.png" alt="O painel de mensagens do editor depois de travar e quebrar o jogo de propósito" lang="pt" /> }}
 
 ## O que deu errado (e como resolvi)
 

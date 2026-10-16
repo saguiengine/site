@@ -4,3 +4,9 @@
 {% component marca() %}{% set identity = load_data(path="identity.toml") %}{{ identity.brand.engine_name }}{% endcomponent marca %}
 {% component linguagem() %}{% set identity = load_data(path="identity.toml") %}{{ identity.brand.language_name }}{% endcomponent linguagem %}
 {% component repositorio() %}{% set identity = load_data(path="identity.toml") %}https://github.com/{{ identity.brand.handle }}/site{% endcomponent repositorio %}
+
+{#- An image of a post: it opens at full size in a new tab, which a hidden
+    text tells screen readers in the page's language; no script. `caption`
+    goes under it; `has_text=false` marks an image with no interface text
+    (D388: an English page says when an image is still in Portuguese). -#}
+{% component figura(src: string, alt: string, lang: string, caption: string = "", has_text: bool = true) %}<figure class="figure"><a href="{{ src }}" target="_blank" rel="noopener"><img src="{{ src }}" alt="{{ alt }}"{% if not has_text %} data-no-text{% endif %}><span class="visually-hidden"> {{ trans(key="opens_new_tab", lang=lang) }}</span></a>{% if caption %}<figcaption class="caption">{{ caption }}</figcaption>{% endif %}</figure>{% endcomponent figura %}
