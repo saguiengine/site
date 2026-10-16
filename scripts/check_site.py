@@ -5,7 +5,8 @@ domain live and a preview, and checks:
 - the address: feed ids the same across two deploys of main, previews on
   their branch alias, the domain only when it is live;
 - E9.4: noindex (meta and header) on the provisional address and previews,
-  none with the domain live, where only *.pages.dev keeps it;
+  none with the domain live, where only *.pages.dev keeps it; and no cookie
+  nor analytics script anywhere (D383, D271);
 - every image in a post links to itself, to open at full size;
 - no number written with a space between thousands ("5 000");
 - the 404 page in both languages.
@@ -79,6 +80,12 @@ def check_indexing(main, live, preview):
     for page in html_files(live):
         if NOINDEX_META in page.read_text(encoding="utf-8"):
             problems.append(f"E9.4: domain live: {page.relative_to(live)} has noindex")
+    for out, name in [(main, "main"), (live, "domain live"), (preview, "preview")]:
+        for page in html_files(out):
+            if "<script" in page.read_text(encoding="utf-8").lower():
+                problems.append(f"E9.4: {name}: {page.relative_to(out)} has a script")
+        if "set-cookie" in headers(out).lower():
+            problems.append(f"E9.4: {name}: _headers sets a cookie")
     live_headers = headers(live)
     if re.search(r"^/\*", live_headers, re.M):
         problems.append("E9.4: domain live: _headers sends noindex for every page")
