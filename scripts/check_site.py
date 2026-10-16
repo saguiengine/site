@@ -13,18 +13,27 @@ domain live and a preview, and checks:
   alt text and in its caption (D388; an image with no text carries
   data-no-text, an English version has .en. in its name);
 - no number written with a space between thousands ("5 000");
-- the 404 page in both languages.
+- the 404 page in both languages;
+- each page has its own description, the status line only on the home page,
+  and a "&" in a description is escaped once;
+- the footer's profiles and contact address stay out of the pages while
+  they have `show = false`, and show up with `show = true`;
+- a thumbnail on an English page is no image with text in Portuguese (D388).
 
 Run: python3 scripts/check_site.py (needs Zola on the PATH, or in ZOLA).
 """
 
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
 import tomllib
 from pathlib import Path
+from urllib.parse import urlparse
+
+from check_brand import tracked_files
 
 ROOT = Path(__file__).resolve().parent.parent
 NOINDEX_META = '<meta name="robots" content="noindex">'
@@ -182,6 +191,127 @@ def check_404(out):
     return problems
 
 
+DESCRIPTION = re.compile(r'<meta name="description" content="([^"]*)">')
+
+
+def statuses():
+    """The status line of the home page, in each language (zola.toml)."""
+    with open(ROOT / "zola.toml", "rb") as f:
+        config = tomllib.load(f)
+    return {"pt": config["translations"]["status"],
+            "en": config["languages"]["en"]["translations"]["status"]}
+
+
+def check_descriptions(out):
+    """Each page describes itself, and only the home page by the status line.
+    The 404 pages are left out: nobody links to them or shares them."""
+    problems = []
+    status = statuses()
+    homes = {"index.html": status["pt"], "en/index.html": status["en"]}
+    seen = {}
+    for page in html_files(out):
+        name = page.relative_to(out).as_posix()
+        if name.endswith("404.html"):
+            continue
+        text = page.read_text(encoding="utf-8")
+        if "&amp;amp;" in text:
+            problems.append(f"description: {name}: a \"&\" escaped twice (&amp;amp;)")
+        found = DESCRIPTION.findall(text)
+        if len(found) != 1 or not found[0].strip():
+            problems.append(f"description: {name} has {len(found)} descriptions, not one with text")
+            continue
+        description = found[0]
+        if name in homes and description != homes[name]:
+            problems.append(f"description: {name} is not the status line `{homes[name]}`")
+        if name not in homes and description in status.values():
+            problems.append(f"description: {name} uses the status line, which is only for the home page")
+        if description in seen:
+            problems.append(f"description: {name} has the same description as {seen[description]}")
+        seen.setdefault(description, name)
+    return problems
+
+
+def footer_links():
+    """Each link of data/footer.toml with its address filled in, as the
+    footer of base.html fills it, and whether it shows."""
+    with open(ROOT / "identity.toml", "rb") as f:
+        identity = tomllib.load(f)
+    with open(ROOT / "data" / "footer.toml", "rb") as f:
+        footer = tomllib.load(f)
+    handle, host = identity["brand"]["handle"], urlparse(identity["site"]["url"]).netloc
+    return [(link["url"].replace("{handle}", handle).replace("{host}", host), link["show"])
+            for link in footer["link"]]
+
+
+def check_footer(out, all_shown=False):
+    """A profile or the contact address with `show = false` is nowhere in the
+    built site; one that shows is in the footer of both home pages."""
+    problems = []
+    pages = {page.relative_to(out).as_posix(): page.read_text(encoding="utf-8")
+             for page in html_files(out)}
+    for url, show in footer_links():
+        if show or all_shown:
+            for home in ["index.html", "en/index.html"]:
+                if f'href="{url}"' not in pages.get(home, ""):
+                    problems.append(f"footer: {home} does not link to {url}, which has show = true")
+        else:
+            problems.extend(f"footer: {name} shows {url}, which has show = false"
+                            for name, text in pages.items() if url in text)
+    return problems
+
+
+THUMB = re.compile(r'<span class="thumb"[^>]*>')
+
+
+def check_thumbnails(out):
+    """A thumbnail on an English page is an English version (.en. in its
+    name) or an image with no text (data-no-text, D388); a Portuguese page
+    never shows the English version."""
+    problems = []
+    for page in html_files(out):
+        name = page.relative_to(out).as_posix()
+        english = name.startswith("en/")
+        for tag in THUMB.findall(page.read_text(encoding="utf-8")):
+            image = Path(re.search(r"url\('([^']*)'\)", tag).group(1)).name
+            if english and ".en." not in image and "data-no-text" not in tag:
+                problems.append(f"thumbnails: {name}: {image} has text in Portuguese; use the "
+                                "English version or mark it with thumbnail_has_text = false (D388)")
+            if not english and ".en." in image:
+                problems.append(f"thumbnails: {name}: {image} is the English version")
+    return problems
+
+
+def check_variant(tmp):
+    """A copy of the site with a "&" and quotes in the devlog's lead and every
+    footer link shown: the "&" is escaped once in the description, and the
+    links show up."""
+    copy = tmp / "variant"
+    for path in tracked_files(ROOT):
+        target = copy / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / path, target)
+    lead = copy / "content" / "devlog" / "_index.md"
+    lead.write_text(lead.read_text(encoding="utf-8") + '\nTeste & "aspas".\n', encoding="utf-8")
+    footer = copy / "data" / "footer.toml"
+    footer.write_text(footer.read_text(encoding="utf-8").replace("show = false", "show = true"),
+                      encoding="utf-8")
+    out = tmp / "variant-out"
+    built = subprocess.run([os.environ.get("ZOLA", "zola"), "build", "--base-url",
+                            "https://variant.example", "-o", str(out), "-f"],
+                           cwd=copy, capture_output=True, text=True)
+    if built.returncode != 0:
+        return [f"variant: the build failed:\n{built.stderr}"]
+    problems = []
+    devlog = (out / "devlog" / "index.html").read_text(encoding="utf-8")
+    description = DESCRIPTION.findall(devlog)
+    if not description or "Teste &amp; " not in description[0] or "aspas" not in description[0]:
+        problems.append(f"description: a \"&\" and quotes in the devlog's lead do not come out as "
+                        f"one escaped description: {description}")
+    problems += [p for p in check_descriptions(out) if p.startswith("description: devlog/")]
+    problems += check_footer(out, all_shown=True)
+    return problems
+
+
 def main():
     with open(ROOT / "identity.toml", "rb") as f:
         domain = tomllib.load(f)["site"]["url"]
@@ -196,13 +326,18 @@ def main():
                     + check_images(main_out)
                     + check_image_language(main_out)
                     + check_numbers()
-                    + check_404(main_out))
+                    + check_404(main_out)
+                    + check_descriptions(main_out)
+                    + check_footer(main_out)
+                    + check_thumbnails(main_out)
+                    + check_variant(tmp))
         ids = feed_ids(main_out)
     for problem in problems:
         print(f"check_site: {problem}", file=sys.stderr)
     if problems:
         return 1
-    print(f"check_site: address, E9.4, images, thousands and 404 pass; feed ids of main: {ids}")
+    print("check_site: address, E9.4, images, thousands, 404, descriptions, footer and thumbnails "
+          f"pass; feed ids of main: {ids}")
     return 0
 
 
