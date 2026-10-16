@@ -1,7 +1,7 @@
 +++
 title = "Devlog da etapa 0: provar o difícil antes de construir"
 date = 2026-10-15
-description = "Cinco provas pequenas atacaram os maiores riscos antes de a engine começar: o pulo, o editor com 5 000 peças, a velocidade da linguagem, os gráficos em computadores modestos e o jogo separado do editor."
+description = "Cinco provas pequenas atacaram os maiores riscos antes de a engine começar: o pulo, o editor com 5.000 peças, a velocidade da linguagem, os gráficos em computadores modestos e o jogo separado do editor."
 
 [extra]
 stage = "0"
@@ -54,24 +54,24 @@ também dá o mesmo final. Os três jeitos de pular (Precisa, Suave e Pesada)
 foram ajustados jogando. Calcular os movimentos e as batidas de 200 objetos
 leva 0,023 ms por passo, e o limite no PC era 1 ms.
 
-### 2. O editor com 5 000 peças
+### 2. O editor com 5.000 peças
 
 **O risco:** o editor, que é o programa onde a pessoa monta o jogo, ficar
 lento quando o cenário tem muita coisa.
 
-**O resultado:** testei com 5 000 peças, e cada plataforma, inimigo ou moeda
+**O resultado:** testei com 5.000 peças, e cada plataforma, inimigo ou moeda
 do cenário é uma peça. Rolando a lista, escolhendo, arrastando valores,
 digitando e abrindo grupos, 99% das imagens ficaram prontas em menos de 2 ms,
 contra os 16 ms permitidos. Nenhuma passou de 33 ms, o tempo de duas imagens.
 
-![O editor da prova 2, com 5 000 peças na lista Montagem](editor-5000-pecas.png)
+[![O editor da prova 2, com 5.000 peças na lista Montagem](editor-5000-pecas.png)](editor-5000-pecas.png)
 
 ### 3. A velocidade da linguagem
 
 **O risco:** a {{ <linguagem /> }} ser lenta demais para jogos com muita coisa
 acontecendo ao mesmo tempo.
 
-**O resultado:** 5 000 peças, cada uma com o seu pequeno programa, levam
+**O resultado:** 5.000 peças, cada uma com o seu pequeno programa, levam
 0,29 ms por passo, e a meta é 4 ms. Existe um "vigia" que interrompe um
 programa preso num ciclo sem fim, como um "repita para sempre" escrito por
 engano, para o jogo não congelar. Ele não deixou nada mais lento, então fica
@@ -84,13 +84,13 @@ instalado no computador, o que basta para o site onde se vai aprender
 **O risco:** o modo de compatibilidade ser lento demais. É o jeito de desenhar
 que funciona em placas de vídeo antigas e no navegador.
 
-**O resultado:** 2 000 sprites, que são as imagens de personagens e objetos,
+**O resultado:** 2.000 sprites, que são as imagens de personagens e objetos,
 são desenhados com um único pedido à placa de vídeo, o que poupa muito tempo.
-No Chrome, em 3 600 imagens seguidas (um minuto), nenhuma atrasou. A medida no
+No Chrome, em 3.600 imagens seguidas (um minuto), nenhuma atrasou. A medida no
 programa instalado fica para o notebook: no meu PC, o monitor está ligado na
 outra placa de vídeo, e a imagem faz um desvio que o notebook não tem.
 
-![A cena de teste da prova 4, no estilo de pixels grandes dos jogos antigos, com 2 000 sprites](cena-2000-sprites.png)
+[![A cena de teste da prova 4, no estilo de pixels grandes dos jogos antigos, com 2.000 sprites](cena-2000-sprites.png)](cena-2000-sprites.png)
 
 ### 5. Jogar sem derrubar o editor
 
@@ -104,12 +104,12 @@ separado, que conversa com o editor. As 13 metas foram cumpridas:
 - **Jogo que quebra:** o editor percebe em menos de um décimo de segundo e
   mostra uma mensagem com o motivo.
 - **Reabrir:** o jogo volta em 10 ms.
-- **Mensagens do jogo:** 10 000 mensagens por segundo chegam ao painel do
+- **Mensagens do jogo:** 10.000 mensagens por segundo chegam ao painel do
   editor sem perder nenhuma.
 - **20 quebras seguidas:** nenhuma cópia do jogo ficou esquecida rodando, e o
   editor não passou a ocupar mais memória.
 
-![O painel de mensagens do editor depois de travar e quebrar o jogo de propósito](console-do-editor.png)
+[![O painel de mensagens do editor depois de travar e quebrar o jogo de propósito](console-do-editor.png)](console-do-editor.png)
 
 ## O que deu errado (e como resolvi)
 
@@ -138,7 +138,7 @@ separado, que conversa com o editor. As 13 metas foram cumpridas:
   sozinhos num computador do GitHub, o site onde fica o código. Esse
   computador ficou sem espaço em disco. Liberei espaço apagando programas que
   o projeto não usa, sem deixar os testes mais lentos. Também cortei o tempo
-  gasto, porque o plano gratuito dá 2 000 minutos de testes por mês.
+  gasto, porque o plano gratuito dá 2.000 minutos de testes por mês.
 - **A conta do travamento.** O plano dizia que o editor perceberia um jogo
   travado entre 1,5 e 1,75 segundo. O certo é entre 1,25 e 1,5 segundo, porque
   o jogo avisa que está vivo a cada quarto de segundo, e o último aviso pode

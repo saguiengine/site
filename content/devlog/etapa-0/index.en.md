@@ -63,7 +63,7 @@ in a level is a piece. Scrolling the list, selecting, dragging values, typing
 and opening groups, 99% of the frames were ready in under 2 ms, against the
 16 ms allowed. None went over 33 ms, the time of two frames.
 
-![The proof 2 editor, with 5,000 pieces in the Assembly list](editor-5000-pecas.png)
+[![The proof 2 editor, with 5,000 pieces in the Assembly list](editor-5000-pecas.png)](editor-5000-pecas.png)
 
 ### 3. The language's speed
 
@@ -89,7 +89,7 @@ measurement in the installed program waits for the laptop: on my PC, the
 monitor is plugged into the other graphics card, and the picture takes a
 detour the laptop does not have.
 
-![The proof 4 test scene, in the big-pixel style of old games, with 2,000 sprites](cena-2000-sprites.png)
+[![The proof 4 test scene, in the big-pixel style of old games, with 2,000 sprites](cena-2000-sprites.png)](cena-2000-sprites.png)
 
 ### 5. Playing without bringing the editor down
 
@@ -109,7 +109,7 @@ talks to the editor. All 13 targets were met:
 - **20 crashes in a row:** no copy of the game was left running, and the editor
   did not start using more memory.
 
-![The editor's message panel after freezing and crashing the game on purpose](console-do-editor.png)
+[![The editor's message panel after freezing and crashing the game on purpose](console-do-editor.png)](console-do-editor.png)
 
 ## What went wrong (and how I fixed it)
 
