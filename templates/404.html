@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="wrap page-head">
+  <h1>{{ trans(key="not_found_title", lang=lang) }}</h1>
+  <p class="lead">{{ trans(key="not_found_text", lang=lang) }}</p>
+  <p><a class="button" href="{{ get_url(path="@/_index.md", lang=lang) }}">{{ trans(key="back_home", lang=lang) }}</a></p>
+</section>
+{% endblock content %}

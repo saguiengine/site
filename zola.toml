@@ -1,0 +1,91 @@
+# The site's configuration. No brand here: names and the address come from
+# identity.toml, a copy of the engine's (D276, D379), read by the templates
+# and by build.py, which passes the address to `zola build --base-url`.
+base_url = "http://127.0.0.1:1111"
+
+default_language = "pt"
+compile_sass = false
+minify_html = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+generate_sitemap = true
+generate_robots_txt = true
+build_search_index = false
+
+[markdown]
+smart_punctuation = false
+external_links_no_referrer = true
+
+[markdown.highlighting]
+error_on_missing_language = false
+theme = "github-dark"
+
+[link_checker]
+internal_level = "error"
+external_level = "warn"
+
+[translations]
+lang_name = "Português"
+other_lang_label = "EN"
+other_lang_name = "English version"
+nav_label = "Site"
+nav_home = "Início"
+nav_devlog = "Devlog"
+skip_link = "Pular para o conteúdo"
+status = "Em desenvolvimento · etapa 1"
+follow_devlog = "Acompanhe o devlog"
+from_devlog = "Do devlog"
+all_posts = "Todos os posts →"
+no_posts = "Nenhum post ainda. O primeiro sai em breve."
+roadmap = "O roteiro até aqui"
+stage = "Etapa"
+stage_done = "concluída"
+stage_now = "em andamento"
+stage_next = "a fazer"
+get_posts = "Receber os posts"
+get_posts_text = "Pelo feed RSS, em qualquer leitor de feeds."
+feed = "Feed RSS"
+footer_license = "Licença do site"
+footer_source = "Código do site no GitHub"
+footer_tagline = "{marca} ({pronuncia}): {sentido} · feito por Guilherme e comunidade"
+not_found_title = "Página não encontrada"
+not_found_text = "Esta página não existe ou mudou de lugar."
+back_home = "Voltar ao início"
+milestone = "Marco"
+published = "Publicado em"
+date_format = "%d/%m/%Y"
+
+[languages.en]
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+[languages.en.translations]
+lang_name = "English"
+other_lang_label = "PT"
+other_lang_name = "Versão em português"
+nav_label = "Site"
+nav_home = "Home"
+nav_devlog = "Devlog"
+skip_link = "Skip to content"
+status = "In development · stage 1"
+follow_devlog = "Follow the devlog"
+from_devlog = "From the devlog"
+all_posts = "All posts →"
+no_posts = "No posts yet. The first one is coming soon."
+roadmap = "The roadmap so far"
+stage = "Stage"
+stage_done = "done"
+stage_now = "in progress"
+stage_next = "to do"
+get_posts = "Get the posts"
+get_posts_text = "Through the RSS feed, in any feed reader."
+feed = "RSS feed"
+footer_license = "Site license"
+footer_source = "Site source on GitHub"
+footer_tagline = "{marca} ({pronuncia}): {sentido} · made by Guilherme and the community"
+not_found_title = "Page not found"
+not_found_text = "This page does not exist or has moved."
+back_home = "Back to the home page"
+milestone = "Milestone"
+published = "Published on"
+date_format = "%b %-d, %Y"

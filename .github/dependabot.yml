@@ -1,0 +1,16 @@
+# Updates the pinned SHAs of the workflows' actions, keeping the version
+# comment. One pull request a week with everything together.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Sao_Paulo
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: "ci"

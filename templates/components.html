@@ -1,0 +1,6 @@
+{#- The brand, from identity.toml (D276, D379). Content and templates write
+    {{ <marca /> }}, {{ <linguagem /> }} and {{ <repositorio /> }}, never the
+    names themselves. -#}
+{% component marca() %}{% set identity = load_data(path="identity.toml") %}{{ identity.brand.engine_name }}{% endcomponent marca %}
+{% component linguagem() %}{% set identity = load_data(path="identity.toml") %}{{ identity.brand.language_name }}{% endcomponent linguagem %}
+{% component repositorio() %}{% set identity = load_data(path="identity.toml") %}https://github.com/{{ identity.brand.handle }}/site{% endcomponent repositorio %}

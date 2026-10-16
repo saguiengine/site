@@ -1,0 +1,30 @@
+# The only place that names the brand (D276, D279). Read by the build, the
+# .ftl files and the site. Code uses neutral names; `cargo xtask check-brand`
+# fails if any of these values shows up outside this file and the docs.
+
+[brand]
+engine_name = "Sagui"
+language_name = "SaguiScript"
+script_extension = "sagui"
+config_dir = "sagui"
+# The development build keeps its data apart from the release's (D367).
+config_dir_dev = "Sagui (dev)"
+url_scheme = "sagui"
+handle = "saguiengine"
+
+[error_prefix]
+# Ranges per D220: 0 syntax ... 9 free (script); 0 project ... 9 automation (engine).
+script = "SG"
+engine = "SE"
+
+# The public site (E9) keeps a copy of this file: `cargo xtask
+# copy-site-identity` writes it there, and a weekly check says when the
+# site's copy falls behind. Its address comes from here too.
+[site]
+url = "https://saguiengine.com"
+# How the name sounds and what it means, in the site's footer, per language.
+pronunciation = "sah-GWEE"
+
+[site.meaning]
+pt = "um macaquinho brasileiro"
+en = "a little Brazilian monkey"

@@ -1,0 +1,12 @@
+{% extends "page.html" %}
+
+{% block nav_devlog %} aria-current="page"{% endblock nav_devlog %}
+
+{% block article_meta %}
+<p class="meta">
+  {%- if page.extra.stage is defined %}
+  <span class="label">{{ trans(key="milestone", lang=lang) }} · {{ trans(key="stage", lang=lang) | lower }} {{ page.extra.stage }}</span>
+  {%- endif %}
+  <span>{{ trans(key="published", lang=lang) }} <time datetime="{{ page.date }}">{{ page.date | date(format=trans(key="date_format", lang=lang)) }}</time></span>
+</p>
+{% endblock article_meta %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{% set identity = load_data(path="identity.toml") %}{{ section.title }} · {{ identity.brand.engine_name }}{% endblock title %}
+
+{% block nav_devlog %} aria-current="page"{% endblock nav_devlog %}
+
+{% block other_lang_url %}
+{%- set other = "en" if lang == "pt" else "pt" -%}
+{{ get_url(path="@/devlog/_index.md", lang=other) }}
+{%- endblock other_lang_url %}
+
+{% block content %}
+{%- set identity = load_data(path="identity.toml") -%}
+{%- set linguagem = identity.brand.language_name -%}
+{%- set roadmap = load_data(path="data/roadmap.toml") -%}
+<section class="wrap page-head">
+  <h1>{{ section.title }}</h1>
+  <div class="lead">{{ section.content | safe }}</div>
+</section>
+
+<div class="wrap columns">
+  <div class="main-column">
+    {%- if section.pages %}
+    <ul class="posts">
+      {%- for post in section.pages %}
+      <li>{% include "post_card.html" %}</li>
+      {%- endfor %}
+    </ul>
+    {%- else %}
+    <p class="muted">{{ trans(key="no_posts", lang=lang) }}</p>
+    {%- endif %}
+  </div>
+
+  <aside class="side-column">
+    <section class="box" aria-labelledby="roteiro">
+      <h2 id="roteiro" class="box-title">{{ trans(key="roadmap", lang=lang) }}</h2>
+      <ol class="roadmap">
+        {%- for stage in roadmap.stage %}
+        <li class="stage {{ stage.state }}">
+          <span class="dot" aria-hidden="true"></span>
+          <span>{{ stage[lang] | replace(from="{linguagem}", to=linguagem) }}</span>
+          <span class="visually-hidden">({{ trans(key="stage_" ~ stage.state, lang=lang) }})</span>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+    <section class="box" aria-labelledby="receber">
+      <h2 id="receber">{{ trans(key="get_posts", lang=lang) }}</h2>
+      <p class="muted">{{ trans(key="get_posts_text", lang=lang) }}</p>
+      <a class="button secondary" href="{{ get_url(path="atom.xml", lang=lang) }}">{{ trans(key="feed", lang=lang) }}</a>
+    </section>
+  </aside>
+</div>
+{% endblock content %}

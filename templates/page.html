@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{% set identity = load_data(path="identity.toml") %}{{ page.title }} · {{ identity.brand.engine_name }}{% endblock title %}
+
+{% block other_lang_url %}
+{%- set other = "en" if lang == "pt" else "pt" -%}
+{%- set found = [t for t in page.translations if t.lang == other] -%}
+{%- if found %}{{ found[0].permalink }}{% else %}{{ get_url(path="@/_index.md", lang=other) }}{% endif -%}
+{%- endblock other_lang_url %}
+
+{% block content %}
+<article class="wrap article">
+  <h1>{{ page.title }}</h1>
+  {%- block article_meta %}{% endblock article_meta %}
+  <div class="prose">{{ page.content | safe }}</div>
+</article>
+{% endblock content %}
