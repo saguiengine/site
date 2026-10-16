@@ -8,6 +8,9 @@ domain live and a preview, and checks:
   none with the domain live, where only *.pages.dev keeps it; and no cookie
   nor analytics script anywhere (D383, D271);
 - every image in a post links to itself, to open at full size;
+- in English, an image of the interface still in Portuguese says so, in its
+  alt text and in a caption under it (an image without text is listed in the
+  page's extra.images_without_text; an English version has .en. in its name);
 - no number written with a space between thousands ("5 000");
 - the 404 page in both languages.
 
@@ -107,6 +110,25 @@ def check_images(out):
     return problems
 
 
+def check_image_language():
+    problems = []
+    for path in sorted((ROOT / "content").rglob("*.en.md")):
+        text = path.read_text(encoding="utf-8")
+        front = tomllib.loads(text.split("+++")[1]) if text.startswith("+++") else {}
+        without_text = set(front.get("extra", {}).get("images_without_text", []))
+        lines = text.splitlines()
+        for number, line in enumerate(lines):
+            for alt, src in re.findall(r"!\[([^\]]*)\]\(([^)\s]+)\)", line):
+                name = Path(src).name
+                if ".en." in name or name in without_text:
+                    continue
+                caption = next((l for l in lines[number + 1:] if l.strip()), "")
+                if "in Portuguese" not in alt or not (caption.startswith("*") and "in Portuguese" in caption):
+                    problems.append(f"images: {path.relative_to(ROOT)}:{number + 1}: {name} is in "
+                                    "Portuguese; say so in its alt text and in a caption under it")
+    return problems
+
+
 def check_numbers():
     problems = []
     for path in sorted((ROOT / "content").rglob("*.md")):
@@ -139,6 +161,7 @@ def main():
         problems = (check_address(main_out, main_again, live, preview, domain)
                     + check_indexing(main_out, live, preview)
                     + check_images(main_out)
+                    + check_image_language()
                     + check_numbers()
                     + check_404(main_out))
         ids = feed_ids(main_out)

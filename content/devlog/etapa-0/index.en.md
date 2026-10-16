@@ -5,6 +5,9 @@ description = "Five small proofs tackled the biggest risks before the engine beg
 
 [extra]
 stage = "0"
+# Images with no interface text; the others are in Portuguese, the stage's
+# record, and say so in English.
+images_without_text = ["cena-2000-sprites.png"]
 +++
 
 *The numbers are provisional: I measured them on my PC, and the official ones
@@ -63,7 +66,9 @@ in a level is a piece. Scrolling the list, selecting, dragging values, typing
 and opening groups, 99% of the frames were ready in under 2 ms, against the
 16 ms allowed. None went over 33 ms, the time of two frames.
 
-[![The proof 2 editor, with 5,000 pieces in the Assembly list](editor-5000-pecas.png)](editor-5000-pecas.png)
+[![The proof 2 editor, with 5,000 pieces in the Assembly list (editor in Portuguese)](editor-5000-pecas.png)](editor-5000-pecas.png)
+
+*The proof 2 editor, with 5,000 pieces in the Assembly list (editor in Portuguese).*
 
 ### 3. The language's speed
 
@@ -109,7 +114,9 @@ talks to the editor. All 13 targets were met:
 - **20 crashes in a row:** no copy of the game was left running, and the editor
   did not start using more memory.
 
-[![The editor's message panel after freezing and crashing the game on purpose](console-do-editor.png)](console-do-editor.png)
+[![The editor's message panel after freezing and crashing the game on purpose (messages in Portuguese)](console-do-editor.png)](console-do-editor.png)
+
+*The editor's message panel after freezing and crashing the game on purpose (messages in Portuguese).*
 
 ## What went wrong (and how I fixed it)
 

@@ -47,6 +47,14 @@ a cópia ficar para trás.
   com outra marca no `identity.toml` e confere que nenhuma página mostra a
   marca de verdade. O texto desenhado em imagens fica de fora.
 
+## Imagens (D388)
+
+Imagens com interface (o editor, o jogo, mensagens) têm uma versão em pt e
+outra em en, com `.en.` no nome da inglesa. As do post da etapa 0 são o
+registro da etapa e ficam só em pt; no post em en, o texto alternativo e uma
+legenda logo abaixo dizem que estão em português. Uma imagem sem texto entra
+em `extra.images_without_text` do post. O `scripts/check_site.py` confere.
+
 ## Licenças (D378)
 
 - **Código do site** (templates, estilo e scripts): [MIT](LICENSE).
