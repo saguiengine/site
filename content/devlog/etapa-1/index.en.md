@@ -86,7 +86,8 @@ talks to the editor. Stage 0 proved this worked, and now it is for real:
 - **Frozen game:** the editor notices in under 2 seconds and closes only the
   game.
 - **Crashing game:** the editor notices in under a tenth of a second and shows
-  a message with the reason.
+  a message with the reason (on Windows, one kind of crash takes longer; see
+  below).
 - **Reopening:** the game is back in 10 ms.
 - **Messages and screenshots:** a message from the game reaches the editor in
   under a tenth of a thousandth of a second, and a screenshot of the game in

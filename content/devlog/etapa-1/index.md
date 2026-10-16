@@ -85,7 +85,8 @@ agora é para valer:
 
 - **Jogo travado:** o editor percebe em menos de 2 segundos e fecha só o jogo.
 - **Jogo que quebra:** o editor percebe em menos de um décimo de segundo e
-  mostra uma mensagem com o motivo.
+  mostra uma mensagem com o motivo (no Windows, um tipo de quebra demora
+  mais; veja abaixo).
 - **Reabrir:** o jogo volta em 10 ms.
 - **Mensagens e fotos da tela:** uma mensagem do jogo chega ao editor em
   menos de um décimo de milésimo de segundo, e uma foto da tela do jogo, em
