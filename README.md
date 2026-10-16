@@ -47,6 +47,19 @@ a cópia ficar para trás.
   com outra marca no `identity.toml` e confere que nenhuma página mostra a
   marca de verdade. O texto desenhado em imagens fica de fora.
 
+## Imagens (D388)
+
+As imagens dos posts entram pelo componente `{{ <figura src="..." alt="..."
+lang="pt" /> }}` (em `templates/components.html`): ela abre no tamanho cheio
+numa aba nova, avisa leitores de tela que abre em nova aba, no idioma da
+página, e aceita uma legenda (`caption`). Nada disso usa script.
+
+Imagens com interface (o editor, o jogo, mensagens) têm uma versão em pt e
+outra em en, com `.en.` no nome da inglesa. As do post da etapa 0 são o
+registro da etapa e ficam só em pt; no post em en, o texto alternativo e a
+legenda dizem que estão em português. Uma imagem sem texto leva
+`has_text={false}`. O `scripts/check_site.py` confere tudo isso.
+
 ## Licenças (D378)
 
 - **Código do site** (templates, estilo e scripts): [MIT](LICENSE).

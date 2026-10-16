@@ -7,7 +7,11 @@ domain live and a preview, and checks:
 - E9.4: noindex (meta and header) on the provisional address and previews,
   none with the domain live, where only *.pages.dev keeps it; and no cookie
   nor analytics script anywhere (D383, D271);
-- every image in a post links to itself, to open at full size;
+- every image in a post opens at full size in a new tab, and its link tells
+  screen readers so, in the page's language, with no script;
+- in English, an image of the interface still in Portuguese says so, in its
+  alt text and in its caption (D388; an image with no text carries
+  data-no-text, an English version has .en. in its name);
 - no number written with a space between thousands ("5 000");
 - the 404 page in both languages.
 
@@ -95,15 +99,66 @@ def check_indexing(main, live, preview):
     return problems
 
 
+# What the hidden text of an image link says, per language of the page.
+NEW_TAB = {"pt": "(abre em nova aba)", "en": "(opens in a new tab)"}
+
+
+def figures(text):
+    """Each image of a page: its link and img tags, the link's text and the
+    caption right after it."""
+    found = []
+    for img in re.finditer(r"<img [^>]*>", text):
+        before = text[:img.start()]
+        opening = before.rfind("<a ")
+        closing = text.find("</a>", img.end())
+        link = text[opening:text.find(">", opening) + 1] if opening >= 0 and "</a>" not in before[opening:] else ""
+        inside = text[img.end():closing] if link and closing >= 0 else ""
+        after = text[closing + 4:closing + 600] if link and closing >= 0 else ""
+        caption = re.match(r"\s*<figcaption class=\"caption\">(.*?)</figcaption>", after, re.S)
+        found.append({"img": img.group(0), "link": link, "inside": inside,
+                      "caption": caption.group(1) if caption else ""})
+    return found
+
+
+def attribute(tag, name):
+    match = re.search(name + r'="([^"]*)"', tag)
+    return match.group(1) if match else None
+
+
 def check_images(out):
+    """Every image of a post opens at full size in a new tab, says so to
+    screen readers in the page's language, and needs no script."""
     problems = []
-    for page in html_files(out / "devlog") + html_files(out / "en" / "devlog"):
-        text = page.read_text(encoding="utf-8")
-        for src in re.findall(r'<img [^>]*src="([^"]+)"', text):
-            linked = re.search(r'<a [^>]*href="[^"]*' + re.escape(Path(src).name)
-                               + r'"[^>]*>\s*<img [^>]*src="' + re.escape(src) + '"', text)
-            if not linked:
-                problems.append(f"images: {page.relative_to(out)}: {src} does not open at full size")
+    for lang, pages in [("pt", html_files(out / "devlog")), ("en", html_files(out / "en" / "devlog"))]:
+        for page in pages:
+            for figure in figures(page.read_text(encoding="utf-8")):
+                src = attribute(figure["img"], "src") or ""
+                link = figure["link"]
+                where = f"images: {page.relative_to(out)}: {Path(src).name}"
+                if not link or not (attribute(link, "href") or "").endswith(Path(src).name):
+                    problems.append(f"{where} does not open at full size")
+                    continue
+                if attribute(link, "target") != "_blank" or "noopener" not in (attribute(link, "rel") or ""):
+                    problems.append(f"{where} does not open in a new tab (target and rel)")
+                if NEW_TAB[lang] not in figure["inside"]:
+                    problems.append(f"{where}: the link does not tell screen readers {NEW_TAB[lang]}")
+    return problems
+
+
+def check_image_language(out):
+    """In English, an image of the interface still in Portuguese says so in
+    its alt text and in its caption (D388). An English version has .en. in
+    its name; an image with no text carries data-no-text."""
+    problems = []
+    for page in html_files(out / "en" / "devlog"):
+        for figure in figures(page.read_text(encoding="utf-8")):
+            img = figure["img"]
+            name = Path(attribute(img, "src") or "").name
+            if ".en." in name or "data-no-text" in img:
+                continue
+            if "in Portuguese" not in (attribute(img, "alt") or "") or "in Portuguese" not in figure["caption"]:
+                problems.append(f"images: {page.relative_to(out)}: {name} is in Portuguese; say so "
+                                "in its alt text and in its caption (D388)")
     return problems
 
 
@@ -139,6 +194,7 @@ def main():
         problems = (check_address(main_out, main_again, live, preview, domain)
                     + check_indexing(main_out, live, preview)
                     + check_images(main_out)
+                    + check_image_language(main_out)
                     + check_numbers()
                     + check_404(main_out))
         ids = feed_ids(main_out)
