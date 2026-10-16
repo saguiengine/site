@@ -6,6 +6,7 @@ description = "Cinco provas pequenas atacaram os maiores riscos antes de a engin
 [extra]
 stage = "0"
 thumbnail = "cena-2000-sprites.png"
+thumbnail_has_text = false
 +++
 
 *Os números são provisórios: medi no meu PC, e os oficiais vão sair de um

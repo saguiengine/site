@@ -22,7 +22,11 @@
   <meta name="description" content="{{ section.description }}">
   {%- endif %}
   {%- endblock description %}
+  {#- The SVG icon for browsers that read it; the ICO and the PNG, drawn from
+      the same pixels, for the ones that do not, such as older Safari. #}
+  <link rel="icon" href="{{ get_url(path="favicon.ico") }}" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/svg+xml" href="{{ get_url(path="favicon.svg") }}">
+  <link rel="apple-touch-icon" href="{{ get_url(path="apple-touch-icon.png") }}">
   <link rel="stylesheet" href="{{ get_url(path="css/site.css") }}">
   <link rel="alternate" type="application/atom+xml" title="{{ marca }} · Devlog" href="{{ get_url(path="atom.xml", lang=lang) }}">
   {%- block alternates %}{% endblock alternates %}

@@ -5,9 +5,11 @@
 {% block nav_devlog %} aria-current="page"{% endblock nav_devlog %}
 
 {#- The devlog describes itself by its own lead, which names the brand
-    through identity.toml. #}
+    through identity.toml. The rendered lead already has "&", "<" and ">"
+    escaped, so it is marked safe instead of escaped again; only its quotes
+    are left, and they would end the attribute. #}
 {% block description %}
-  <meta name="description" content="{{ section.content | striptags | trim | replace(from="\n", to=" ") }}">
+  <meta name="description" content="{{ section.content | striptags | trim | replace(from="\n", to=" ") | replace(from='"', to="&quot;") | safe }}">
 {%- endblock description %}
 
 {% block other_lang_url %}

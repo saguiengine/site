@@ -6,6 +6,7 @@ description = "Five small proofs tackled the biggest risks before the engine beg
 [extra]
 stage = "0"
 thumbnail = "cena-2000-sprites.png"
+thumbnail_has_text = false
 +++
 
 *The numbers are provisional: I measured them on my PC, and the official ones

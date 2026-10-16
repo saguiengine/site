@@ -26,14 +26,15 @@
   {#- The editor as the mockup draws it: a level with the character, coins
       and a flag, and the Assembly tree. Static HTML and CSS, no script; the
       labels come from the translations, so the English page has none in
-      Portuguese (D388). #}
+      Portuguese (D388). Screen readers get only the image and its label:
+      what is inside is hidden from them, as in the mockup. #}
   <figure class="preview">
     <div class="window" role="img" aria-label="{{ trans(key="preview_label", lang=lang) }}">
-      <div class="window-bar">
+      <div class="window-bar" aria-hidden="true">
         <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
         <span class="window-title">level1 — {{ marca }}</span>
       </div>
-      <div class="window-body">
+      <div class="window-body" aria-hidden="true">
         <div class="tree">
           <span class="node level"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 3-3 6 5M3 20h18"/></svg>level1</span>
           <span class="node group depth1"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="16" height="7" rx="1"/></svg>{{ trans(key="piece_player", lang=lang) }}</span>
@@ -61,7 +62,12 @@
 </section>
 
 <section class="wrap building" aria-labelledby="construindo">
-  <h2 id="construindo">{{ trans(key="building_title", lang=lang) }} <span class="badge">{{ trans(key="building_label", lang=lang) }}</span></h2>
+  {#- The label sits beside the heading, not in it, so the heading's name is
+      only the title. #}
+  <div class="section-head">
+    <h2 id="construindo">{{ trans(key="building_title", lang=lang) }}</h2>
+    <span class="badge">{{ trans(key="building_label", lang=lang) }}</span>
+  </div>
   <ul class="highlights">
     {%- for item in section.extra.highlights %}
     <li class="highlight">
