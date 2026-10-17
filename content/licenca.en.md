@@ -1,6 +1,7 @@
 +++
 title = "Site license"
 slug = "license"
+description = "The site's three licenses: MIT for the code, CC BY 4.0 for the content and CC0 for the code examples."
 +++
 
 The {{ <marca /> }} website uses three licenses, depending on the material.

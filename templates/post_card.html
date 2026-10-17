@@ -1,14 +1,23 @@
-{#- One post in a list: its label (Milestone or the stage), date, title and
-    summary. Expects `post` and `lang`. -#}
-<a class="card" href="{{ post.permalink }}">
-  <span class="meta">
-    {%- if post.extra.stage is defined %}
-    <span class="label">{{ trans(key="milestone", lang=lang) }} · {{ trans(key="stage", lang=lang) | lower }} {{ post.extra.stage }}</span>
-    {%- endif %}
-    <time datetime="{{ post.date }}">{{ post.date | date(format=trans(key="date_format", lang=lang)) }}</time>
-  </span>
-  <span class="card-title">{{ post.title }}</span>
-  {%- if post.description %}
-  <span class="card-text">{{ post.description }}</span>
+{#- One post in a list: a thumbnail from one of its images, its label
+    (Milestone or the stage), date, title and summary. Expects `post` and
+    `lang`. The thumbnail is decorative (the title says it all) and a CSS
+    background, so it is no image that should open at full size. A
+    thumbnail with no text says so (`thumbnail_has_text = false`), as the
+    images of a post do, so an English page may show it (D388). -#}
+<a class="card{% if post.extra.thumbnail is defined %} with-thumb{% endif %}" href="{{ post.permalink }}">
+  {%- if post.extra.thumbnail is defined %}
+  <span class="thumb" aria-hidden="true"{% if post.extra.thumbnail_has_text is defined and not post.extra.thumbnail_has_text %} data-no-text{% endif %} style="background-image: url('{{ post.permalink }}{{ post.extra.thumbnail }}')"></span>
   {%- endif %}
+  <span class="card-body">
+    <span class="meta">
+      {%- if post.extra.stage is defined %}
+      <span class="label">{{ trans(key="milestone", lang=lang) }} · {{ trans(key="stage", lang=lang) | lower }} {{ post.extra.stage }}</span>
+      {%- endif %}
+      <time datetime="{{ post.date }}">{{ post.date | date(format=trans(key="date_format", lang=lang)) }}</time>
+    </span>
+    <span class="card-title">{{ post.title }}</span>
+    {%- if post.description %}
+    <span class="card-text">{{ post.description }}</span>
+    {%- endif %}
+  </span>
 </a>

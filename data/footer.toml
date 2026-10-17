@@ -1,0 +1,22 @@
+# The footer's profiles and contact address. They show on the day of the
+# domain, when they exist: until then each one has `show = false`, and the
+# footer leaves it out. "{handle}" and "{host}" become the handle and the
+# site's host from identity.toml, so no name is written here (D276).
+
+[[link]]
+pt = "itch.io"
+en = "itch.io"
+url = "https://{handle}.itch.io"
+show = false
+
+[[link]]
+pt = "Bluesky"
+en = "Bluesky"
+url = "https://bsky.app/profile/{host}"
+show = false
+
+[[link]]
+pt = "contato@{host}"
+en = "contato@{host}"
+url = "mailto:contato@{host}"
+show = false

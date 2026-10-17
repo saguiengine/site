@@ -13,7 +13,20 @@
   <meta name="robots" content="noindex">
   {%- endif %}
   <title>{% block title %}{{ marca }}{% endblock title %}</title>
-  <meta name="description" content="{% block description %}{{ trans(key="status", lang=lang) }}{% endblock description %}">
+  {#- Each page describes itself: a post or a page by its own description,
+      a section by its own; only the home page shows the status line. #}
+  {%- block description %}
+  {%- if page is defined and page.description %}
+  <meta name="description" content="{{ page.description }}">
+  {%- elif section is defined and section.description %}
+  <meta name="description" content="{{ section.description }}">
+  {%- endif %}
+  {%- endblock description %}
+  {#- The SVG icon for browsers that read it; the ICO and the PNG, drawn from
+      the same pixels, for the ones that do not, such as older Safari. #}
+  <link rel="icon" href="{{ get_url(path="favicon.ico") }}" sizes="16x16 32x32 48x48">
+  <link rel="icon" type="image/svg+xml" href="{{ get_url(path="favicon.svg") }}">
+  <link rel="apple-touch-icon" href="{{ get_url(path="apple-touch-icon.png") }}">
   <link rel="stylesheet" href="{{ get_url(path="css/site.css") }}">
   <link rel="alternate" type="application/atom+xml" title="{{ marca }} · Devlog" href="{{ get_url(path="atom.xml", lang=lang) }}">
   {%- block alternates %}{% endblock alternates %}
@@ -22,7 +35,7 @@
   <a class="skip" href="#conteudo">{{ trans(key="skip_link", lang=lang) }}</a>
   <header class="top">
     <div class="wrap top-row">
-      <a class="brand target" href="{{ get_url(path="@/_index.md", lang=lang) }}">{{ marca }}</a>
+      <a class="brand target" href="{{ get_url(path="@/_index.md", lang=lang) }}"><span class="logo">{% include "partials/logo.html" %}</span><span>{{ marca }}</span></a>
       <nav aria-label="{{ trans(key="nav_label", lang=lang) }}" class="nav">
         <a class="target" href="{{ get_url(path="@/_index.md", lang=lang) }}"{% block nav_home %}{% endblock nav_home %}>{{ trans(key="nav_home", lang=lang) }}</a>
         <a class="target" href="{{ get_url(path="@/devlog/_index.md", lang=lang) }}"{% block nav_devlog %}{% endblock nav_devlog %}>{{ trans(key="nav_devlog", lang=lang) }}</a>
@@ -40,6 +53,15 @@
     <div class="wrap bottom-row">
       <a class="target" href="{{ get_url(path="@/licenca.md", lang=lang) }}">{{ trans(key="footer_license", lang=lang) }}</a>
       <a class="target" href="https://github.com/{{ identity.brand.handle }}/site">{{ trans(key="footer_source", lang=lang) }}</a>
+      {#- The profiles and the contact address wait for the day of the domain:
+          data/footer.toml has them, each with `show = false` until it exists. #}
+      {%- set footer = load_data(path="data/footer.toml") %}
+      {%- set host = identity.site.url | split(pat="//") | last | replace(from="/", to="") %}
+      {%- for link in footer.link %}
+      {%- if link.show %}
+      <a class="target" href="{{ link.url | replace(from="{handle}", to=identity.brand.handle) | replace(from="{host}", to=host) }}">{{ link[lang] | replace(from="{handle}", to=identity.brand.handle) | replace(from="{host}", to=host) }}</a>
+      {%- endif %}
+      {%- endfor %}
       <span class="grow"></span>
       {#- How the name sounds and what it means come from identity.toml (D276). #}
       <span class="tagline">{{ trans(key="footer_tagline", lang=lang)
