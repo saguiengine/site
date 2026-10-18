@@ -19,7 +19,7 @@ Baixei o Godot, comecei a comparar, e a lista cresceu rápido. Várias respostas
 dependiam de decisões que ficam caras de trocar depois. Por exemplo: como cada
 peça guarda os seus dados, como o jogo salva o próprio estado, como a
 {{ <linguagem /> }} conversa com a engine. Mudar isso na etapa 2 custa dias.
-Mudar na etapa 8, com o editor, o som e a iluminação construídos em cima,
+Mudar na etapa 8, com o editor e os tiles construídos em cima,
 custa refazer metade do que já existe.
 
 Então a regra ficou esta: tudo o que o Godot faz em 2D tem que ser possível
@@ -33,7 +33,7 @@ na {{ <marca /> }}. "Possível" pode ser de quatro jeitos:
 - **por módulo:** um pedaço de código rápido, escrito em outra linguagem, para
   as contas pesadas (uma simulação de milhares de grãos de areia).
 
-O que pedir uma parte nova da engine vai para o roteiro, com data. O que fica
+O que pedir uma parte nova da engine vai para o roteiro. O que fica
 de fora, fica de propósito, com o motivo escrito.
 
 ## Como foi a revisão
@@ -77,7 +77,8 @@ teste, só para medir, e jogou fora depois. Foram seis perguntas:
   como num jogo cheio de inimigos, moedas e projéteis.
 - **O mesmo resultado em todo lugar** (o jogo é *determinístico*). Uma partida gravada, com os botões
   apertados em cada passo, deu exatamente os mesmos números no Windows, no
-  Linux, no navegador e no Mac. É isso que permite assistir de novo a uma
+  Linux, no Mac e em *WebAssembly*, o formato dos programas que rodam no
+  navegador. É isso que permite assistir de novo a uma
   partida e achar um erro repetindo a mesma jogada.
 
 ### Decisões em rodadas
@@ -99,7 +100,7 @@ plano, o código e o desenho das telas.
   outras, e o ponto onde ela fica é o ponto de apoio.
 - **Mais de uma forma de colisão por peça** (vários *colliders*). Por exemplo, o corpo do jogador para bater
   nas paredes e um sensor pequeno nos pés para saber se ele está no chão.
-- **Zonas que empurram** (*áreas de força*): uma corrente de vento que joga o jogador para o lado,
+- **Zonas que empurram** (os *effectors* da Unity): uma corrente de vento que joga o jogador para o lado,
   água que puxa para cima, uma esteira que leva as caixas.
 - **Caminhos** (*paths*): uma plataforma que vai e volta por um trajeto desenhado na
   fase, sem script.
@@ -151,7 +152,7 @@ plano, o código e o desenho das telas.
   `sort(enemies, key=lambda e: e.hp)` ordena os inimigos pela vida. Quem já
   programa sente falta disso logo.
 - **Mais acesso ao jogo:** o mouse; perguntar se a peça está no chão ou
-  encostada na parede; os raios (*raycast*: a linha que pergunta o que encontra); e a
+  encostada na parede; os raios (raycast: a linha que pergunta o que encontra); e a
   força e o impulso nas peças soltas, como um empurrão contínuo de vento ou o
   golpe de uma explosão.
 - **Um inimigo que já patrulha e persegue,** sem escrever nada: ele anda de um
@@ -184,8 +185,8 @@ escala (todas no PC, provisórias):
 - **Muitas peças com script.** Com 5.000 peças, cada uma com o seu script, um
   passo leva 0,64 ms. A 60 passos por segundo, cada quadro tem 16,7 ms, então
   isso é menos de um vigésimo do tempo.
-- **O ruído vem pronto.** Escrito na {{ <linguagem /> }}, ele ficou de 37 a 87
-  vezes mais lento que dentro da engine. Por isso o ruído e o caminho mais
+- **O ruído vem pronto.** Escrito como script, no protótipo da {{ <linguagem /> }} da
+  etapa 0, ele ficou de 37 a 87 vezes mais lento que dentro da engine. Por isso o ruído e o caminho mais
   curto vêm prontos, e o script só chama: `noise.perlin(x, y)`.
 
 ## O que fica de fora da 1.0
@@ -228,11 +229,11 @@ Cada item tem um motivo, e quase todos entram depois.
   existe para que jogos de simulação de areia e de materiais por pixel sejam
   possíveis depois da 1.0. Neles, cada pixel é um grão que cai, escorre ou
   pega fogo, e são centenas de milhares por segundo.
-- **Módulos** (em *WebAssembly*). Partes rápidas escritas em outras linguagens e chamadas pela
+- **Módulos** (em WebAssembly). Partes rápidas escritas em outras linguagens e chamadas pela
   {{ <linguagem /> }}, como se fossem funções da engine.
 - **Lojas.** Conquistas (*achievements*) ("terminou a fase sem levar dano") e placares (*leaderboards*) do
-  Steam, por um módulo oficial. Os saves na nuvem do Steam já funcionam sem
-  código.
+  Steam, por um módulo oficial. Os saves na nuvem do Steam não precisam do
+  módulo: o próprio Steam copia a pasta dos saves.
 - **Extensões do editor** (*plugins*), feitas pela comunidade. Por exemplo, uma ferramenta
   para desenhar estradas, usando os mesmos comandos que o editor usa por
   dentro.
@@ -241,8 +242,8 @@ Cada item tem um motivo, e quase todos entram depois.
 
 ## O preço
 
-O plano ficou maior, e a 1.0 ficou mais longe. A data nova sai depois que eu
-medir as horas reais da etapa 2. As etapas 0 e 1 andaram mais rápido do que eu
+O plano ficou maior, e a 1.0 ficou mais longe. Quanto mais longe, só vou saber
+depois de medir as horas reais da etapa 2. As etapas 0 e 1 andaram mais rápido do que eu
 previa, mas eram de infraestrutura. As próximas dependem mais de eu jogar e
 olhar, e isso não se apressa.
 
@@ -251,5 +252,5 @@ caro na etapa 8.
 
 ## O que vem agora
 
-A etapa 2 volta: as peças, as fases e o primeiro jogo que se monta no editor,
-agora sobre a base nova.
+A etapa 2 volta, agora sobre a base nova: as peças e as fases. No fim dela, a
+fase fica salva num arquivo e a câmera segue o jogador.

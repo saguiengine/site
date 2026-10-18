@@ -19,8 +19,8 @@ started comparing, and the list grew fast. Several answers depended on
 decisions that get expensive to change later. For example: how each piece
 keeps its data, how the game saves its own state, how {{ <linguagem /> }}
 talks to the engine. Changing that in stage 2 costs days. Changing it in
-stage 8, with the editor, the sound and the lighting built on top, costs
-redoing half of what already exists.
+stage 8, with the editor and the tiles built on top, costs redoing half of
+what already exists.
 
 So the rule became this: everything Godot does in 2D has to be possible in
 {{ <marca /> }}. "Possible" can mean one of four things:
@@ -34,8 +34,8 @@ So the rule became this: everything Godot does in 2D has to be possible in
 - **by module:** a chunk of fast code, written in another language, for the
   heavy math (a simulation of thousands of grains of sand).
 
-Whatever needs a new part of the engine goes into the roadmap, with a date.
-What stays out stays out on purpose, with the reason written down.
+Whatever needs a new part of the engine goes into the roadmap. What stays
+out stays out on purpose, with the reason written down.
 
 ## How the review went
 
@@ -82,9 +82,9 @@ measure, and threw them away afterwards. There were six questions:
   projectiles.
 - **The same result everywhere** (the game is *deterministic*). A recorded
   match, with the buttons pressed on each step, gave exactly the same
-  numbers on Windows, on Linux, in the browser and on a Mac. That is what
-  makes it possible to watch a match again and to find a bug by repeating
-  the same moves.
+  numbers on Windows, on Linux, on a Mac and in *WebAssembly*, the format of
+  the programs that run in the browser. That is what makes it possible to
+  watch a match again and to find a bug by repeating the same moves.
 
 ### Decisions in rounds
 
@@ -106,7 +106,7 @@ between the plan, the code and the screen designs.
 - **More than one collision shape per piece** (several *colliders*). For
   example, the player's body to bump into walls and a small sensor at the
   feet to know whether the player is on the ground.
-- **Zones that push:** a gust of wind that throws the player sideways, water
+- **Zones that push** (Unity's *effectors*): a gust of wind that throws the player sideways, water
   that pulls upward, a conveyor belt that carries the boxes.
 - ***Paths:*** a platform that goes back and forth along a route drawn in
   the level, with no script.
@@ -160,13 +160,13 @@ between the plan, the code and the screen designs.
   in Python. `sort(enemies, key=lambda e: e.hp)` sorts the enemies by health.
   People who already program miss this right away.
 - **More access to the game:** the mouse; asking whether the piece is on the
-  ground or touching a wall; *raycasts* (the line that asks what it hits);
+  ground or touching a wall; raycasts (the line that asks what it hits);
   and force and impulse on loose pieces, like a steady push of wind or the
   blow of an explosion.
 - **An enemy that already patrols and chases,** without writing anything: it
   walks back and forth, turns around at the edge and runs after the player
   when it sees them.
-- ***Pathfinding,*** ready and fast: on a tile map, the enemy finds the
+- ***Pathfinding,*** ready and fast: on a tilemap, the enemy finds the
   shortest way to the player around the walls, as in a maze. The method has
   a name, A*.
 
@@ -194,8 +194,8 @@ Three measurements, to give a sense of scale (all on the PC, provisional):
 - **Many pieces with scripts.** With 5,000 pieces, each with its own script,
   a step takes 0.64 ms. At 60 steps per second, each frame has 16.7 ms, so
   that is less than a twentieth of the time.
-- **Noise comes ready-made.** Written in {{ <linguagem /> }}, it was 37 to 87
-  times slower than inside the engine. That is why noise and pathfinding come
+- **Noise comes ready-made.** Written as script, in the stage 0 prototype of
+  {{ <linguagem /> }}, it was 37 to 87 times slower than inside the engine. That is why noise and pathfinding come
   ready-made, and the script just calls them: `noise.perlin(x, y)`.
 
 ## What stays out of 1.0
@@ -240,11 +240,11 @@ Each item has a reason, and almost all of them come later.
   games and games with per-pixel materials become possible after 1.0. In
   them, each pixel is a grain that falls, flows or catches fire, and there
   are hundreds of thousands of them every second.
-- **Modules** (in *WebAssembly*). Fast parts written in other languages and
+- **Modules** (in WebAssembly). Fast parts written in other languages and
   called from {{ <linguagem /> }}, as if they were functions of the engine.
 - **Stores.** Steam *achievements* ("finished the level without taking
   damage") and *leaderboards*, through an official module. Steam Cloud saves
-  already work with no code.
+  do not need the module: Steam itself copies the save folder.
 - **Editor *plugins*,** made by the community. For example, a tool to draw
   roads, using the same commands the editor uses inside.
 - **Online *multiplayer*,** with the requirement that everyone runs the same
@@ -252,8 +252,8 @@ Each item has a reason, and almost all of them come later.
 
 ## The price
 
-The plan got bigger, and 1.0 got further away. The new date comes after I
-measure the real hours of stage 2. Stages 0 and 1 went faster than I
+The plan got bigger, and 1.0 got further away. How much further, I will
+only know after I measure the real hours of stage 2. Stages 0 and 1 went faster than I
 expected, but they were infrastructure. The next ones depend more on me
 playing and looking, and that cannot be rushed.
 
@@ -262,5 +262,5 @@ cost much more in stage 8.
 
 ## What comes now
 
-Stage 2 is back: the pieces, the levels and the first game put together in
-the editor, now on the new foundation.
+Stage 2 is back, now on the new foundation: pieces and levels. By its end,
+the level is saved to a file and the camera follows the player.
