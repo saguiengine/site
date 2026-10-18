@@ -28,8 +28,13 @@ en = "Stage 4: {linguagem}, the core"
 state = "next"
 
 [[stage]]
-pt = "Etapa 5: editor"
-en = "Stage 5: editor"
+pt = "Etapa 5a: editor, o núcleo e a Montagem"
+en = "Stage 5a: editor, the core and the Assembly"
+state = "next"
+
+[[stage]]
+pt = "Etapa 5b: editor, o resto"
+en = "Stage 5b: editor, the rest"
 state = "next"
 
 [[stage]]
@@ -43,8 +48,8 @@ en = "Stage 7: sprites and tiles"
 state = "next"
 
 [[stage]]
-pt = "Etapa 8: iluminação 2D"
-en = "Stage 8: 2D lighting"
+pt = "Etapa 8: iluminação 2D e efeitos"
+en = "Stage 8: 2D lighting and effects"
 state = "next"
 
 [[stage]]
@@ -58,8 +63,13 @@ en = "Stage 10: sound"
 state = "next"
 
 [[stage]]
-pt = "Etapa 11: jogo completo"
-en = "Stage 11: a complete game"
+pt = "Etapa 11a: jogo completo, kit de interface e opções"
+en = "Stage 11a: a complete game, UI kit and options"
+state = "next"
+
+[[stage]]
+pt = "Etapa 11b: idiomas, acessibilidade e beta"
+en = "Stage 11b: languages, accessibility and beta"
 state = "next"
 
 [[stage]]

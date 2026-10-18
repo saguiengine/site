@@ -12,6 +12,24 @@ config_dir_dev = "Sagui (dev)"
 url_scheme = "sagui"
 handle = "saguiengine"
 
+# The provisional logo of the mockup and the site (D403): a face in pixel
+# art, drawn by the editor on a square of the accent. One character per
+# pixel, row by row from the top; "." is transparent, and every other
+# character is a colour of the palette. Another brand changes it here.
+[brand.logo]
+palette = { d = "#3d342c", w = "#f4f1ea", s = "#e3c393", m = "#7a5a46", k = "#111318" }
+rows = [
+    "...dddd...",
+    "..ddwwdd..",
+    "wwddddddww",
+    "wwdssssdww",
+    "wwdksskdww",
+    ".wdssssdw.",
+    "..dsmmsd..",
+    "...dssd...",
+    "....dd....",
+]
+
 [error_prefix]
 # Ranges per D220: 0 syntax ... 9 free (script); 0 project ... 9 automation (engine).
 script = "SG"
