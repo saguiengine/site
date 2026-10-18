@@ -60,21 +60,22 @@ teste, só para medir, e jogou fora depois. Foram seis perguntas:
   passos por segundo. Mais passos deixam o controle mais rápido, mas custam
   mais. As medições ainda dependem de um teste meu: jogar sem saber qual taxa
   está ligada e dar uma nota.
-- **Quanto custa um efeito de ruído escrito em script.** Ruído, aqui, não é
-  som: é um sorteio suave. Em vez de números que pulam ao acaso, ele dá
-  valores que mudam aos poucos, como o desenho de morros. Serve para criar
-  coisas de forma automática. Num jogo de cavernas que mudam a cada partida,
+- **Quanto custa um efeito de ruído escrito em script.** Ruído (*noise*), aqui, não
+  é som: é um sorteio suave. Em vez de números que pulam ao acaso, ele dá
+  valores que mudam aos poucos, como o desenho de morros. É a ferramenta clássica da geração procedural (*procedural generation*):
+  criar conteúdo por regras, em vez de desenhar tudo à mão. Num jogo de cavernas que mudam a cada partida,
   o ruído decide onde tem rocha e onde tem passagem. Também serve para nuvens,
   terrenos e o tremor natural de uma câmera.
 - **Quanto custa desenhar milhares de imagens.** As imagens do jogo ficam
-  coladas em folhas grandes, as páginas, para a placa de vídeo desenhar muitas
+  coladas em folhas grandes, as páginas (o *texture atlas*), para a placa de vídeo desenhar muitas
   de uma vez. A medição mostrou um jeito de desenhar tudo de uma vez só, mesmo
   quando as imagens vêm de páginas diferentes.
 - **Quanto custa salvar e restaurar o jogo inteiro.** É o que permite salvar a
-  qualquer momento, voltar no tempo e, um dia, jogar online.
+  qualquer momento (*save state*), voltar no tempo e, um dia, jogar online
+  com *rollback*.
 - **Quanto custa a {{ <linguagem /> }} ler e mudar 5.000 peças** a cada passo,
   como num jogo cheio de inimigos, moedas e projéteis.
-- **O mesmo resultado em todo lugar.** Uma partida gravada, com os botões
+- **O mesmo resultado em todo lugar** (o jogo é *determinístico*). Uma partida gravada, com os botões
   apertados em cada passo, deu exatamente os mesmos números no Windows, no
   Linux, no navegador e no Mac. É isso que permite assistir de novo a uma
   partida e achar um erro repetindo a mesma jogada.
@@ -90,19 +91,19 @@ plano, o código e o desenho das telas.
 
 ### Na física
 
-- **Juntas:** um pino, uma mola ou uma corda prendendo duas peças. Com elas,
+- **Juntas** (*joints*): um pino, uma mola ou uma corda prendendo duas peças. Com elas,
   dá para fazer uma ponte de tábuas que balança quando o jogador passa, uma
   bola presa numa corrente, ou um carrinho com rodas que giram. Antes, as
   juntas estavam para depois da 1.0, porque eu achava que precisavam de um
   editor próprio. O Godot mostrou que não: a junta é uma peça que liga duas
   outras, e o ponto onde ela fica é o ponto de apoio.
-- **Mais de uma forma por peça.** Por exemplo, o corpo do jogador para bater
+- **Mais de uma forma de colisão por peça** (vários *colliders*). Por exemplo, o corpo do jogador para bater
   nas paredes e um sensor pequeno nos pés para saber se ele está no chão.
-- **Zonas que empurram:** uma corrente de vento que joga o jogador para o lado,
+- **Zonas que empurram** (*áreas de força*): uma corrente de vento que joga o jogador para o lado,
   água que puxa para cima, uma esteira que leva as caixas.
-- **Caminhos:** uma plataforma que vai e volta por um trajeto desenhado na
+- **Caminhos** (*paths*): uma plataforma que vai e volta por um trajeto desenhado na
   fase, sem script.
-- **Perguntas sobre o espaço:** "o que está dentro deste círculo?" (uma
+- **Perguntas sobre o espaço** (*overlap queries* e *raycasts*): "o que está dentro deste círculo?" (uma
   explosão que atinge tudo em volta) ou "o que esta linha encontra primeiro?"
   (o inimigo enxerga o jogador, ou tem uma parede no meio?).
 
@@ -117,8 +118,8 @@ plano, o código e o desenho das telas.
   - a peça escolhida ganha um contorno;
   - o jogo fica em tons de cinza na pausa;
   - as luzes se somam, em vez de cobrir o que está atrás.
-- **Uma câmera melhor.** Ela ganha uma zona morta: o personagem anda um pouco
-  sem a câmera se mexer, e a tela fica mais calma. E ganha antecipação: quando
+- **Uma câmera melhor.** Ela ganha uma zona morta (*dead zone*): o personagem anda um pouco
+  sem a câmera se mexer, e a tela fica mais calma. E ganha antecipação (*look-ahead*): quando
   o personagem corre, a câmera olha um pouco à frente, para o jogador ver o
   buraco antes de cair nele.
 - **Arte do Aseprite.** O Aseprite é um programa muito usado para desenhar
@@ -130,13 +131,13 @@ plano, o código e o desenho das telas.
 - **Selecionar clicando no jogo rodando, pausar e avançar um passo de cada
   vez.** Se um inimigo atravessa o chão de vez em quando, dá para pausar no
   momento, avançar passo por passo, clicar nele e ver os valores dele.
-- **Uma paleta de comandos:** um atalho abre uma caixa, você digita
+- **Uma paleta de comandos** (*command palette*, como a do VS Code): um atalho abre uma caixa, você digita
   "duplicar" e escolhe "Duplicar peça". Serve para qualquer ação do editor, e
   ajuda muito quem prefere o teclado.
-- **Um painel solto:** dá para tirar um painel do lugar, como o das mensagens,
+- **Um painel solto** (*floating panel*): dá para tirar um painel do lugar, como o das mensagens,
   e deixá-lo flutuando por cima da fase.
-- **Desfazer em tudo,** até no pincel de pixels e no de tiles (os pedaços
-  quadrados que montam o cenário).
+- **Desfazer em tudo** (*undo*), até no pincel de pixels e no de tiles (os pedaços
+  quadrados que montam o cenário, num *tilemap*).
 - **"Se" nas Reações.** As Reações são frases prontas para quem ainda não
   programa, como "quando o jogador tocar a moeda, some a moeda e soma 1 ponto".
   Agora elas aceitam uma condição simples: "se tiver a chave, abre a porta" ou
@@ -144,30 +145,31 @@ plano, o código e o desenho das telas.
 
 ### Na {{ <linguagem /> }}
 
-- **Funções como valor.** Dá para entregar uma ação para ser feita depois:
+- **Funções como valor** (*first-class functions*). Dá para entregar uma ação para ser feita depois:
   `after(1, explode)` quer dizer "daqui a 1 segundo, explode". E chega a
   `lambda`, uma função curtinha escrita na hora, sem nome, como a do Python:
   `sort(enemies, key=lambda e: e.hp)` ordena os inimigos pela vida. Quem já
   programa sente falta disso logo.
 - **Mais acesso ao jogo:** o mouse; perguntar se a peça está no chão ou
-  encostada na parede; os raios (a linha que pergunta o que encontra); e a
+  encostada na parede; os raios (*raycast*: a linha que pergunta o que encontra); e a
   força e o impulso nas peças soltas, como um empurrão contínuo de vento ou o
   golpe de uma explosão.
 - **Um inimigo que já patrulha e persegue,** sem escrever nada: ele anda de um
   lado para o outro, vira na beirada e corre atrás do jogador quando o vê.
-- **O caminho mais curto,** pronto e rápido: num mapa de tiles, o inimigo
+- **O caminho mais curto** (*pathfinding*), pronto e rápido: num mapa de tiles, o inimigo
   acha o caminho até o jogador desviando das paredes, como num labirinto. A
   conta tem um nome, A*.
 
 ### No jogo que você exporta
 
-- **O kit de interface completo,** as peças das telas de menu: além de botões e
-  barras, um interruptor (a música, ligada ou desligada), um seletor (o
-  idioma), um campo de texto (o nome do jogador) e uma lista que rola (os
-  botões do controle, um embaixo do outro). Sem eles, o menu de opções do jogo
+- **O kit de interface completo** (a *UI*), as peças das telas de menu: além de botões e
+  barras, um interruptor (*toggle*: a música, ligada ou desligada), um seletor
+  (*dropdown*: o idioma), um campo de texto (*text input*: o nome do jogador)
+  e uma lista que rola (*scroll list*: os botões do controle, um embaixo do
+  outro). Sem eles, o menu de opções do jogo
   de exemplo não fechava. Um protótipo do menu também mostrou como a interface
   se ajusta a qualquer tamanho de tela.
-- **Tela cheia** com Alt+Enter, e **som no navegador**, que hoje ainda é mudo.
+- **Tela cheia** (*fullscreen*) com Alt+Enter, e **som no navegador**, que hoje ainda é mudo.
 
 ### Por dentro
 
@@ -190,14 +192,15 @@ escala (todas no PC, provisórias):
 
 Cada item tem um motivo, e quase todos entram depois.
 
-- **Leitor de tela nos jogos.** O leitor de tela é o programa que lê a tela em
+- **Leitor de tela nos jogos** (*screen reader*). O leitor de tela é o programa que lê a tela em
   voz alta para quem não enxerga. Na 1.0, cada botão e cada texto do jogo já
   guarda um nome para ele ler, mas a leitura em si vem depois. A do Godot
   ainda é experimental.
-- **Linha do tempo de animação,** para cenas com várias peças se mexendo
+- **Linha do tempo de animação** (*timeline*, como o AnimationPlayer do
+  Godot), para cenas com várias peças se mexendo
   juntas: a porta abre, a câmera passeia pela sala, o personagem fala. Na 1.0,
   dá para fazer com animações em sequência e esperas no script.
-- **Dois jogadores no mesmo computador.** A engine já guarda os comandos de
+- **Dois jogadores no mesmo computador** (*co-op local*). A engine já guarda os comandos de
   cada jogador separados, então isso entra depois sem refazer nada.
 - **Exportar para Mac e para celular.** Na 1.0, o jogo sai para Windows, Linux
   e o navegador, e quem joga no Mac usa a versão do navegador.
@@ -206,7 +209,7 @@ Cada item tem um motivo, e quase todos entram depois.
   Volto a pensar nisso depois da 1.0.
 - **Um núcleo do processador para o jogo.** O processador tem vários núcleos,
   como várias pessoas trabalhando ao mesmo tempo. O jogo usa um núcleo para
-  calcular cada passo; o editor, o som e a leitura dos arquivos usam os
+  calcular cada passo (*single-thread*); o editor, o som e a leitura dos arquivos usam os
   outros. Dividir o cálculo do jogo entre núcleos faria o resultado mudar de
   um computador para outro, porque ninguém garante quem termina primeiro. As
   contas mostram que um núcleo dá conta da 1.0. No navegador, também um só,
@@ -218,21 +221,22 @@ Cada item tem um motivo, e quase todos entram depois.
 
 ## O que a arquitetura deixa pronto para depois
 
-- **Vários núcleos, com o mesmo resultado.** Fica escrita a regra para um
+- **Vários núcleos, com o mesmo resultado** (*multithreading*
+  determinístico). Fica escrita a regra para um
   sistema usar vários núcleos sem perder o mesmo resultado em todo computador:
   dividir o trabalho em pedaços fixos e juntar sempre na mesma ordem. Ela
   existe para que jogos de simulação de areia e de materiais por pixel sejam
   possíveis depois da 1.0. Neles, cada pixel é um grão que cai, escorre ou
   pega fogo, e são centenas de milhares por segundo.
-- **Módulos.** Partes rápidas escritas em outras linguagens e chamadas pela
+- **Módulos** (em *WebAssembly*). Partes rápidas escritas em outras linguagens e chamadas pela
   {{ <linguagem /> }}, como se fossem funções da engine.
-- **Lojas.** Conquistas ("terminou a fase sem levar dano") e placares do
+- **Lojas.** Conquistas (*achievements*) ("terminou a fase sem levar dano") e placares (*leaderboards*) do
   Steam, por um módulo oficial. Os saves na nuvem do Steam já funcionam sem
   código.
-- **Extensões do editor,** feitas pela comunidade. Por exemplo, uma ferramenta
+- **Extensões do editor** (*plugins*), feitas pela comunidade. Por exemplo, uma ferramenta
   para desenhar estradas, usando os mesmos comandos que o editor usa por
   dentro.
-- **Jogo online,** com a exigência de que todos rodem a mesma versão do mesmo
+- **Jogo online** (*multiplayer*), com a exigência de que todos rodem a mesma versão do mesmo
   jogo.
 
 ## O preço
