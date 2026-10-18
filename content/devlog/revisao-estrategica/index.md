@@ -2,6 +2,10 @@
 title = "Devlog: uma pausa para replanejar"
 date = 2026-10-17
 description = "Antes de construir as peças, parei para comparar a engine com o Godot, a Unity e o GameMaker. Saiu um plano maior: o que melhora, o que fica de fora da 1.0 e o que a arquitetura deixa pronto para depois."
+
+[extra]
+thumbnail = "roteiro-miniatura.png"
+thumbnail_has_text = false
 +++
 
 *Os números são provisórios: medi no meu PC, e os oficiais vão sair de um
@@ -254,3 +258,5 @@ caro na etapa 8.
 
 A etapa 2 volta, agora sobre a base nova: as peças e as fases. No fim dela, a
 fase fica salva num arquivo e a câmera segue o jogador.
+
+{{ <figura src="roteiro.png" alt="Desenho em pixel art do roteiro: uma escada de 16 plataformas, da etapa 0 à 12b. A 0 e a 1 estão marcadas como feitas, o personagem está na 2, há moedas sobre as que faltam e bandeiras na 6 (alpha), na 11b (beta) e na 12b (1.0)." lang="pt" caption="O roteiro novo: a 5 e a 11 viraram duas etapas cada, e as bandeiras marcam a alpha, a beta e a 1.0. O personagem está na etapa 2." has_text={false} /> }}

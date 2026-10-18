@@ -2,6 +2,10 @@
 title = "Devlog: a pause to replan"
 date = 2026-10-17
 description = "Before building the pieces, I stopped to compare the engine with Godot, Unity and GameMaker. A bigger plan came out of it: what gets better, what stays out of 1.0 and what the architecture leaves ready for later."
+
+[extra]
+thumbnail = "roteiro-miniatura.png"
+thumbnail_has_text = false
 +++
 
 *The numbers are provisional: I measured them on my PC, and the official ones
@@ -264,3 +268,5 @@ cost much more in stage 8.
 
 Stage 2 is back, now on the new foundation: pieces and levels. By its end,
 the level is saved to a file and the camera follows the player.
+
+{{ <figura src="roteiro.png" alt="Pixel art drawing of the roadmap: a staircase of 16 platforms, from stage 0 to 12b. Stages 0 and 1 are marked as done, the character is on 2, there are coins above the ones still ahead and flags on 6 (alpha), 11b (beta) and 12b (1.0)." lang="en" caption="The new roadmap: stages 5 and 11 became two stages each, and the flags mark the alpha, the beta and 1.0. The character is on stage 2." has_text={false} /> }}
