@@ -13,8 +13,9 @@ thumbnail_has_text = false
 will come from a modest laptop that has not arrived yet.*
 
 {{ <marca /> }} is a 2D game engine, that is, a program for making games,
-with its own language, {{ <linguagem /> }}. In stage 0, five small proofs
-tackled the biggest risks, and their code did not go into the engine. Stage 1
+with its own language, {{ <linguagem /> }}, which tells each thing in the game
+how to behave (a *scripting* language). In stage 0, five small proofs (proofs
+of concept, or *PoC*) tackled the biggest risks, and their code did not go into the engine. Stage 1
 started from scratch and built the foundation: the parts that every later
 stage will use. This code stays.
 
@@ -26,14 +27,16 @@ After that, it can go.*
 I make {{ <marca /> }} with the help of Claude, an artificial intelligence: it
 writes the code and takes the measurements, and I review, play and decide
 what goes in. Stage 1 had nine deliveries. Each one started with a text that
-says what it must do and only ended with the tests passing.
+says what it must do (the specification, or *spec*) and only ended with the
+tests passing.
 
 For anyone who has not read the stage 0 post, two words show up a lot:
 
 - **Step:** the game recomputes the world (who moved, who hit whom) 60 times
-  per second, always at the same pace. Each recomputation is a step.
-- **Frame:** each picture drawn on the screen. At 60 pictures per second, each
-  one must be ready in about 16 thousandths of a second (ms).
+  per second, always at the same pace. Each recomputation is a step (a
+  *tick*).
+- **Frame:** each picture drawn on the screen. At 60 pictures per second (60
+  *FPS*), each one must be ready in about 16 thousandths of a second (ms).
 
 ## What stage 1 delivered
 
@@ -42,28 +45,29 @@ For anyone who has not read the stage 0 post, two words show up a lot:
 The heart of the engine moves the game forward in fixed steps, 60 or 120 per
 second, and never uses the computer's clock to decide what happens. A
 recorded 60-second match, with the buttons pressed on each step, ends exactly
-the same on Windows, on Linux, on a Mac and in WebAssembly, the format of the
-programs that run in the browser. That is what will make it possible to
-watch a match again, to find bugs by replaying the same moves and, one day,
+the same (the game is *deterministic*) on Windows, on Linux, on a Mac and in
+*WebAssembly*, the format of the programs that run in the browser. That is
+what will make it possible to watch a match again (a *replay*), to find bugs by replaying the same moves and, one day,
 to play online. A step with 5,000 squares takes 0.068 ms, and the limit on
 the PC is 0.5 ms.
 
 ### Drawing
 
-Sprites, the pictures of characters and objects, are drawn by the graphics
-card, in batches: with 2,000 of them, 99% of the frames are ready in 2.6 ms,
-and the target on the laptop is 8.3 ms. For games with big pixels, like old
-ones, the picture always grows by a whole number (2 times, 3 times), with bars
-at the edges when the screen has a different shape, so that no pixel comes
-out crooked. And movement stays smooth between one step and the next, even
-when the screen draws more frames per second than the game computes steps.
+*Sprites*, the pictures of characters and objects, are drawn by the graphics
+card (the *GPU*, the part of the computer made for graphics), in groups (in
+*batches*): with 2,000 of them, 99% of the frames are ready in 2.6 ms, and the
+target on the laptop is 8.3 ms. For games with big pixels, like old ones
+(*pixel art*), the picture always grows by a whole number (2 times, 3 times:
+*integer scaling*), with bars at the edges when the screen has a different
+shape (*letterboxing*), so that no pixel comes out crooked. And movement stays
+smooth between one step and the next (*interpolation*), even when the screen draws more frames per second than the game computes steps.
 
 ### Keyboard, mouse and controller
 
 The game does not ask "is the Space key pressed?". It asks for the command:
 jump, attack, move, pause. A file says which keys, mouse buttons and
-controller buttons trigger each command, so changing the buttons does not
-touch the game. Game controllers work too. Each press goes into a queue with
+controller buttons trigger each command (the *input map*), so changing the
+buttons does not touch the game. Game controllers (*gamepads*) work too. Each press goes into a queue with
 the time it happened, which is why two quick taps within the same step count
 as two. If a controller disconnects in the middle of the game, a warning
 shows up, and its buttons count as released.
@@ -73,8 +77,8 @@ shows up, and its buttons count as released.
 The engine plays sounds, and the first one is the jump. The sound is made by
 the program itself, with no audio file, and what decides when it plays is the
 game's step, not the sound's clock. That way, the recorded match stays the
-same. From the request until the sound reached the computer's sound mix, it
-took 25 ms.
+same. From the request until the sound reached the computer's sound mix (the
+delay, or *latency*), it took 25 ms.
 
 ### The game in its own window
 
@@ -88,36 +92,38 @@ under 2.4 ms.
 
 ### Linked to the editor
 
-When you press Play in the editor, the game opens as a separate program that
-talks to the editor. Stage 0 proved this worked, and now it is for real:
+When you press Play in the editor, the game opens as a separate program
+(another *process*) that talks to the editor. Stage 0 proved this worked, and now it is for real:
 
 - **Frozen game:** the editor notices in under 2 seconds and closes only the
   game.
-- **Crashing game:** the editor notices in under a tenth of a second and shows
-  a message with the reason (on Windows, one kind of crash takes longer; see
-  below).
+- **Crashing game (a *crash*):** the editor notices in under a tenth of a
+  second and shows a message with the reason (on Windows, one kind of crash
+  takes longer; see below).
 - **Reopening:** the game is back in 10 ms.
 - **Messages and screenshots:** a message from the game reaches the editor in
-  under a tenth of a thousandth of a second, and a screenshot of the game in
-  6 ms.
+  under a tenth of a thousandth of a second, and a picture of the game's
+  screen (a *screenshot*) in 6 ms.
 
 ### The editor's shell
 
 The editor got its shell: the top bar, with the Play button, and the panels
 in their places, still empty. They will be filled in the next stages. There
-are two panel arrangements. Default is for large screens:
+are two panel arrangements (*layouts*). Default is for large screens:
 
 {{ <figura src="editor-padrao.en.png" alt="The editor in the Default arrangement: the top bar with the Play button and the Assembly, Level, Properties, Files and Console panels" lang="en" /> }}
 
-Compact is for small screens, from 1280 × 720 up, with the message panel
-folded into one line at the bottom:
+Compact is for small screens, from 1280 × 720 up (the *resolution*: 1280
+pixels wide by 720 high), with the message panel (the *console*) folded into
+one line at the bottom:
 
 {{ <figura src="editor-compacto.en.png" alt="The editor in the Compact arrangement, on a 1280 by 720 screen, with the Console folded into one line at the bottom" lang="en" /> }}
 
 The first time it opens, the editor asks for the language and the profile of
 the person who will use it. Someone starting out goes through three screens;
 someone who already codes goes through five, because they also choose the
-code editor and the appearance. Everything can be changed later, in
+code editor (the program where you write code, like VS Code) and the
+appearance. Everything can be changed later, in
 Preferences, and changing the language takes effect at once, without
 reopening the program.
 
@@ -125,7 +131,8 @@ reopening the program.
 
 The whole editor works from the keyboard: Tab and Shift+Tab move through the
 buttons, and F6 jumps from panel to panel. The automated tests use the editor
-the way a screen reader does, by the buttons' names, and one of them fails if
+the way a *screen reader* (the program that reads the screen out loud) does,
+by the buttons' names, and one of them fails if
 anything clickable is left without a name for people who cannot see the
 screen. The numbers: the editor is ready 0.4 seconds after opening, and with
 10,000 lines in the message panel, 99% of the frames are ready in 2.6 ms.
@@ -133,7 +140,8 @@ screen. The numbers: the editor is ready 0.4 seconds after opening, and with
 ### This site
 
 The site you are reading is also from stage 1: in Portuguese and English,
-with no program running on the page and no cookies. The names of the engine
+with no program running on the page (no *JavaScript*) and no *cookies* (the
+data a site keeps in your browser, for example to remember who you are). The names of the engine
 and of the language come from a single file, the same one the code uses, so
 they never show up written two ways.
 
@@ -146,7 +154,7 @@ also an artificial intelligence, ran the tests of each delivery again, and the
 targets were measured again on the PC. Out of that review came:
 
 - small fixes in the code, each with a test that shows the bug before the
-  fix;
+  fix (a *regression test*);
 - texts brought in line with what the code does;
 - the nightly tests checking what stage 1 built as well;
 - the measured numbers stored next to the code.
@@ -155,7 +163,7 @@ targets were measured again on the PC. Out of that review came:
 
 - **The tests that froze Windows.** The drawing tests run several at a time.
   When two of them opened the graphics card in different ways at the same
-  time, the graphics card's program on Windows got stuck, and the automated
+  time, the graphics card's program on Windows (the *driver*) got stuck, and the automated
   tests sat frozen for more than 20 minutes. Now the tests that use the
   graphics card wait for their turn, and a new test makes sure none of them
   jumps the queue.
@@ -168,9 +176,10 @@ targets were measured again on the PC. Out of that review came:
 - **The test that failed now and then.** Because of the same Windows report,
   that kind of crash took half a second, a little more or a little less than
   the test's limit. The test passed almost always. A test that fails now and
-  then is a bug, not bad luck, so I fixed the test.
+  then (an unstable test, or a *flaky* one) is a bug, not bad luck, so I fixed the test.
 - **Windows files that would not open.** Some Windows tools save text with an
-  invisible mark at the start, or in another encoding. The engine refused
+  invisible mark at the start (the *BOM*), or in another *encoding* (the way
+  each letter is stored as numbers). The engine refused
   those files with a message that did not say why. Now they open. A file in
   an encoding the engine does not read says so in plain words.
 
@@ -181,4 +190,4 @@ targets were measured again on the PC. Out of that review came:
   the PC. I will review them after the laptop's numbers.
 
 With that, stage 1 is closed, and the foundation is ready. Stage 2 brings the
-pieces and the levels: the way to build the game's world.
+pieces (the player, a coin, a platform) and the levels: the way to build the game's world.
