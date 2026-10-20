@@ -281,6 +281,44 @@ def check_thumbnails(out):
     return problems
 
 
+ROADMAP = re.compile(r'<ol class="roadmap">(.*?)</ol>\s*</section>', re.S)
+ROADMAP_LINK = re.compile(r'<a class="(?:stage|delivery)-row" href="([^"]*)"')
+
+
+def roadmap_posts():
+    """The posts the roadmap links to: each stage and delivery with `post`."""
+    with open(ROOT / "data" / "roadmap.toml", "rb") as f:
+        roadmap = tomllib.load(f)
+    posts = []
+    for stage in roadmap["stage"]:
+        posts += [stage["post"]] if "post" in stage else []
+        posts += [d["post"] for d in stage.get("delivery", []) if "post" in d]
+    return posts
+
+
+def check_roadmap(out):
+    """Every link of the roadmap, in Portuguese and in English, goes to a
+    post that exists, in the page's language, and there is one link for
+    each `post` of data/roadmap.toml."""
+    problems = []
+    expected = roadmap_posts()
+    for page, prefix in [("devlog/index.html", "/devlog/"), ("en/devlog/index.html", "/en/devlog/")]:
+        found = ROADMAP.search((out / page).read_text(encoding="utf-8"))
+        if not found:
+            problems.append(f"roadmap: {page} has no roadmap")
+            continue
+        links = [urlparse(href).path for href in ROADMAP_LINK.findall(found.group(1))]
+        if [link.removeprefix(prefix).strip("/") for link in links] != expected:
+            problems.append(f"roadmap: {page} links to {links}, and data/roadmap.toml has the "
+                            f"posts {expected}")
+        for link in links:
+            if not link.startswith(prefix):
+                problems.append(f"roadmap: {page} links to {link}, in the other language")
+            if not (out / link.strip("/") / "index.html").is_file():
+                problems.append(f"roadmap: {page} links to {link}, which is not a post")
+    return problems
+
+
 def check_variant(tmp):
     """A copy of the site with a "&" and quotes in the devlog's lead and every
     footer link shown: the "&" is escaped once in the description, and the
@@ -330,13 +368,15 @@ def main():
                     + check_descriptions(main_out)
                     + check_footer(main_out)
                     + check_thumbnails(main_out)
+                    + check_roadmap(main_out)
                     + check_variant(tmp))
         ids = feed_ids(main_out)
     for problem in problems:
         print(f"check_site: {problem}", file=sys.stderr)
     if problems:
         return 1
-    print("check_site: address, E9.4, images, thousands, 404, descriptions, footer and thumbnails "
+    print("check_site: address, E9.4, images, thousands, 404, descriptions, footer, thumbnails "
+          "and roadmap "
           f"pass; feed ids of main: {ids}")
     return 0
 
