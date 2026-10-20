@@ -25,6 +25,7 @@ e ler:
         position: (0.0, 320.0),
         scale: (20.0, 1.0),
         tags: ["ground"],
+        image: (id: "66401c90be1e26a241e250e87b2fe284", path: "sprites/ground.png"),
     ),
 ),
 ```
@@ -61,8 +62,9 @@ outro ganha um aviso.
 ## Nada some
 
 Se uma fase tiver uma propriedade que esta versão não conhece, escrita à mão
-ou vinda de uma versão mais nova, a engine avisa e guarda a linha como veio.
-Abrir e salvar nunca apaga o que ela não entende.
+ou por um script, a engine avisa e guarda a linha como veio. Abrir e salvar
+nunca apaga uma propriedade que ela não entende. Só os comentários escritos
+à mão (as linhas que começam com `//`) ainda se perdem ao salvar.
 
 ## O leitor próprio
 
@@ -77,8 +79,8 @@ Escrevemos então um leitor próprio (um *parser*), só para fases e moldes, que
 texto uma vez. A mesma fase abre em **31 ms** (um ms é um milésimo de
 segundo), cerca de 35 vezes mais rápido. A lentidão já foi corrigida no código da biblioteca, mas ainda não
 saiu numa versão. E o nosso leitor continua útil mesmo assim: ele guarda
-detalhes que a biblioteca perde, como a diferença entre uma lista e um par
-de valores.
+detalhes que a biblioteca perde, como a diferença entre uma lista e um grupo fixo
+de valores, como a posição (x, y).
 
 Um leitor novo é um lugar novo para erros, então ele foi posto à prova
 contra a biblioteca: mais de 3 milhões de textos aleatórios e arquivos

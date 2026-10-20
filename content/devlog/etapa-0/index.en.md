@@ -39,7 +39,7 @@ Two words show up a lot:
   *tick*).
 - **Frame:** each picture drawn on the screen. The screen shows 60 pictures per
   second (60 *FPS*), so each one must be ready in about 16 thousandths of a
-  second (ms). If a picture takes longer, the screen hangs for a moment (a
+  second (ms). If a picture takes longer, the screen hitches for a moment (a
   *stutter*).
 
 ## The five proofs

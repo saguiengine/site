@@ -25,6 +25,7 @@ read it:
         position: (0.0, 320.0),
         scale: (20.0, 1.0),
         tags: ["ground"],
+        image: (id: "66401c90be1e26a241e250e87b2fe284", path: "sprites/ground.png"),
     ),
 ),
 ```
@@ -59,9 +60,10 @@ warning.
 
 ## Nothing disappears
 
-If a level has a property this version does not know, written by hand or
-coming from a newer version, the engine warns and keeps the line as it came.
-Opening and saving never deletes what it does not understand.
+If a level has a property this version does not know, written by hand or by
+a script, the engine warns and keeps the line as it came. Opening and saving
+never deletes a property it does not understand. Only the comments written by
+hand (the lines that start with `//`) are still lost on saving.
 
 ## Our own reader
 
@@ -77,11 +79,12 @@ goes through the text once. The same level opens in **31 ms** (a ms is a
 thousandth of a second), about 35 times faster. The slowness has already
 been fixed in the library's code, but the fix has not come out in a release
 yet. And our reader stays useful anyway: it keeps details the library loses,
-like the difference between a list and a pair of values.
+like the difference between a list and a fixed group of values, such as the
+position (x, y).
 
 A new reader is a new place for bugs, so it was put to the test against the
 library: more than 3 million random texts and files broken on purpose (the
-technique is called *fuzzing*), without hanging or crashing once. In a typo,
+technique is called *fuzzing*), without hanging or crashing once. On a typo,
 it points to the same place as the library in 87% of the cases. And a level
 with 100,000 groups, one inside the other, opens in 0.3 s.
 
