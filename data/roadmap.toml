@@ -47,6 +47,14 @@ count = 1
 state = "done"
 post = "moldes-e-o-interruptor-ativa"
 
+# The twelfth delivery comes before the seventh: it took the next number so
+# the others keep theirs (20/10/2026).
+[[stage.delivery]]
+pt = "12 · o painel Desempenho"
+en = "12 · the Performance panel"
+count = 1
+state = "next"
+
 [[stage.delivery]]
 pt = "7 · estilo, escala e câmera"
 en = "7 · style, scale and camera"
