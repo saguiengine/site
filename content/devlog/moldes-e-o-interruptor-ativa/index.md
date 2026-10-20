@@ -17,6 +17,8 @@ repete quantas vezes quiser. Nesta entrega, os moldes ganharam diferenças,
 variantes e moldes dentro de moldes. Por enquanto, tudo isso vive nos
 arquivos e na engine; mexer nisso pelo editor chega na etapa 5.
 
+{{ <figura src="moldes-cena.png" alt="Desenho: à esquerda, um molde numa moldura tracejada, com uma plataforma e uma moeda; à direita, três cópias dele na fase, cada uma com um interruptor; a terceira está desligada e quase apagada." lang="pt" has_text={false} /> }}
+
 ## Cópias com diferenças
 
 Cada cópia guarda só o que muda em relação ao molde. Três morcegos do mesmo
@@ -47,6 +49,8 @@ que apontava para elas vai se perder.
 que só aparece quando a chave é pega, o inimigo que só entra na segunda
 onda. Toda peça agora tem a propriedade **Ativa**. No editor, ela vai ser
 uma caixinha ao lado do nome.
+
+{{ <figura src="ativa-previa.png" alt="Prévia do painel Propriedades no mockup: a caixinha Ativa marcada, antes do nome da peça Jogador, com as propriedades de Transformação embaixo." lang="pt" caption="Prévia: como o painel Propriedades vai ficar." /> }}
 
 Desligada, a peça e as filhas saem do jogo: não aparecem e não rodam. Quando
 a física e o *script* (o código que dá comportamento a uma peça) chegarem,

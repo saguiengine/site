@@ -15,6 +15,8 @@ provisórios, medidos no meu PC.*
 Daqui para a frente, cada entrega da etapa ganha um post. Este junta as
 quatro primeiras, que vieram antes do formato das fases.
 
+{{ <figura src="arvore-cena.png" alt="Desenho: à esquerda, uma árvore de peças, com uma pasta no alto e o personagem, uma moeda e uma plataforma como filhas; à direita, os passos do jogo numa linha de pontos, com uma foto guardada num deles e uma seta que volta a ela." lang="pt" has_text={false} /> }}
+
 ## O editor igual ao desenho (entrega 1)
 
 Pequenos acertos para o editor ficar igual ao mockup, o desenho de como ele
@@ -25,6 +27,8 @@ jogo) subiram para o cabeçalho, e o logo virou o rostinho do {{ <marca /> }} em
 antigos.
 O desenho do logo fica no mesmo arquivo que guarda o nome da engine: trocar
 a marca troca o desenho.
+
+{{ <figura src="arvore-editor-padrao.png" alt="O editor depois da entrega 1, no arranjo Padrão: a barra de cima com o logo, o botão Jogar e o menu de layouts, e os painéis Montagem, Fase, Propriedades, Arquivos e Console, ainda vazios." lang="pt" caption="O editor depois da entrega 1." /> }}
 
 ## A régua da etapa (entrega 2)
 
@@ -44,6 +48,8 @@ Toda fase nova vem com quatro **camadas**, como folhas transparentes empilhadas:
 Fundo, Mundo, Frente e Interface. Dentro de uma camada, dá para ordenar
 pela altura na tela, como numa foto de grupo: quem está mais embaixo fica
 na frente.
+
+{{ <figura src="arvore-ordem.png" alt="Um teste da entrega 3, desenhado pela engine: retângulos coloridos em camadas e ordens diferentes, uns na frente dos outros, sobre um retângulo verde." lang="pt" caption="Um teste real da entrega 3, desenhado pela engine." has_text={false} /> }}
 
 Com 5.000 peças, umas dentro das outras em 8 níveis, um passo do jogo leva
 no máximo 0,134 ms em 95% das vezes (o *p95*). E 2.000 imagens saem num pedido só à

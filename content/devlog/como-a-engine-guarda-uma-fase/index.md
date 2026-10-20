@@ -11,6 +11,8 @@ thumbnail_has_text = false
 
 *Uma nota curta da etapa 2. Os números são provisórios, medidos no meu PC.*
 
+{{ <figura src="formato-cena.png" alt="Desenho: à esquerda, uma janela de texto com linhas coloridas, como um arquivo de fase; uma seta leva à fase do jogo, com o personagem, uma plataforma, uma moeda e o chão." lang="pt" has_text={false} /> }}
+
 Uma fase do jogo, com o cenário, o jogador, as moedas e as plataformas,
 agora vive num arquivo de texto. Dá para abrir num editor de texto qualquer
 e ler:

@@ -18,6 +18,8 @@ differences, variants and molds inside molds. For now, all of this lives in
 the files and in the engine; working with it in the editor comes in
 stage 5.
 
+{{ <figura src="moldes-cena.png" alt="Drawing: on the left, a mold in a dashed frame, with a platform and a coin; on the right, three copies of it in the level, each with a switch; the third one is off and nearly faded out." lang="en" has_text={false} /> }}
+
 ## Copies with differences
 
 Each copy keeps only what changes from the mold. Three bats from the same
@@ -48,6 +50,8 @@ Sometimes a part of the game needs to disappear for good and come back
 later: the door that only appears once the key is picked up, the enemy that
 only joins in the second wave. Every piece now has the **Active** property.
 In the editor, it will be a checkbox next to the name.
+
+{{ <figura src="ativa-previa.png" alt="Preview of the Properties panel in the mockup, in Portuguese: the Active checkbox ticked, before the name of the Jogador piece, with the Transform properties below." lang="en" caption="Preview: how the Properties panel will look (the mockup, in Portuguese)." /> }}
 
 Turned off, the piece and its children leave the game: they don't show and
 don't run. When physics and the *script* (the code that gives a piece its
