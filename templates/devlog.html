@@ -42,12 +42,51 @@
   <aside class="side-column">
     <section class="box" aria-labelledby="roteiro">
       <h2 id="roteiro" class="box-title">{{ trans(key="roadmap", lang=lang) }}</h2>
+      {#- A line joins the stages' dots, in the colour of done up to the stage
+          in progress. A stage that is done, and a delivery that is done, is
+          a link to its post, the whole row, at least 32 px tall to touch
+          (rule 18 of D322). The stage in progress shows how many of its
+          deliveries are done, as text; the bar is only decoration. #}
       <ol class="roadmap">
         {%- for stage in roadmap.stage %}
-        <li class="stage {{ stage.state }}">
-          <span class="dot" aria-hidden="true"></span>
-          <span>{{ stage[lang] | replace(from="{linguagem}", to=linguagem) }}</span>
-          <span class="visually-hidden">({{ trans(key="stage_" ~ stage.state, lang=lang) }})</span>
+        <li class="stage {{ stage.state }}{% if stage.post %} linked{% endif %}">
+          {%- if stage.post %}
+          <a class="stage-row" href="{{ get_url(path="@/devlog/" ~ stage.post ~ "/index.md", lang=lang) }}">
+          {%- else %}
+          <span class="stage-row">
+          {%- endif %}
+            <span class="dot" aria-hidden="true"></span>
+            <span>{{ stage[lang] | replace(from="{linguagem}", to=linguagem) }}</span>
+            <span class="visually-hidden">({{ trans(key="stage_" ~ stage.state, lang=lang) }})</span>
+          {%- if stage.post %}</a>{% else %}</span>{% endif %}
+          {%- if stage.delivery %}
+          {%- set_global done = 0 %}
+          {%- set_global total = 0 %}
+          {%- for delivery in stage.delivery %}
+          {%- set_global total = total + delivery.count %}
+          {%- if delivery.state == "done" %}{% set_global done = done + delivery.count %}{% endif %}
+          {%- endfor %}
+          {%- set percent = done * 100 / total %}
+          <div class="deliveries-box">
+            <p class="progress-text">{{ done }} {{ trans(key="progress_of", lang=lang) }} {{ total }} {{ trans(key="progress_deliveries", lang=lang) }}</p>
+            <span class="progress" aria-hidden="true"><span class="progress-done" style="width: {{ percent | round(precision=1) }}%"></span></span>
+            <ol class="deliveries">
+              {%- for delivery in stage.delivery %}
+              <li class="delivery {{ delivery.state }}">
+                {%- if delivery.post %}
+                <a class="delivery-row" href="{{ get_url(path="@/devlog/" ~ delivery.post ~ "/index.md", lang=lang) }}">
+                {%- else %}
+                <span class="delivery-row">
+                {%- endif %}
+                  <span class="dot" aria-hidden="true"></span>
+                  <span>{{ delivery[lang] }}</span>
+                  <span class="visually-hidden">({{ trans(key="delivery_" ~ delivery.state, lang=lang) }})</span>
+                {%- if delivery.post %}</a>{% else %}</span>{% endif %}
+              </li>
+              {%- endfor %}
+            </ol>
+          </div>
+          {%- endif %}
         </li>
         {%- endfor %}
       </ol>

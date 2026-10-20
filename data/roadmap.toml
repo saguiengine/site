@@ -1,21 +1,81 @@
 # The roadmap as the devlog shows it, stage by stage. `state` is done, now
 # or next; "{linguagem}" becomes the script language's name (identity.toml).
-# Update `state` when a stage ends, in the same PR as its milestone post.
+# A stage that is done links to its milestone post (`post`, its folder in
+# content/devlog). Update `state` and `post` when a stage ends, in the same
+# PR as its milestone post.
+#
+# The stage in progress lists its deliveries (`delivery`): what each line
+# says, how many deliveries of the spec it covers (`count`, so "1 to 4"
+# counts 4), `state` done or next, and the post that tells it. Each
+# delivery's post updates this list in the same PR (D401).
 
 [[stage]]
 pt = "Etapa 0: provas"
 en = "Stage 0: proofs"
 state = "done"
+post = "etapa-0"
 
 [[stage]]
 pt = "Etapa 1: base"
 en = "Stage 1: foundation"
 state = "done"
+post = "etapa-1"
 
 [[stage]]
 pt = "Etapa 2: peças e fases"
 en = "Stage 2: pieces and levels"
 state = "now"
+
+[[stage.delivery]]
+pt = "1 a 4 · a árvore de peças e o estado salvo"
+en = "1 to 4 · the piece tree and the saved state"
+count = 4
+state = "done"
+post = "a-arvore-de-pecas"
+
+[[stage.delivery]]
+pt = "5 · o formato das fases"
+en = "5 · the level format"
+count = 1
+state = "done"
+post = "como-a-engine-guarda-uma-fase"
+
+[[stage.delivery]]
+pt = "6 · moldes e o interruptor Ativa"
+en = "6 · molds and the Active switch"
+count = 1
+state = "done"
+post = "moldes-e-o-interruptor-ativa"
+
+[[stage.delivery]]
+pt = "7 · estilo, escala e câmera"
+en = "7 · style, scale and camera"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "8 · texto e idiomas do jogo"
+en = "8 · game text and languages"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "9 · o editor abre o projeto"
+en = "9 · the editor opens the project"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "10 · o jogo de exemplo da etapa"
+en = "10 · the stage's sample game"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "11 · testes e CI"
+en = "11 · tests and CI"
+count = 1
+state = "next"
 
 [[stage]]
 pt = "Etapa 3: física"
