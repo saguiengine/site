@@ -15,6 +15,8 @@ provisional, measured on my PC.*
 From now on, each delivery gets a post. This one gathers the first four,
 which came before the level format.
 
+{{ <figura src="arvore-cena.png" alt="Drawing: on the left, a tree of pieces, with a folder at the top and the character, a coin and a platform as its children; on the right, the game's steps as a row of dots, with a photo kept at one of them and an arrow that goes back to it." lang="en" has_text={false} /> }}
+
 ## The editor matching its design (delivery 1)
 
 Small fixes so the editor matches the mockup, the drawing of how it will
@@ -24,6 +26,8 @@ moved up into its header, and the logo became {{ <marca /> }}'s little face
 in *pixel art*, drawn with visible little squares, as in old games. The
 logo's drawing lives in the same file that keeps the engine's name:
 changing the brand changes the drawing.
+
+{{ <figura src="arvore-editor-padrao.en.png" alt="The editor after delivery 1, in the Default layout: the top bar with the logo, the Play button and the layouts menu, and the Assembly, Level, Properties, Files and Console panels, still empty." lang="en" caption="The editor after delivery 1." /> }}
 
 ## The stage's yardstick (delivery 2)
 
@@ -43,6 +47,8 @@ Every new level comes with four **layers**, like stacked transparent
 sheets: Background, World, Front and Interface. Within a layer, pieces can
 be ordered by their height on the screen, as in a group photo: whoever
 stands lower comes in front.
+
+{{ <figura src="arvore-ordem.png" alt="A test from delivery 3, drawn by the engine: colored rectangles in different layers and orders, some in front of others, over a green rectangle." lang="en" caption="A real test from delivery 3, drawn by the engine." has_text={false} /> }}
 
 With 5,000 pieces, nested 8 levels deep, a game step takes at most 0.134 ms
 95% of the time (the *p95*). And 2,000 images go to the graphics card in a

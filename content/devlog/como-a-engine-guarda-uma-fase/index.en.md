@@ -11,6 +11,8 @@ thumbnail_has_text = false
 
 *A short note from stage 2. The numbers are provisional, measured on my PC.*
 
+{{ <figura src="formato-cena.png" alt="Drawing: on the left, a text window with colored lines, like a level file; an arrow leads to the game level, with the character, a platform, a coin and the ground." lang="en" has_text={false} /> }}
+
 A level of the game, with the scenery, the player, the coins and the
 platforms, now lives in a text file. You can open it in any text editor and
 read it:
