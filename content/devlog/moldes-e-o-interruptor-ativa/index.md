@@ -13,14 +13,16 @@ thumbnail_has_text = false
 
 Na nota sobre o formato das fases, o jogador vivia num **molde** (o
 *prefab* de outras engines): um arquivo com uma peça pronta, que a fase
-repete quantas vezes quiser. Nesta entrega, os moldes ficaram completos.
+repete quantas vezes quiser. Nesta entrega, os moldes ganharam diferenças,
+variantes e moldes dentro de moldes. Por enquanto, tudo isso vive nos
+arquivos e na engine; mexer nisso pelo editor chega na etapa 5.
 
 ## Cópias com diferenças
 
 Cada cópia guarda só o que muda em relação ao molde. Três morcegos do mesmo
-molde podem ter cores diferentes. Se você muda a velocidade no molde, os
-três mudam, e cada um continua com a sua cor. A cópia passa por cima de um
-valor do molde (o *override*).
+molde podem ter cores diferentes. Se você muda o tamanho no molde, os três
+mudam, e cada um continua com a sua cor. A cópia passa por cima de um valor
+do molde (o *override*).
 
 Também dá para fazer uma **variante**: um molde que parte de outro e muda
 algumas coisas, como um morcego de fogo, que é o morcego com outra cor e
@@ -32,20 +34,24 @@ e a fase com três salas.
 Cada peça dentro de uma cópia ganha um ID (um código que identifica a peça
 e nunca muda), calculado a partir do ID da cópia e do ID da peça no molde.
 Por isso, renomear uma peça no molde não quebra as diferenças das cópias. O
-Godot passou a fazer parecido na versão 4.6, com um ID guardado em cada nó.
+Godot passou a fazer parecido na versão 4.6, com um ID guardado em cada nó
+(o nome que o Godot dá às peças).
 
-E, se você desmancha uma cópia, transformando as peças dela em peças comuns
-da fase, elas ficam com os mesmos IDs. Nada que apontava para elas se perde.
+E, quando der para desmanchar uma cópia, transformando as peças dela em
+peças comuns da fase (na etapa 5), elas vão ficar com os mesmos IDs. Nada
+que apontava para elas vai se perder.
 
 ## O interruptor Ativa
 
 Às vezes uma parte do jogo precisa sumir de vez e voltar depois: a porta
 que só aparece quando a chave é pega, o inimigo que só entra na segunda
-onda. Toda peça agora tem uma caixinha **Ativa**, ao lado do nome.
+onda. Toda peça agora tem a propriedade **Ativa**. No editor, ela vai ser
+uma caixinha ao lado do nome.
 
 Desligada, a peça e as filhas saem do jogo: não aparecem e não rodam. Quando
-a física e o script chegarem, ela também não vai colidir nem receber
-eventos, e um script vai poder ligá-la de novo.
+a física e o *script* (o código que dá comportamento a uma peça) chegarem,
+ela também não vai colidir nem receber eventos, os avisos como "o jogador
+encostou", e um script vai poder ligá-la de novo.
 
 As outras engines resolvem isso de jeitos diferentes (conferido na Unity
 6.6 e no Godot 4.7):
@@ -66,5 +72,7 @@ terceira sala pode vir sem uma asa.
 
 ## O que vem agora
 
-A entrega 7: o estilo do jogo (pixel art ou HD), a escala da tela e a
-câmera que segue o jogador.
+A entrega 12: o painel Desempenho, com os quadros por segundo e outros
+números do jogo enquanto ele roda, no editor e na janela do jogo. Depois, a
+entrega 7: o estilo do jogo (pixel art ou HD), a escala da tela e a câmera
+que segue o jogador.

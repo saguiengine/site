@@ -5,5 +5,5 @@ template = "devlog.html"
 page_template = "post.html"
 +++
 
-Como a {{ <marca /> }} é feita: um post a cada duas semanas e um marco no fim
+Como a {{ <marca /> }} é feita: um post a cada entrega e um marco no fim
 de cada etapa, com números medidos.

@@ -13,12 +13,15 @@ thumbnail_has_text = false
 
 In the note about the level format, the player lived in a **mold** (the
 *prefab* of other engines): a file with a ready-made piece, which the level
-repeats as many times as it likes. In this delivery, molds became complete.
+repeats as many times as it likes. In this delivery, molds gained
+differences, variants and molds inside molds. For now, all of this lives in
+the files and in the engine; working with it in the editor comes in
+stage 5.
 
 ## Copies with differences
 
 Each copy keeps only what changes from the mold. Three bats from the same
-mold can have different colors. If you change the speed in the mold, all
+mold can have different colors. If you change the size in the mold, all
 three change, and each one keeps its own color. The copy goes over a value
 of the mold (an *override*).
 
@@ -33,21 +36,24 @@ Each piece inside a copy gets an ID (a code that identifies the piece and
 never changes), computed from the copy's ID and the piece's ID in the mold.
 That is why renaming a piece in the mold doesn't break the copies'
 differences. Godot started doing something similar in version 4.6, with an
-ID stored in each node.
+ID stored in each *node* (the name Godot gives to its pieces).
 
-And if you break a copy apart, turning its pieces into ordinary pieces of
-the level, they keep the same IDs. Nothing that pointed to them is lost.
+And when it becomes possible to break a copy apart, turning its pieces into
+ordinary pieces of the level (in stage 5), they will keep the same IDs.
+Nothing that pointed to them will be lost.
 
 ## The Active switch
 
 Sometimes a part of the game needs to disappear for good and come back
 later: the door that only appears once the key is picked up, the enemy that
-only joins in the second wave. Every piece now has an **Active** checkbox,
-next to its name.
+only joins in the second wave. Every piece now has the **Active** property.
+In the editor, it will be a checkbox next to the name.
 
 Turned off, the piece and its children leave the game: they don't show and
-don't run. When physics and scripts arrive, it also won't collide or get
-events, and a script will be able to turn it back on.
+don't run. When physics and the *script* (the code that gives a piece its
+behavior) arrive, it also won't collide or receive *events*, the notices
+such as "the player touched it", and a script will be able to turn it back
+on.
 
 Other engines solve this in different ways (checked in Unity 6.6 and
 Godot 4.7):
@@ -69,5 +75,7 @@ bat in the third room can come without a wing.
 
 ## What comes next
 
-Delivery 7: the game's style (pixel art or HD), the screen's scale and the
-camera that follows the player.
+Delivery 12: the Performance panel, with the frames per second and other
+numbers of the game while it runs, in the editor and in the game's window.
+Then delivery 7: the game's style (pixel art or HD), the screen's scale and
+the camera that follows the player.
