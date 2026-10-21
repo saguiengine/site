@@ -11,7 +11,7 @@ thumbnail_has_text = false
 *A special post, outside the deliveries.*
 
 The name Sagui came at the start of the project. It hides the "Gui" of
-Guilherme, it is Brazilian, it is easy to say in English (sa-GWEE) and it
+Guilherme, it is Brazilian, it is easy to say in English (sah-GWEE) and it
 already comes with a mascot: the little monkey that shows up in the logo and
 in the examples. But liking a name is not enough. Before launching, you need
 to know whether it can become a **trademark**.
@@ -25,9 +25,11 @@ kind of product. In Brazil, trademarks are registered by the INPI, the
 National Institute of Industrial Property (*Instituto Nacional da
 Propriedade Industrial*). A registration holds per **class**, a group of
 products and services: a program you download goes in class 9, a software
-service over the internet in 42, and courses and entertainment in 41. That
-is why there can be a "Sagui" for eyeglasses and another one for software
-with no fight: the classes are different.
+service over the internet in 42, and courses and entertainment in 41. But
+the class alone does not decide: the INPI looks at whether the products are
+alike. In class 9, for example, a SAGUI for eyeglass frames and another one
+for computer programs live side by side, because nobody mistakes eyeglasses
+for software.
 
 ## What the search found
 
@@ -59,7 +61,7 @@ names, and an automated test fails if the brand shows up written anywhere
 else. The editor, the messages and the site itself read the name from that
 file.
 
-{{ <figura src="nome-editor-logo.png" alt="The corner of the editor's top bar, in Portuguese: the logo, with the little monkey on a blue square, the name Sagui beside it and the Arquivo (File) menu." lang="en" caption="The real editor, in Portuguese: the name beside the logo comes from identity.toml." /> }}
+{{ <figura src="nome-editor-logo.en.png" alt="The corner of the editor's top bar: the logo, with the little monkey on a blue square, the name Sagui beside it and the File menu." lang="en" caption="The real editor: the name beside the logo comes from identity.toml." /> }}
 
 Changing the name today means changing that file, the logo and a few
 drawings. What gets expensive is changing it later: once the extension is in
@@ -69,7 +71,7 @@ tutorials. That is why the decision has a date.
 ## What comes next
 
 Before stage 4, when the scripting language takes its final shape, I will
-consult a trademark attorney (in Brazil, an *agente de propriedade
+consult a trademark attorney (in Brazil, an *agente da propriedade
 industrial*), the professional who handles trademark registrations at the
 INPI, and decide: keep Sagui or change it. There are already a few backup
 names, checked, that I am keeping to myself for now, so nobody registers
