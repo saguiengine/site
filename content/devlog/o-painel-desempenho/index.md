@@ -14,7 +14,8 @@ provisórios, medidos no meu PC.*
 
 Ao dar Jogar, agora dá para ver como o jogo está indo por dentro. O editor
 ganhou o painel **Desempenho**, uma aba ao lado do Console, e a janela do
-jogo ganhou um quadro com os números principais, que liga e desliga com F3.
+jogo ganhou uma caixinha com os números principais, que liga e desliga com
+F3.
 A entrega nasceu de um pedido no meio da etapa e passou na frente da 7.
 
 {{ <figura src="desempenho-cena.png" alt="Desenho: à esquerda, um gráfico do tempo de cada quadro, com uma linha tracejada e quatro picos; à direita, uma fileira de traços azuis, os quadros, sobre uma fileira com menos traços verdes, os passos, e o macaquinho embaixo." lang="pt" has_text={false} /> }}
@@ -25,10 +26,10 @@ A primeira pergunta ao ver o painel foi: "passo seria FPS?". Não é.
 
 - O **quadro** é cada imagem que aparece na tela. Quantos quadros saem por
   segundo (o *FPS*) depende do monitor e da placa de vídeo: 144 num
-  monitor de 144 Hz, 60 num de 60.
+  monitor de 144 Hz (que mostra 144 imagens por segundo), 60 num de 60.
 - O **passo** é cada vez que a lógica do jogo roda: andar, pular, colidir.
-  São sempre 60 por segundo, em qualquer PC, e é isso que faz o jogo dar o
-  mesmo resultado em todo lugar.
+  São sempre 60 por segundo (ou 120, se o projeto escolher), em qualquer
+  PC, e é isso que faz o jogo dar o mesmo resultado em todo lugar.
 
 Entre um passo e outro, o desenho só suaviza o movimento. Por isso o
 painel mostra os dois, e a coluna dos passos se chama **Lógica**.
@@ -45,8 +46,8 @@ painel mostra os dois, e a coluna dos passos se chama **Lógica**.
 - **Tela:** a resolução, a escala do pixel art, a frequência do monitor e o
   *VSync*, que faz o jogo esperar o monitor para mostrar cada quadro, sem
   cortes na imagem.
-- **Jogo:** a CPU, a memória e quantos pedidos de desenho vão para a placa
-  a cada quadro.
+- **Jogo:** a CPU (o processador), a memória e quantos pedidos de desenho
+  (as *draw calls*) vão para a placa a cada quadro.
 
 Um botão Copiar leva tudo, com a versão e a placa, para colar num relato de
 problema.
@@ -59,14 +60,15 @@ Medir não pode atrapalhar. O jogo mede tudo isso fora da lógica, a
 medição custa cerca de 0,04 ms por quadro, e o resultado do jogo continua
 idêntico com o painel ligado ou desligado.
 
-Duas curiosidades. O painel chegou a dizer 61 FPS a 60 quadros por segundo
-em quase metade das vezes: a conta pegava as duas pontas do último segundo, e às
-vezes entrava um quadro a mais. Agora o FPS vem do tempo médio de cada
+O testador, o conferente que não participou da obra, achou duas
+curiosidades. O painel chegou a dizer 61 FPS a 60 quadros por segundo em
+quase metade das vezes: contar os quadros do último segundo às vezes pegava
+um a mais. Agora, na janela do jogo, o FPS vem do tempo médio de cada
 quadro, e o 61 sumiu. E, numa janela baixa, a última linha do painel ficava
 cortada. Agora, quando falta altura, o gráfico some e os números ficam
 inteiros.
 
-{{ <figura src="desempenho-f3.png" alt="O quadro F3 no canto da janela do jogo: 60 fps e 16,7 ms, o 1% low, a lógica a 60 passos por segundo, o tempo da GPU e a CPU, a janela de 1920×1080 a 59 Hz com VSync, e embaixo F3 esconde." lang="pt" caption="O quadro F3 na janela do jogo, capturado da tela do meu PC." /> }}
+{{ <figura src="desempenho-f3.png" alt="A caixinha do F3, ampliada: 60 fps e 16,7 ms, 1% low 38 fps, a lógica a 60 passos por segundo, o tempo da GPU e a CPU, a janela de 1920×1080 a 59 Hz com VSync, e embaixo F3 esconde." lang="pt" caption="A caixinha do F3 na janela do jogo, capturada da tela do meu PC. O 1% low baixo vem dos tropeços do começo da partida." /> }}
 
 ## O que vem agora
 
