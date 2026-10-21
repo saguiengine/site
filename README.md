@@ -46,6 +46,13 @@ a cópia ficar para trás.
   `identity.toml`. Ele também faz o teste da E9.2: monta uma cópia do site
   com outra marca no `identity.toml` e confere que nenhuma página mostra a
   marca de verdade. O texto desenhado em imagens fica de fora.
+- A única exceção são os dois arquivos do post sobre o nome e a marca
+  registrada (`content/devlog/o-nome-e-a-marca/index.md` e `index.en.md`,
+  aprovada em 21/10/2026): ele escreve o nome de verdade e marcas de
+  terceiros de propósito, e precisa dizer o mesmo se o nome mudar. A
+  checagem pula só esses dois caminhos, e a cópia da E9.2 os deixa de fora;
+  o `scripts/test_check_brand.py` confere que a exceção não vale para outro
+  arquivo.
 
 ## Imagens (D388)
 
