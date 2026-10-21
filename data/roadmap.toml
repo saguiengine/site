@@ -53,7 +53,8 @@ post = "moldes-e-o-interruptor-ativa"
 pt = "12 · o painel Desempenho"
 en = "12 · the Performance panel"
 count = 1
-state = "next"
+state = "done"
+post = "o-painel-desempenho"
 
 [[stage.delivery]]
 pt = "7 · estilo, escala e câmera"
