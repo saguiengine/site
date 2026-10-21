@@ -38,7 +38,7 @@ jobs:
           rm zola.tar.gz
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - run: zola --version
-      - name: Unit tests of build.py
+      - name: Unit tests of build.py and check_brand.py
         run: python3 -m unittest discover -s scripts -p "test_*.py"
       - name: The brand only in identity.toml, and E9.2
         run: python3 scripts/check_brand.py

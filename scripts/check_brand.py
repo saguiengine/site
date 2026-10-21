@@ -2,10 +2,13 @@
 
 1. No brand value is written in the site's files: templates, content, data,
    styles and configuration read it from identity.toml. People's documents
-   (README, credits, licenses) and binary files are exempt.
+   (README, credits, licenses) and binary files are exempt, and so are the
+   two files of the post about the name (NAME_POST), which write the real
+   name on purpose.
 2. E9.2: a copy of the site with another brand in identity.toml, and no other
    file changed, builds pages in both languages that show the other brand
-   and none of the real one. Text drawn inside images is out of reach.
+   and none of the real one. Text drawn inside images is out of reach, and
+   the copy leaves out the post about the name.
 
 Run from anywhere: `python3 scripts/check_brand.py`. Needs Zola on the PATH,
 or in ZOLA.
@@ -29,6 +32,13 @@ BINARY = {".ttf", ".otf", ".woff", ".woff2", ".png", ".jpg", ".jpeg", ".gif",
           ".webp", ".ico"}
 # The text the built site serves; images are out of reach (D379).
 OUTPUT_TEXT = {".html", ".xml", ".txt", ".css", ".js", ".json", ""}
+
+# The post about the name and the trademark writes the real name, and other
+# people's trademarks, on purpose (approved on 21/10/2026): if the name
+# changes, the post must still say what was searched. Whole paths, not names
+# like EXEMPT: only these two files, never another index.md.
+NAME_POST = {"content/devlog/o-nome-e-a-marca/index.md",
+             "content/devlog/o-nome-e-a-marca/index.en.md"}
 
 # Another brand for E9.2, unlike any word of the site.
 TEST_BRAND = {
@@ -83,16 +93,16 @@ def find_brand(path, text, words):
     return found
 
 
-def check_written(identity):
+def check_written(identity, root=ROOT):
     """Part 1: nothing spells the brand outside identity.toml."""
     words = tokens(identity)
     findings = []
-    for path in tracked_files(ROOT):
+    for path in tracked_files(root):
         name = Path(path).name
-        if name in EXEMPT or Path(path).suffix.lower() in BINARY:
+        if name in EXEMPT or Path(path).suffix.lower() in BINARY or path in NAME_POST:
             continue
         try:
-            text = (ROOT / path).read_text(encoding="utf-8")
+            text = (root / path).read_text(encoding="utf-8")
         except (UnicodeDecodeError, FileNotFoundError):
             continue
         findings.extend(find_brand(path, text, words))
@@ -113,6 +123,12 @@ def test_identity_text(original):
     return text
 
 
+def e9_2_files(paths):
+    """The files of the E9.2 copy: all but the post about the name, which
+    keeps the real name whatever identity.toml says."""
+    return [p for p in paths if p not in NAME_POST]
+
+
 def check_e9_2(identity):
     """Part 2: another brand in identity.toml changes the whole site."""
     zola = os.environ.get("ZOLA", "zola")
@@ -123,7 +139,8 @@ def check_e9_2(identity):
                         "means ([site] pronunciation and [site.meaning] pt and en, D276)")
     with tempfile.TemporaryDirectory() as tmp:
         copy = Path(tmp) / "site"
-        for path in tracked_files(ROOT):
+        files = e9_2_files(tracked_files(ROOT))
+        for path in files:
             target = copy / path
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT / path, target)
@@ -134,7 +151,7 @@ def check_e9_2(identity):
         (copy / "identity.toml").write_text(changed, encoding="utf-8")
 
         # No other file changed.
-        for path in tracked_files(ROOT):
+        for path in files:
             if path != "identity.toml" and (copy / path).read_bytes() != (ROOT / path).read_bytes():
                 problems.append(f"E9.2: {path} changed")
 
