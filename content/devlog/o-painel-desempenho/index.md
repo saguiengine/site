@@ -59,8 +59,8 @@ Medir não pode atrapalhar. O jogo mede tudo isso fora da lógica, a
 medição custa cerca de 0,04 ms por quadro, e o resultado do jogo continua
 idêntico com o painel ligado ou desligado.
 
-Duas curiosidades. O painel dizia 61 FPS num monitor de 60 Hz em quase
-metade das vezes: a conta pegava as duas pontas do último segundo, e às
+Duas curiosidades. O painel chegou a dizer 61 FPS a 60 quadros por segundo
+em quase metade das vezes: a conta pegava as duas pontas do último segundo, e às
 vezes entrava um quadro a mais. Agora o FPS vem do tempo médio de cada
 quadro, e o 61 sumiu. E, numa janela baixa, a última linha do painel ficava
 cortada. Agora, quando falta altura, o gráfico some e os números ficam

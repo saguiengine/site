@@ -61,8 +61,8 @@ Measuring must not get in the way. The game measures all of this outside
 the logic, measuring costs about 0.04 ms per frame, and the game's result
 stays identical with the panel on or off.
 
-Two curiosities. The panel said 61 FPS on a 60 Hz monitor almost half of
-the time: the count caught both ends of the last second, and sometimes one
+Two curiosities. The panel got to say 61 FPS at 60 frames per second almost
+half of the time: the count caught both ends of the last second, and sometimes one
 frame too many got in. Now the FPS comes from the average time of each
 frame, and the 61 is gone. And, in a short window, the panel's last line was
 cut off. Now, when there is not enough height, the graph goes away and the
