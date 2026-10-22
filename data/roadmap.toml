@@ -60,7 +60,8 @@ post = "o-painel-desempenho"
 pt = "7 · estilo, escala e câmera"
 en = "7 · style, scale and camera"
 count = 1
-state = "next"
+state = "done"
+post = "a-escala-e-a-camera"
 
 [[stage.delivery]]
 pt = "8 · texto e idiomas do jogo"
