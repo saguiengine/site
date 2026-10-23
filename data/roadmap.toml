@@ -67,7 +67,8 @@ post = "a-escala-e-a-camera"
 pt = "8 · texto e idiomas do jogo"
 en = "8 · game text and languages"
 count = 1
-state = "next"
+state = "done"
+post = "o-texto-do-jogo"
 
 [[stage.delivery]]
 pt = "9 · o editor abre o projeto"
