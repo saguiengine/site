@@ -1,6 +1,6 @@
 +++
 title = "Nota: o texto do jogo, no idioma de quem joga"
-date = 2026-10-22
+date = 2026-10-22T21:00:00Z
 description = "A entrega 8 traz a peça Texto e os idiomas do jogo: placas e frases que aparecem no idioma de quem joga, com letras iguais em qualquer computador."
 
 [extra]
@@ -37,7 +37,8 @@ caixa **Não traduzir**, e a frase fica nela mesma.
 
 Na primeira vez, o do sistema de quem joga (no navegador, o do navegador).
 Se o jogo não tem esse idioma, ele segue uma **cadeia de reservas** (o
-*fallback*) que o projeto define, por exemplo de pt-PT para pt-BR, até
+*fallback*) que o projeto define, por exemplo de pt-PT (Portugal) para
+pt-BR (Brasil), até
 chegar ao idioma em que o jogo foi escrito. Uma frase
 nunca aparece em branco: o que falta num idioma vem do seguinte.
 
