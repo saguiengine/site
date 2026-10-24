@@ -17,12 +17,12 @@ the names of the game and of the level show at the top ("Meu Jogo ·
 level1"), the level's pieces in the Assembly, and the files in Files. For
 now it is only to look at: changing the pieces comes in stage 5.
 
-{{ <figura src="editor-projeto.en.png" alt="The editor in English with the test project Meu Jogo open. The project's own names (Meu Jogo, Câmera, Jogador, Chão, Moedas, Nuvem, Placa) are in Portuguese, because the project was written in Portuguese; the editor's words are in English. At the top, the project and level names, the menus and the Play button. On the left, the Assembly with the tree of the level level1: Câmera, Jogador with a Sprite inside, Chão, Moedas with three coins, Nuvem dimmed and Placa, each with its icon and its type in its colour; below, Files with the six categories and the count of each. In the middle, the level1 tab, still empty, and the Console below it." lang="en" caption="The editor with the test project open: a real print of delivery 9. The names inside the project are in Portuguese, as the project was written." has_text={true} /> }}
+{{ <figura src="editor-projeto.en.png" alt="The editor in English with the test project Meu Jogo open. The project's own names (Meu Jogo, Câmera, Jogador, Chão, Moedas, Nuvem, Placa) are in Portuguese, because the project was written in Portuguese; the editor's words are in English. At the top, the project and level names, the menus and the Play button. On the left, the Assembly with the tree of the level level1: Câmera, Jogador with a Sprite inside, Chão, Moedas with three coins, Nuvem dimmed and Placa, each with its icon and its type in its color; below, Files with the six categories and the count of each. In the middle, the level1 tab, still empty, and the Console below it." lang="en" caption="The editor with the test project open: a real print of delivery 9. The names inside the project are in Portuguese, as the project was written." has_text={true} /> }}
 
 ## The Assembly
 
 The **Assembly** shows the level as a tree: each piece with the icon and
-colour of its type (a copy of a mold, with the mold's), and the pieces
+color of its type (a copy of a mold, with the mold's), and the pieces
 inside (the children) further to the right, joined by dotted lines. The
 player (Jogador), for example, is a Group with a Sprite (an image) inside.
 
@@ -43,7 +43,7 @@ mold".
 ## Files
 
 **Files** shows the six categories of stage 2 (levels, molds, sprites,
-sounds, fonts and translations), each with the colour of its type and how
+sounds, fonts and translations), each with the color of its type and how
 many files it has. An empty category shows dimmed.
 
 ## Opening without harm
