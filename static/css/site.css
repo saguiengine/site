@@ -144,7 +144,14 @@ h1 { margin: 10px 0 0; font-size: 48px; line-height: 1.1; font-weight: 700; text
 .node.sprite { color: #ff7ab6; }
 .node.light { color: #ffd75e; }
 .node.tiles { color: #c9a27a; }
-.scene { position: relative; flex-grow: 1; overflow: hidden; background: linear-gradient(#1a2036, #10131c); }
+/* The night background of the example game, as in the mockup: its 640 × 360
+   at the 22 px tiles' scale (1.375×), with the game's ground line (pixel
+   312, 429 px scaled) on the top of the scene's ground (300 − 44 = 256 px
+   down): 256 − 429 = −173 px. It tiles without a seam. */
+.scene {
+  position: relative; flex-grow: 1; overflow: hidden; image-rendering: pixelated;
+  background: #10131c url("../img/fundo-noite.png") 0 -173px / 880px 495px repeat-x;
+}
 .scene span { position: absolute; display: block; background-repeat: no-repeat; image-rendering: pixelated; }
 .scene .ground {
   left: 0; right: 0; bottom: 0; height: 44px; background-color: #5a3d28;
@@ -295,6 +302,8 @@ a.stage-row:hover, a.delivery-row:hover { color: var(--link-hover); }
   .page-head h1, .article h1 { font-size: 30px; }
   .hero { padding-top: 36px; gap: 28px; }
   .window-body { height: 240px; }
+  /* The ground 60 px higher up: 196 − 429. */
+  .scene { background-position: 0 -233px; }
   .tree { width: 112px; font-size: 11px; }
   .scene .platform { bottom: 90px; }
   .scene .coin1, .scene .coin2 { bottom: 118px; }

@@ -11,6 +11,10 @@ Material de terceiros no site, com a licença de cada um (D378).
 As fontes são as mesmas do editor, sem alteração, e são servidas pelo próprio
 site, sem pedido a terceiros.
 
+O fundo de noite da cena da página inicial (`static/img/fundo-noite.png`) é
+do próprio projeto, como os tiles da Mata: sai do gerador de pixel art do
+jogo de exemplo, no repositório da engine, com licença CC0.
+
 O site é montado com o [Zola](https://www.getzola.org/) 0.23.6, licença
 EUPL-1.2 (D380). O Zola só gera as páginas: nada dele vai para o site, e ele
 não é distribuído aqui.
