@@ -1,15 +1,17 @@
 +++
-title = "Note: how the engine stores a level"
+title = "How the engine stores a level"
 date = 2026-10-19
-description = "A level of the game now lives in a text file you can read and fix by hand. A short note on the format, the molds, the IDs that do not break and the reader that opens a level of 5,000 pieces in 31 ms."
+description = "A level of the game now lives in a text file you can read and fix by hand. A short post on the format, the molds, the IDs that do not break and the reader that opens a level of 5,000 pieces in 31 ms."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [5]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2. The numbers are provisional, measured on my PC.*
+*A short post from stage 2, about delivery 5. The numbers are
+provisional, measured on my PC.*
 
 {{ <figura src="formato-cena.png" alt="Drawing: on the left, a text window with colored lines, like a level file; an arrow leads to the game level, with the character, a platform, a coin and the ground." lang="en" has_text={false} /> }}
 

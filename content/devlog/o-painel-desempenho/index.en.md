@@ -1,15 +1,16 @@
 +++
-title = "Note: the Performance panel, and why a frame is not a step"
+title = "The Performance panel, and why a frame is not a step"
 date = 2026-10-21T21:00:00Z
 description = "Delivery 12 shows the game's numbers while it runs: frames per second, 1% low, the graphics card's time and more, in the editor and inside the game window. And it answers a good question: is a step the same thing as FPS?"
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [12]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2, about delivery 12. The numbers are
+*A short post from stage 2, about delivery 12. The numbers are
 provisional, measured on my PC.*
 
 When you press Play, you can now see how the game is doing inside. The

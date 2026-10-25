@@ -1,15 +1,16 @@
 +++
-title = "Note: the game's text, in the player's language"
+title = "The game's text, in the player's language"
 date = 2026-10-22T21:00:00Z
 description = "Delivery 8 brings the Text piece and the game's languages: signs and phrases that show up in the player's language, with the same letters on any computer."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [8]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2, about delivery 8.*
+*A short post from stage 2, about delivery 8.*
 
 Until now, the game's pieces only showed images. Delivery 8 brings the
 **Text** piece: a sign, a score, a message on the screen. And it brings the

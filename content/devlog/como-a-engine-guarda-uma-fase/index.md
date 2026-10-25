@@ -1,15 +1,17 @@
 +++
-title = "Nota: como a engine guarda uma fase"
+title = "Como a engine guarda uma fase"
 date = 2026-10-19
-description = "Uma fase do jogo agora vive num arquivo de texto que dá para ler e consertar à mão. Uma nota curta sobre o formato, os moldes, os IDs que não quebram e o leitor que abre uma fase de 5.000 peças em 31 ms."
+description = "Uma fase do jogo agora vive num arquivo de texto que dá para ler e consertar à mão. Um post curto sobre o formato, os moldes, os IDs que não quebram e o leitor que abre uma fase de 5.000 peças em 31 ms."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [5]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2. Os números são provisórios, medidos no meu PC.*
+*Um post curto da etapa 2, sobre a entrega 5. Os números são
+provisórios, medidos no meu PC.*
 
 {{ <figura src="formato-cena.png" alt="Desenho: à esquerda, uma janela de texto com linhas coloridas, como um arquivo de fase; uma seta leva à fase do jogo, com o personagem, uma plataforma, uma moeda e o chão." lang="pt" has_text={false} /> }}
 

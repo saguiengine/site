@@ -1,15 +1,16 @@
 +++
-title = "Nota: o editor abre o projeto"
+title = "O editor abre o projeto"
 date = 2026-10-24T02:15:00Z
 description = "A entrega 9 faz o editor abrir um projeto de verdade: a árvore da fase na Montagem, os arquivos por tipo e o Jogar rodando o projeto aberto. Por enquanto, só para ver."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [9]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2, sobre a entrega 9. O tempo é provisório,
+*Um post curto da etapa 2, sobre a entrega 9. O tempo é provisório,
 medido no meu PC.*
 
 Até agora, o editor abria vazio. Com a entrega 9, ele abre um projeto: o
