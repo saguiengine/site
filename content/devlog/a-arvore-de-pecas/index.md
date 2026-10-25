@@ -1,15 +1,16 @@
 +++
-title = "Nota: a árvore de peças e o jogo que congela em qualquer passo"
+title = "A árvore de peças e o jogo que congela em qualquer passo"
 date = 2026-10-20T19:25:00Z
 description = "As quatro primeiras entregas da etapa 2: o editor igual ao desenho, a régua de cada entrega, as peças dentro de peças e o estado do jogo que se grava e continua igualzinho, em qualquer sistema."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [1, 4]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2, sobre as entregas 1 a 4. Os números são
+*Um post curto da etapa 2, sobre as entregas 1 a 4. Os números são
 provisórios, medidos no meu PC.*
 
 Daqui para a frente, cada entrega da etapa ganha um post. Este junta as

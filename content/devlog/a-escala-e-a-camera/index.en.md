@@ -1,15 +1,16 @@
 +++
-title = "Note: the image that fits any screen, and the camera that follows"
+title = "The image that fits any screen, and the camera that follows"
 date = 2026-10-22
 description = "Delivery 7 decides how the game shows up in a window of any size, from a laptop to an ultrawide monitor, and brings the camera that follows the player. All without changing the game's result."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [7]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2, about delivery 7.*
+*A short post from stage 2, about delivery 7.*
 
 A *pixel art* game (made of visible little squares) is drawn small: in
 {{ <marca /> }}, 640 × 360 pixels, the **base resolution**. But nobody plays

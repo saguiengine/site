@@ -1,15 +1,16 @@
 +++
-title = "Note: the editor opens the project"
+title = "The editor opens the project"
 date = 2026-10-24T02:15:00Z
 description = "Delivery 9 makes the editor open a real project: the level's tree in the Assembly, the files by type and Play running the open project. For now, only to look at."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [9]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2, about delivery 9. The time is provisional,
+*A short post from stage 2, about delivery 9. The time is provisional,
 measured on my PC.*
 
 Until now, the editor opened empty. With delivery 9, it opens a project:

@@ -1,17 +1,18 @@
 +++
-title = "Note: molds, copies and the Active switch"
+title = "Molds, copies and the Active switch"
 date = 2026-10-20T19:26:00Z
 description = "One mold becomes many copies, each with its own differences, and every piece got an Active switch to leave the game and come back. How Unity and Godot do it, and what we chose."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [6]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2, about delivery 6.*
+*A short post from stage 2, about delivery 6.*
 
-In the note about the level format, the player lived in a **mold** (the
+In the post about the level format, the player lived in a **mold** (the
 *prefab* of other engines): a file with a ready-made piece, which the level
 repeats as many times as it likes. In this delivery, molds gained
 differences, variants and molds inside molds. For now, all of this lives in

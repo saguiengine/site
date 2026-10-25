@@ -1,15 +1,16 @@
 +++
-title = "Nota: o painel Desempenho, e por que quadro não é passo"
+title = "O painel Desempenho, e por que quadro não é passo"
 date = 2026-10-21T21:00:00Z
 description = "A entrega 12 mostra os números do jogo enquanto ele roda: quadros por segundo, 1% low, o tempo da placa de vídeo e mais, no editor e dentro da janela do jogo. E responde a uma boa pergunta: passo é a mesma coisa que FPS?"
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [12]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2, sobre a entrega 12. Os números são
+*Um post curto da etapa 2, sobre a entrega 12. Os números são
 provisórios, medidos no meu PC.*
 
 Ao dar Jogar, agora dá para ver como o jogo está indo por dentro. O editor

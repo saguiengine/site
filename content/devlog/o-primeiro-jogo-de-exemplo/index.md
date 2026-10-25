@@ -1,15 +1,16 @@
 +++
-title = "Nota: o primeiro jogo de exemplo, com a câmera seguindo"
+title = "O primeiro jogo de exemplo, com a câmera seguindo"
 date = 2026-10-25T15:30:00Z
 description = "A entrega 10 traz o Meu Jogo, o primeiro exemplo de jogo de plataforma: uma fase de três telas em pixel art, com a câmera seguindo o macaquinho e a placa no idioma de quem joga."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [10]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2, sobre a entrega 10. Os tempos são provisórios,
+*Um post curto da etapa 2, sobre a entrega 10. Os tempos são provisórios,
 medidos no meu PC.*
 
 Até agora, o jogo de teste era um quadrado num fundo liso. A entrega 10

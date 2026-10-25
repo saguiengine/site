@@ -1,15 +1,16 @@
 +++
-title = "Nota: a imagem que cabe em qualquer tela, e a câmera que segue"
+title = "A imagem que cabe em qualquer tela, e a câmera que segue"
 date = 2026-10-22
 description = "A entrega 7 decide como o jogo aparece numa janela de qualquer tamanho, do notebook ao monitor ultralargo, e traz a câmera que acompanha o jogador. Tudo sem mudar o resultado do jogo."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [7]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2, sobre a entrega 7.*
+*Um post curto da etapa 2, sobre a entrega 7.*
 
 Um jogo em *pixel art* (feito de quadradinhos visíveis) é desenhado pequeno: na {{ <marca /> }}, 640 × 360 pixels, a
 **resolução base**. Só que ninguém joga numa janela desse tamanho. A tela

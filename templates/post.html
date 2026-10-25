@@ -6,8 +6,8 @@
 <p class="meta">
   {%- if page.extra.stage is defined %}
   <span class="label">{{ trans(key="milestone", lang=lang) }} · {{ trans(key="stage", lang=lang) | lower }} {{ page.extra.stage }}</span>
-  {%- elif page.extra.note_stage is defined %}
-  <span class="label">{{ trans(key="note", lang=lang) }} · {{ trans(key="stage", lang=lang) | lower }} {{ page.extra.note_stage }}</span>
+  {%- elif page.extra.deliveries is defined %}
+  <span class="label">{% if page.extra.deliveries | length > 1 %}{{ trans(key="deliveries", lang=lang) }} {{ page.extra.deliveries | first }} {{ trans(key="deliveries_to", lang=lang) }} {{ page.extra.deliveries | last }}{% else %}{{ trans(key="delivery", lang=lang) }} {{ page.extra.deliveries | first }}{% endif %} · {{ trans(key="stage", lang=lang) | lower }} {{ page.extra.delivery_stage }}</span>
   {%- endif %}
   <span>{{ trans(key="published", lang=lang) }} <time datetime="{{ page.date }}">{{ page.date | date(format=trans(key="date_format", lang=lang)) }}</time></span>
 </p>

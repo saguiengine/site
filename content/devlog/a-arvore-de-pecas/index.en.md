@@ -1,15 +1,16 @@
 +++
-title = "Note: the piece tree and the game that freezes at any step"
+title = "The piece tree and the game that freezes at any step"
 date = 2026-10-20T19:25:00Z
 description = "The first four deliveries of stage 2: the editor matching its design, a yardstick for every delivery, pieces inside pieces, and a game state that is saved and goes on exactly the same, on any system."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [1, 4]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2, about deliveries 1 to 4. The numbers are
+*A short post from stage 2, about deliveries 1 to 4. The numbers are
 provisional, measured on my PC.*
 
 From now on, each delivery gets a post. This one gathers the first four,

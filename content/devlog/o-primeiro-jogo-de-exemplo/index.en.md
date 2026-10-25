@@ -1,15 +1,16 @@
 +++
-title = "Note: the first example game, with the camera following"
+title = "The first example game, with the camera following"
 date = 2026-10-25T15:30:00Z
 description = "Delivery 10 brings Meu Jogo, the first platform game example: a pixel art level three screens wide, with the camera following the little monkey and the sign in the language of whoever plays."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [10]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*A short note from stage 2, about delivery 10. The times are provisional,
+*A short post from stage 2, about delivery 10. The times are provisional,
 measured on my PC.*
 
 Until now, the test game was a square on a plain background. Delivery 10

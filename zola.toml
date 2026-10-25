@@ -56,8 +56,12 @@ not_found_title = "Página não encontrada"
 not_found_text = "Esta página não existe ou mudou de lugar."
 back_home = "Voltar ao início"
 milestone = "Marco"
-# A short note of a stage, between its milestones (19/10/2026).
-note = "Nota"
+# The label of a delivery post, between the milestones of a stage
+# (25/10/2026): "Entrega 10", or "Entregas 1 a 4" for a post that
+# gathers several (`deliveries = [1, 4]` in its [extra]).
+delivery = "Entrega"
+deliveries = "Entregas"
+deliveries_to = "a"
 published = "Publicado em"
 date_format = "%d/%m/%Y"
 opens_new_tab = "(abre em nova aba)"
@@ -110,8 +114,10 @@ not_found_title = "Page not found"
 not_found_text = "This page does not exist or has moved."
 back_home = "Back to the home page"
 milestone = "Milestone"
-# A short note of a stage, between its milestones (19/10/2026).
-note = "Note"
+# The label of a delivery post (25/10/2026), as in Portuguese.
+delivery = "Delivery"
+deliveries = "Deliveries"
+deliveries_to = "to"
 published = "Published on"
 date_format = "%b %-d, %Y"
 opens_new_tab = "(opens in a new tab)"

@@ -1,15 +1,16 @@
 +++
-title = "Nota: o texto do jogo, no idioma de quem joga"
+title = "O texto do jogo, no idioma de quem joga"
 date = 2026-10-22T21:00:00Z
 description = "A entrega 8 traz a peça Texto e os idiomas do jogo: placas e frases que aparecem no idioma de quem joga, com letras iguais em qualquer computador."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [8]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2, sobre a entrega 8.*
+*Um post curto da etapa 2, sobre a entrega 8.*
 
 Até agora, as peças do jogo só mostravam imagens. A entrega 8 traz a peça
 **Texto**: uma placa, um placar, um aviso na tela. E traz os idiomas do

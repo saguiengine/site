@@ -1,17 +1,18 @@
 +++
-title = "Nota: moldes, cópias e o interruptor Ativa"
+title = "Moldes, cópias e o interruptor Ativa"
 date = 2026-10-20T19:26:00Z
 description = "Um molde vira muitas cópias, cada uma com as suas diferenças, e toda peça ganhou um interruptor Ativa para sair do jogo e voltar. Como a Unity e o Godot fazem, e o que escolhemos."
 
 [extra]
-note_stage = "2"
+delivery_stage = "2"
+deliveries = [6]
 thumbnail = "nota-miniatura.png"
 thumbnail_has_text = false
 +++
 
-*Uma nota curta da etapa 2, sobre a entrega 6.*
+*Um post curto da etapa 2, sobre a entrega 6.*
 
-Na nota sobre o formato das fases, o jogador vivia num **molde** (o
+No post sobre o formato das fases, o jogador vivia num **molde** (o
 *prefab* de outras engines): um arquivo com uma peça pronta, que a fase
 repete quantas vezes quiser. Nesta entrega, os moldes ganharam diferenças,
 variantes e moldes dentro de moldes. Por enquanto, tudo isso vive nos
