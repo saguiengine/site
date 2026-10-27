@@ -74,13 +74,15 @@ post = "o-texto-do-jogo"
 pt = "9 · o editor abre o projeto"
 en = "9 · the editor opens the project"
 count = 1
-state = "next"
+state = "done"
+post = "o-editor-abre-o-projeto"
 
 [[stage.delivery]]
 pt = "10 · o jogo de exemplo da etapa"
 en = "10 · the stage's sample game"
 count = 1
-state = "next"
+state = "done"
+post = "o-primeiro-jogo-de-exemplo"
 
 [[stage.delivery]]
 pt = "11 · testes e CI"
