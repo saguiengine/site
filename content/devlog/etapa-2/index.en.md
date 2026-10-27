@@ -105,7 +105,7 @@ wide. The little monkey walks through the level, between the grass floor and
 the plank platforms (for now in any direction, even through the air, because
 there is no gravity yet), and the camera follows it to the end of the level.
 The sign at the start speaks the player's language. The game shows its first
-frame 0.6 second after opening, and the limit on the PC is 0.75 second; 99%
+frame 0.6 seconds after opening, and the limit on the PC is 0.75 seconds; 99%
 of the frames are ready in under 3 ms.
 [The first example game](@/devlog/o-primeiro-jogo-de-exemplo/index.en.md).
 
@@ -147,7 +147,7 @@ described the old way. Out of the review came:
   and the browser ones, ran on GitHub's computers, in the cloud, with a quota
   of minutes per month, and October's quota ran out on the 25th. Instead of
   paying more, that part came to my PC, which already ran the Windows ones, in
-  a Linux that runs inside Windows (the *WSL*), kept apart from it: the code
+  a Linux that runs inside Windows (*WSL*), kept apart from it: the code
   of the tests cannot reach Windows' files, graphics card or programs. Now the
   tests cost nothing and take 7 to 10 minutes.
 - **The PC froze during the tests.** With the Linux tests and the Windows
@@ -155,7 +155,7 @@ described the old way. Out of the review came:
   ceiling on Linux's memory and fewer tasks at the same time, and at the
   worst moment almost 8 GB are left now.
 - **The power went out.** It went out in the middle of a test and damaged a
-  few files of the version history (the *Git*) in the folder where Linux runs
+  few files of the version history (*Git*) in the folder where Linux runs
   the tests. I deleted only the damaged ones, without losing the rest, and the
   step by step is written down for next time.
 
