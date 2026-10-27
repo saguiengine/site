@@ -4,10 +4,12 @@
 # content/devlog). Update `state` and `post` when a stage ends, in the same
 # PR as its milestone post.
 #
-# The stage in progress lists its deliveries (`delivery`): what each line
-# says, how many deliveries of the spec it covers (`count`, so "1 to 4"
-# counts 4), `state` done or next, and the post that tells it. Each
-# delivery's post updates this list in the same PR (D401).
+# A stage lists its deliveries (`delivery`): what each line says, how many
+# deliveries of the spec it covers (`count`, so "1 to 4" counts 4), `state`
+# done or next, and the post that tells it. The list of the stage in
+# progress shows open; after the stage is done, the list stays, closed, and
+# opens with a click. Each delivery's post updates this list in the same PR
+# (D401), and scripts/check_site.py checks that every post is marked here.
 
 [[stage]]
 pt = "Etapa 0: provas"
@@ -24,7 +26,8 @@ post = "etapa-1"
 [[stage]]
 pt = "Etapa 2: peças e fases"
 en = "Stage 2: pieces and levels"
-state = "now"
+state = "done"
+post = "etapa-2"
 
 [[stage.delivery]]
 pt = "1 a 4 · a árvore de peças e o estado salvo"
@@ -74,24 +77,27 @@ post = "o-texto-do-jogo"
 pt = "9 · o editor abre o projeto"
 en = "9 · the editor opens the project"
 count = 1
-state = "next"
+state = "done"
+post = "o-editor-abre-o-projeto"
 
 [[stage.delivery]]
 pt = "10 · o jogo de exemplo da etapa"
 en = "10 · the stage's sample game"
 count = 1
-state = "next"
+state = "done"
+post = "o-primeiro-jogo-de-exemplo"
 
 [[stage.delivery]]
 pt = "11 · testes e CI"
 en = "11 · tests and CI"
 count = 1
-state = "next"
+state = "done"
+post = "etapa-2"
 
 [[stage]]
 pt = "Etapa 3: física"
 en = "Stage 3: physics"
-state = "next"
+state = "now"
 
 [[stage]]
 pt = "Etapa 4: {linguagem}, o núcleo"

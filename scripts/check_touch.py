@@ -2,7 +2,9 @@
 
 Builds the site, serves it locally, opens the main pages 390 px wide in
 headless Chrome and measures every link outside the running text of a page
-(links inside the text of a post or a lead are exempt, as in WCAG 2.5.8).
+(links inside the text of a post or a lead are exempt, as in WCAG 2.5.8),
+and every button that opens a list (a summary). Every list is opened first,
+so the links inside a closed one are measured too.
 
 Run: python3 scripts/check_touch.py (needs Zola, or ZOLA, and Chrome on
 the PATH, or in CHROME).
@@ -34,7 +36,8 @@ for (const page of pages) {
   frame.style.width = '%dpx'; frame.style.height = '1600px'; frame.src = page;
   frame.onload = () => {
     const doc = frame.contentDocument;
-    for (const a of doc.querySelectorAll('a')) {
+    for (const list of doc.querySelectorAll('details')) list.open = true;
+    for (const a of doc.querySelectorAll('a, summary')) {
       if (a.closest('.prose, .lead') || a.classList.contains('skip')) continue;
       const r = a.getBoundingClientRect();
       results.push({page, text: a.textContent.trim(), w: Math.round(r.width), h: Math.round(r.height)});
@@ -91,7 +94,7 @@ def main():
     if small:
         return 1
     smallest = min(results, key=lambda r: min(r["w"], r["h"]))
-    print(f"check_touch: {len(results)} links at {WIDTH} px, the smallest "
+    print(f"check_touch: {len(results)} links and buttons at {WIDTH} px, the smallest "
           f"\"{smallest['text']}\" {smallest['w']} x {smallest['h']} px")
     return 0
 

@@ -266,11 +266,25 @@ a.stage-row:hover, a.delivery-row:hover { color: var(--link-hover); }
 /* In progress: the dot half full. */
 .stage.now .stage-row .dot { border-color: var(--done); background: linear-gradient(90deg, var(--done) 50%, var(--surface) 50%); }
 .stage.next { color: var(--text-muted); }
-/* The deliveries of the stage in progress, under it, with a smaller dot:
-   full when done, hollow when next. */
+/* The deliveries of a stage, under it, with a smaller dot: full when done,
+   hollow when next. Their list folds: the button (summary) is the count and
+   the bar, with a sign that points down when closed and up when open, at
+   least 32 px tall to touch (rule 18 of D322). */
 .deliveries-box { padding: 0 0 6px 22px; }
-.box .progress-text { margin: 0; font-size: 13px; color: var(--text-soft); }
-.progress { display: block; height: 4px; margin: 4px 0 4px; border-radius: 2px; background: var(--border); overflow: hidden; }
+.deliveries-summary {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 8px;
+  min-height: 32px; cursor: pointer; list-style: none;
+}
+.deliveries-summary::-webkit-details-marker { display: none; }
+.deliveries-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.deliveries-summary:hover .progress-text, .deliveries-summary:hover .opens { color: var(--link-hover); }
+.progress-text { font-size: 13px; color: var(--text-soft); }
+.opens {
+  width: 7px; height: 7px; margin: 0 6px 3px 0; color: var(--text-soft);
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg);
+}
+.deliveries-box[open] .opens { margin: 3px 6px 0 0; transform: rotate(225deg); }
+.progress { grid-column: 1 / -1; display: block; height: 4px; margin: 4px 0 4px; border-radius: 2px; background: var(--border); overflow: hidden; }
 .progress-done { display: block; height: 100%; background: var(--done); }
 .deliveries { list-style: none; margin: 0; padding: 0; font-size: 13px; font-weight: 400; }
 .delivery { color: var(--text-muted); }

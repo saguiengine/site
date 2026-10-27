@@ -18,7 +18,10 @@ domain live and a preview, and checks:
   and a "&" in a description is escaped once;
 - the footer's profiles and contact address stay out of the pages while
   they have `show = false`, and show up with `show = true`;
-- a thumbnail on an English page is no image with text in Portuguese (D388).
+- a thumbnail on an English page is no image with text in Portuguese (D388);
+- every post is marked in data/roadmap.toml: a delivery's post is the `post`
+  of a delivery that is done in its stage, and a milestone post is the
+  `post` of its stage, done (D401).
 
 Run: python3 scripts/check_site.py (needs Zola on the PATH, or in ZOLA).
 """
@@ -319,6 +322,48 @@ def check_roadmap(out):
     return problems
 
 
+FRONT_MATTER = re.compile(r"\A\+\+\+\r?\n(.*?)\r?\n\+\+\+", re.S)
+STAGE_NUMBER = re.compile(r"^Etapa (\w+):")
+
+
+def stages_by_number(roadmap):
+    """Each stage of the roadmap by its number, as a post names it ("2",
+    "5a"), read from the start of its Portuguese name ("Etapa 2: ...")."""
+    stages = {}
+    for stage in roadmap["stage"]:
+        number = STAGE_NUMBER.match(stage["pt"])
+        if number:
+            stages[number.group(1)] = stage
+    return stages
+
+
+def check_posts_in_roadmap(root=ROOT):
+    """Every post is marked in the roadmap, in the same PR that publishes it
+    (D401): a post of deliveries (`deliveries` in its front matter) is the
+    `post` of a delivery that is done in its stage (`delivery_stage`), and a
+    milestone post (`stage`) is the `post` of its stage, done. The posts of
+    deliveries 9 and 10 of stage 2 went out with them still "next"."""
+    with open(root / "data" / "roadmap.toml", "rb") as f:
+        stages = stages_by_number(tomllib.load(f))
+    problems = []
+    for page in sorted((root / "content" / "devlog").glob("*/index.md")):
+        front = FRONT_MATTER.match(page.read_text(encoding="utf-8"))
+        extra = tomllib.loads(front.group(1)).get("extra", {}) if front else {}
+        post = page.parent.name
+        if "deliveries" in extra:
+            stage = str(extra.get("delivery_stage"))
+            deliveries = stages.get(stage, {}).get("delivery", [])
+            if not any(d.get("post") == post and d.get("state") == "done" for d in deliveries):
+                problems.append(f"roadmap: {post} tells deliveries {extra['deliveries']} of stage "
+                                f"{stage}, and no delivery done there has it as its post")
+        if "stage" in extra:
+            stage = stages.get(str(extra["stage"]), {})
+            if stage.get("post") != post or stage.get("state") != "done":
+                problems.append(f"roadmap: {post} is the milestone post of stage {extra['stage']}, "
+                                f"and the stage is not done with it as its post")
+    return problems
+
+
 def check_variant(tmp):
     """A copy of the site with a "&" and quotes in the devlog's lead and every
     footer link shown: the "&" is escaped once in the description, and the
@@ -369,6 +414,7 @@ def main():
                     + check_footer(main_out)
                     + check_thumbnails(main_out)
                     + check_roadmap(main_out)
+                    + check_posts_in_roadmap()
                     + check_variant(tmp))
         ids = feed_ids(main_out)
     for problem in problems:
@@ -376,7 +422,7 @@ def main():
     if problems:
         return 1
     print("check_site: address, E9.4, images, thousands, 404, descriptions, footer, thumbnails "
-          "and roadmap "
+          "and roadmap (its links and the posts it marks) "
           f"pass; feed ids of main: {ids}")
     return 0
 
