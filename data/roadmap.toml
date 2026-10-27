@@ -4,10 +4,12 @@
 # content/devlog). Update `state` and `post` when a stage ends, in the same
 # PR as its milestone post.
 #
-# The stage in progress lists its deliveries (`delivery`): what each line
-# says, how many deliveries of the spec it covers (`count`, so "1 to 4"
-# counts 4), `state` done or next, and the post that tells it. Each
-# delivery's post updates this list in the same PR (D401).
+# A stage lists its deliveries (`delivery`): what each line says, how many
+# deliveries of the spec it covers (`count`, so "1 to 4" counts 4), `state`
+# done or next, and the post that tells it. The list of the stage in
+# progress shows open; after the stage is done, the list stays, closed, and
+# opens with a click. Each delivery's post updates this list in the same PR
+# (D401), and scripts/check_site.py checks that every post is marked here.
 
 [[stage]]
 pt = "Etapa 0: provas"
