@@ -14,9 +14,9 @@ thumbnail_has_text = false
 measured on my PC.*
 
 Stage 3 brings physics, but its first delivery changes nothing on the
-screen. It tidies up the house: it takes care of 16 small items that the
-checks of stage 2 left on a card on GitHub (an *issue*), and it gets the
-engine ready for physics.
+screen. It tidies up: it takes care of 16 small items that the checks of
+stage 2 left on a card on GitHub (an *issue*), and it gets the engine ready
+for physics.
 
 ## A lock against the wrong order
 
@@ -39,9 +39,9 @@ marked, each with its reason.
 Stage 1's test square lived in the engine's core, but only the tests and a
 measurement use it. Now it sits behind a switch that only they turn on (a
 *feature*) and stays out of the program that reaches players. Stage
-1's reference *hashes*, the game's fingerprints, which change if anything
-changes, stayed the same, at 60 and 120 steps per second, on the computer
-and in *WebAssembly*, the program format of browsers.
+1's reference *hashes*, the game's fingerprints, stayed the same, at 60 and
+120 steps per second, on the computer and in *WebAssembly*, the program
+format of browsers.
 
 The internal version is now 0.3.0-dev ("dev" for development). A state
 saved by 0.2 (the snapshot of everything the game remembers at a step) is
@@ -55,8 +55,8 @@ warnings: the right one, SE0004, with the line and the column (line 2,
 column 15), and a wrong one, SE0007, which said the file could not be read.
 Now only SE0004 shows up, in the editor and in the game.
 
-Four of the project's commands ignored a misspelled option and did
-something else: `prova` ("proof"), for example, ran proof 1. Now they stop
+Four of the project's commands did not point out a misspelled option:
+`prova` ("proof"), for example, ignored it and ran proof 1. Now they stop
 and say which option they did not understand.
 
 ## Faster GIFs
@@ -76,8 +76,8 @@ editor and one in the game, became a single one in the count. Now the
 acceptance check refuses a repeated name among the tests of a criterion,
 and in stages 1 and 2 it found none.
 
-The 14 criteria of this delivery passed, with 29 tests. In all, 871 tests
-pass, and 297 in *WebAssembly*.
+Of this delivery's 20 criteria, the 14 that the acceptance check covers
+passed, with 29 tests. In all, 871 tests pass, and 297 in *WebAssembly*.
 
 ## What comes next
 

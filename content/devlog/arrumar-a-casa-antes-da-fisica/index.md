@@ -39,10 +39,9 @@ cada um com o motivo.
 O quadrado de teste da etapa 1 morava no núcleo da engine, mas só os testes e
 uma medição o usam. Agora ele fica atrás de um interruptor que só eles ligam
 (uma *feature*) e não entra no programa que vai para quem joga. Os *hashes*
-de referência da etapa 1, as impressões digitais do jogo, que mudam se
-qualquer coisa mudar, continuaram os mesmos, a 60 e a 120 passos por
-segundo, no computador e no *WebAssembly*, o formato de programa dos
-navegadores.
+de referência da etapa 1, as impressões digitais do jogo, continuaram os
+mesmos, a 60 e a 120 passos por segundo, no computador e no *WebAssembly*, o
+formato de programa dos navegadores.
 
 A versão interna passou a 0.3.0-dev (o "dev" é de desenvolvimento). Um estado
 salvo pela 0.2 (a foto de tudo o que o jogo lembra num passo) é recusado, e
@@ -52,13 +51,13 @@ resultado pode mudar.
 ## Erros mais claros
 
 Uma fase com um erro de digitação, como a vírgula a mais em `format: 1,,`,
-dava dois avisos: o certo, a SE0004, com a linha e a coluna
-(linha 2, coluna 15), e um errado, a SE0007, que dizia que não foi possível
-ler o arquivo. Agora sai só a SE0004, no editor e no jogo.
+dava dois avisos: o certo, a SE0004, com a linha e a coluna (linha 2,
+coluna 15), e um errado, a SE0007, que dizia que não foi possível ler o
+arquivo. Agora sai só a SE0004, no editor e no jogo.
 
-Quatro comandos do projeto ignoravam uma opção escrita errado e faziam
-outra coisa: o `prova`, por exemplo, rodava a prova 1. Agora eles
-param e dizem qual opção não entenderam.
+Quatro comandos do projeto não apontavam uma opção escrita errado: o
+`prova`, por exemplo, ignorava a opção e rodava a prova 1. Agora eles param e
+dizem qual opção não entenderam.
 
 ## GIFs mais rápidos
 
@@ -76,8 +75,8 @@ Nesta entrega, dois testes de mesmo nome, um no editor e outro no jogo,
 viravam um só na conta. Agora o aceite recusa um nome repetido entre os
 testes de um critério, e nas etapas 1 e 2 não achou nenhum.
 
-Os 14 critérios desta entrega passaram, com 29 testes. Ao todo, passam 871
-testes, e 297 no *WebAssembly*.
+Dos 20 critérios desta entrega, os 14 que o aceite confere passaram, com 29
+testes. Ao todo, passam 871 testes, e 297 no *WebAssembly*.
 
 ## O que vem agora
 
