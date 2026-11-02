@@ -48,6 +48,37 @@ class Address(unittest.TestCase):
         self.assertEqual(build.address(env, DOMAIN), "https://fix-api.projeto.pages.dev")
 
 
+class LongBranch(unittest.TestCase):
+    """Cloudflare cuts a branch's alias at 28 characters and drops the hyphen
+    left at the end. With the whole name, a long branch's preview opened with
+    no CSS and no thumbnails (PR #19)."""
+
+    # The "Branch Preview URL" Cloudflare Pages published on the site's PRs.
+    SEEN = [
+        ("devlog/arrumar-a-casa-antes-da-fisica", "devlog-arrumar-a-casa-antes"),  # 19
+        ("devlog/o-primeiro-jogo-de-exemplo", "devlog-o-primeiro-jogo-de-ex"),  # 15
+        ("devlog/o-editor-abre-o-projeto", "devlog-o-editor-abre-o-proje"),  # 14
+        ("devlog/revisao-estrategica", "devlog-revisao-estrategica"),  # 5
+    ]
+
+    def test_the_alias_cloudflare_published_on_the_sites_prs(self):
+        for branch, alias in self.SEEN:
+            with self.subTest(branch=branch):
+                env = cloudflare("https://def456.projeto.pages.dev", branch)
+                self.assertEqual(build.address(env, DOMAIN), f"https://{alias}.projeto.pages.dev")
+
+    def test_a_name_of_exactly_28_characters_stays_whole(self):
+        branch = "devlog/entrega-dois-da-etapa"
+        self.assertEqual(len(branch), 28)
+        env = cloudflare("https://def456.projeto.pages.dev", branch)
+        self.assertEqual(build.address(env, DOMAIN),
+                         "https://devlog-entrega-dois-da-etapa.projeto.pages.dev")
+
+    def test_with_no_alias_left_the_deployments_own_address(self):
+        env = cloudflare("https://def456.projeto.pages.dev", "__")
+        self.assertEqual(build.address(env, DOMAIN), "https://def456.projeto.pages.dev")
+
+
 class Indexing(unittest.TestCase):
     """E9.4 (D383): only the live domain is indexed."""
 
