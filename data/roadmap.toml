@@ -113,8 +113,8 @@ count = 1
 state = "next"
 
 [[stage.delivery]]
-pt = "3 · a lista do que desenhar"
-en = "3 · the draw list"
+pt = "3 · a lista do que desenhar, mais rápida"
+en = "3 · a faster draw list"
 count = 1
 state = "next"
 
@@ -137,8 +137,8 @@ count = 1
 state = "next"
 
 [[stage.delivery]]
-pt = "7 · a peça que anda e pula"
-en = "7 · the piece that walks and jumps"
+pt = "7 · a Móvel, a peça que anda e pula"
+en = "7 · the Actor, the piece that walks and jumps"
 count = 1
 state = "next"
 
@@ -179,8 +179,8 @@ count = 1
 state = "next"
 
 [[stage.delivery]]
-pt = "14 · o jogo no navegador"
-en = "14 · the game in the browser"
+pt = "14 · o jogo no navegador, mínimo e sem som"
+en = "14 · a minimal game in the browser, without sound"
 count = 1
 state = "next"
 
