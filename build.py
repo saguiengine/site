@@ -9,8 +9,9 @@ The address never depends on the deployment, which changes on every deploy:
   the domain is connected and DOMAIN_LIVE=1 is set in Pages; then the
   address from identity.toml;
 - previews (any other branch) use their branch's alias
-  (https://<alias>.<project>.pages.dev, the branch name cut at 28
-  characters), which follows the branch;
+  (https://<alias>.<project>.pages.dev: the branch name in lowercase, a
+  hyphen for what is not a letter or a digit, cut at 28 characters, no
+  hyphen at the end), which follows the branch;
 - outside Cloudflare, the address from identity.toml.
 
 Search engines (D383): only the live domain is indexed. The provisional
