@@ -3,7 +3,8 @@
 Builds the site as a deploy of main, a second deploy of main, main with the
 domain live and a preview, and checks:
 - the address: feed ids the same across two deploys of main, previews on
-  their branch alias, the domain only when it is live;
+  their branch alias (a long branch's, cut at 28 characters), the domain only
+  when it is live;
 - E9.4: noindex (meta and header) on the provisional address and previews,
   none with the domain live, where only *.pages.dev keeps it; and no cookie
   nor analytics script anywhere (D383, D271);
@@ -44,7 +45,9 @@ NOINDEX_META = '<meta name="robots" content="noindex">'
 MAIN = {"CF_PAGES_URL": "https://abc123.projeto.pages.dev", "CF_PAGES_BRANCH": "main"}
 MAIN_AGAIN = {"CF_PAGES_URL": "https://9f8e7d6c.projeto.pages.dev", "CF_PAGES_BRANCH": "main"}
 LIVE = {**MAIN, "DOMAIN_LIVE": "1"}
-PREVIEW = {"CF_PAGES_URL": "https://def456.projeto.pages.dev", "CF_PAGES_BRANCH": "e9/teste"}
+# A long branch: Cloudflare cuts its alias at 28 characters (PR #19).
+PREVIEW = {"CF_PAGES_URL": "https://def456.projeto.pages.dev",
+           "CF_PAGES_BRANCH": "devlog/arrumar-a-casa-antes-da-fisica"}
 
 
 def build(env, out):
@@ -77,7 +80,8 @@ def check_address(main, main_again, live, preview, domain):
     if ids != ids_again:
         problems.append(f"address: the feed ids change between two deploys of main: {ids} != {ids_again}")
     for out, base, name in [(main, "https://projeto.pages.dev/", "main"),
-                            (preview, "https://e9-teste.projeto.pages.dev/", "preview"),
+                            (preview, "https://devlog-arrumar-a-casa-antes.projeto.pages.dev/",
+                             "preview"),
                             (live, domain.rstrip("/") + "/", "main with the domain live")]:
         for value in feed_ids(out):
             if not value.startswith(base):
