@@ -99,6 +99,91 @@ pt = "Etapa 3: física"
 en = "Stage 3: physics"
 state = "now"
 
+[[stage.delivery]]
+pt = "1 · limpeza e preparos"
+en = "1 · cleanup and groundwork"
+count = 1
+state = "done"
+post = "arrumar-a-casa-antes-da-fisica"
+
+[[stage.delivery]]
+pt = "2 · a cola que roda o passo"
+en = "2 · the glue that runs the step"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "3 · a lista do que desenhar"
+en = "3 · the draw list"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "4 · o mundo da física e as primeiras peças"
+en = "4 · the physics world and the first pieces"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "5 · formas, materiais, força e impulso"
+en = "5 · shapes, materials, force and impulse"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "6 · zonas, contatos, raios e consultas"
+en = "6 · zones, contacts, rays and queries"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "7 · a peça que anda e pula"
+en = "7 · the piece that walks and jumps"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "8 · plataformas"
+en = "8 · platforms"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "9 · zonas com forças e juntas"
+en = "9 · zones with forces and joints"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "10 · zona morta e antecipação da câmera"
+en = "10 · camera dead zone and look-ahead"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "11 · ver as colisões no Jogar"
+en = "11 · seeing collisions in Play"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "12 · a cena das metas de desempenho"
+en = "12 · the performance targets scene"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "13 · o jogo de exemplo com física"
+en = "13 · the sample game with physics"
+count = 1
+state = "next"
+
+[[stage.delivery]]
+pt = "14 · o jogo no navegador"
+en = "14 · the game in the browser"
+count = 1
+state = "next"
+
 [[stage]]
 pt = "Etapa 4: {linguagem}, o núcleo"
 en = "Stage 4: {linguagem}, the core"
