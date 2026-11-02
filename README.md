@@ -25,7 +25,8 @@ python -m unittest discover -s scripts -p "test_*.py"
 O `build.py` passa o endereço ao `zola build`. No Cloudflare Pages, a
 `main` usa o endereço fixo do projeto (`https://<projeto>.pages.dev`) até o
 domínio ser ligado; cada prévia usa o endereço da sua branch
-(`https://<branch>.<projeto>.pages.dev`). O endereço nunca depende do
+(`https://<alias>.<projeto>.pages.dev`, com o nome da branch cortado em 28
+caracteres, como o Cloudflare corta). O endereço nunca depende do
 deployment, que muda a cada deploy. O `build.py` também escreve o `_headers`
 do `noindex` (D383) e move a 404 em inglês para `en/404.html`.
 

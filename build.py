@@ -9,7 +9,8 @@ The address never depends on the deployment, which changes on every deploy:
   the domain is connected and DOMAIN_LIVE=1 is set in Pages; then the
   address from identity.toml;
 - previews (any other branch) use their branch's alias
-  (https://<branch>.<project>.pages.dev), which follows the branch;
+  (https://<alias>.<project>.pages.dev, the branch name cut at 28
+  characters), which follows the branch;
 - outside Cloudflare, the address from identity.toml.
 
 Search engines (D383): only the live domain is indexed. The provisional
@@ -31,8 +32,12 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
 
-# A DNS label holds at most 63 characters.
-MAX_LABEL = 63
+# Cloudflare cuts a branch's alias at 28 characters. Its documentation
+# (pages/configuration/preview-deployments) does not say so: the number comes
+# from the "Branch Preview URL" it published on this site's PRs (#5, #14, #15,
+# #19; 02/11/2026). A 37-character branch got a 27-character alias, the hyphen
+# left at the cut dropped.
+MAX_ALIAS = 28
 
 
 def project_host(deployment):
@@ -46,8 +51,9 @@ def project_host(deployment):
 
 def branch_alias(branch):
     """Cloudflare's alias of a branch: lowercase, with a hyphen for every
-    character that is not a letter or a digit."""
-    return re.sub(r"[^a-z0-9]", "-", branch.lower())
+    character that is not a letter or a digit, cut at MAX_ALIAS characters
+    and with no hyphen at the end."""
+    return re.sub(r"[^a-z0-9]", "-", branch.lower())[:MAX_ALIAS].rstrip("-")
 
 
 def address(env, identity_url):
@@ -61,7 +67,7 @@ def address(env, identity_url):
             return identity_url
         return f"https://{project_host(deployment)}"
     alias = branch_alias(branch)
-    if not alias or len(alias) > MAX_LABEL:
+    if not alias:
         return deployment
     return f"https://{alias}.{project_host(deployment)}"
 
